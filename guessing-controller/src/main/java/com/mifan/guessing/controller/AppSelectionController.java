@@ -5,8 +5,8 @@ import com.mifan.guessing.domain.EventDomain;
 import com.mifan.guessingapi.request.event.EventListRequest;
 import com.mifan.guessingapi.response.BaseResponse;
 import com.mifan.guessingapi.response.event.EventListResponse;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,8 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/app/select")
 public class AppSelectionController extends BaseController {
 
-    private static Logger logger = LoggerFactory.getLogger( AppSelectionController.class );
-
+    private static Logger logger = LogManager.getLogger( AppSelectionController.class );
     @Autowired
     private EventDomain eventDomain;
 

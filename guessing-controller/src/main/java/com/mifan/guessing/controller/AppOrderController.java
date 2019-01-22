@@ -6,8 +6,8 @@ import com.mifan.guessingapi.response.BaseResponse;
 import com.mifan.guessingapi.response.order.SubmitOrderResponse;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/app/select")
 public class AppOrderController extends BaseController {
 
-    private static Logger logger = LoggerFactory.getLogger( AppOrderController.class );
+    private static Logger logger = LogManager.getLogger( AppOrderController.class );
 
     @Autowired
     private OrderDomain orderDomain;

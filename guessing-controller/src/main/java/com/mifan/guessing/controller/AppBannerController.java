@@ -8,8 +8,8 @@ import com.mifan.guessingapi.response.banner.AppBannerListResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
@@ -29,7 +29,7 @@ import java.util.List;
 @Api(description = "APPBanner")
 public class AppBannerController extends BaseController {
 
-    private static Logger logger = LoggerFactory.getLogger( AppBannerController.class );
+    private static Logger logger = LogManager.getLogger( AppBannerController.class );
 
     @Autowired
     private BannerDomain bannerDomain;

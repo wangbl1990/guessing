@@ -10,8 +10,8 @@ import com.mifan.guessingapi.response.BaseResponse;
 import com.mifan.guessingapi.response.event.EventListResponse;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
@@ -31,7 +31,7 @@ import java.util.List;
 @RequestMapping(value = "/app/event")
 public class AppEventController extends BaseController {
 
-    private static Logger logger = LoggerFactory.getLogger( AppEventController.class );
+    private static Logger logger = LogManager.getLogger( AppEventController.class );
 
     @Autowired
     private EventDomain eventDomain;

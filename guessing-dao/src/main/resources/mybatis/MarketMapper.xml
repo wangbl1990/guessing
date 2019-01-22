@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mifan.guessing.dao.mapper.MarketMapper" >
+  <resultMap id="BaseResultMap" type="com.mifan.guessing.dao.model.Market" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="market_id" property="marketId" jdbcType="VARCHAR" />
+    <result column="rule_type" property="ruleType" jdbcType="VARCHAR" />
+    <result column="period_type" property="periodType" jdbcType="VARCHAR" />
+    <result column="period_value" property="periodValue" jdbcType="VARCHAR" />
+    <result column="period_begin" property="periodBegin" jdbcType="VARCHAR" />
+    <result column="period_end" property="periodEnd" jdbcType="VARCHAR" />
+    <result column="quota_appetite" property="quotaAppetite" jdbcType="VARCHAR" />
+    <result column="betting_delay" property="bettingDelay" jdbcType="VARCHAR" />
+    <result column="open_result" property="openResult" jdbcType="VARCHAR" />
+    <result column="verify_result" property="verifyResult" jdbcType="VARCHAR" />
+    <result column="settled_result" property="settledResult" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, market_id, rule_type, period_type, period_value, period_begin, period_end, quota_appetite, 
+    betting_delay, open_result, verify_result, settled_result
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mifan.guessing.dao.model.MarketExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from market
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from market
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from market
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mifan.guessing.dao.model.MarketExample" >
+    delete from market
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mifan.guessing.dao.model.Market" >
+    insert into market (id, market_id, rule_type, 
+      period_type, period_value, period_begin, 
+      period_end, quota_appetite, betting_delay, 
+      open_result, verify_result, settled_result
+      )
+    values (#{id,jdbcType=VARCHAR}, #{marketId,jdbcType=VARCHAR}, #{ruleType,jdbcType=VARCHAR}, 
+      #{periodType,jdbcType=VARCHAR}, #{periodValue,jdbcType=VARCHAR}, #{periodBegin,jdbcType=VARCHAR}, 
+      #{periodEnd,jdbcType=VARCHAR}, #{quotaAppetite,jdbcType=VARCHAR}, #{bettingDelay,jdbcType=VARCHAR}, 
+      #{openResult,jdbcType=VARCHAR}, #{verifyResult,jdbcType=VARCHAR}, #{settledResult,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mifan.guessing.dao.model.Market" >
+    insert into market
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="marketId != null" >
+        market_id,
+      </if>
+      <if test="ruleType != null" >
+        rule_type,
+      </if>
+      <if test="periodType != null" >
+        period_type,
+      </if>
+      <if test="periodValue != null" >
+        period_value,
+      </if>
+      <if test="periodBegin != null" >
+        period_begin,
+      </if>
+      <if test="periodEnd != null" >
+        period_end,
+      </if>
+      <if test="quotaAppetite != null" >
+        quota_appetite,
+      </if>
+      <if test="bettingDelay != null" >
+        betting_delay,
+      </if>
+      <if test="openResult != null" >
+        open_result,
+      </if>
+      <if test="verifyResult != null" >
+        verify_result,
+      </if>
+      <if test="settledResult != null" >
+        settled_result,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="marketId != null" >
+        #{marketId,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleType != null" >
+        #{ruleType,jdbcType=VARCHAR},
+      </if>
+      <if test="periodType != null" >
+        #{periodType,jdbcType=VARCHAR},
+      </if>
+      <if test="periodValue != null" >
+        #{periodValue,jdbcType=VARCHAR},
+      </if>
+      <if test="periodBegin != null" >
+        #{periodBegin,jdbcType=VARCHAR},
+      </if>
+      <if test="periodEnd != null" >
+        #{periodEnd,jdbcType=VARCHAR},
+      </if>
+      <if test="quotaAppetite != null" >
+        #{quotaAppetite,jdbcType=VARCHAR},
+      </if>
+      <if test="bettingDelay != null" >
+        #{bettingDelay,jdbcType=VARCHAR},
+      </if>
+      <if test="openResult != null" >
+        #{openResult,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyResult != null" >
+        #{verifyResult,jdbcType=VARCHAR},
+      </if>
+      <if test="settledResult != null" >
+        #{settledResult,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mifan.guessing.dao.model.MarketExample" resultType="java.lang.Integer" >
+    select count(*) from market
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update market
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.marketId != null" >
+        market_id = #{record.marketId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ruleType != null" >
+        rule_type = #{record.ruleType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.periodType != null" >
+        period_type = #{record.periodType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.periodValue != null" >
+        period_value = #{record.periodValue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.periodBegin != null" >
+        period_begin = #{record.periodBegin,jdbcType=VARCHAR},
+      </if>
+      <if test="record.periodEnd != null" >
+        period_end = #{record.periodEnd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.quotaAppetite != null" >
+        quota_appetite = #{record.quotaAppetite,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bettingDelay != null" >
+        betting_delay = #{record.bettingDelay,jdbcType=VARCHAR},
+      </if>
+      <if test="record.openResult != null" >
+        open_result = #{record.openResult,jdbcType=VARCHAR},
+      </if>
+      <if test="record.verifyResult != null" >
+        verify_result = #{record.verifyResult,jdbcType=VARCHAR},
+      </if>
+      <if test="record.settledResult != null" >
+        settled_result = #{record.settledResult,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update market
+    set id = #{record.id,jdbcType=VARCHAR},
+      market_id = #{record.marketId,jdbcType=VARCHAR},
+      rule_type = #{record.ruleType,jdbcType=VARCHAR},
+      period_type = #{record.periodType,jdbcType=VARCHAR},
+      period_value = #{record.periodValue,jdbcType=VARCHAR},
+      period_begin = #{record.periodBegin,jdbcType=VARCHAR},
+      period_end = #{record.periodEnd,jdbcType=VARCHAR},
+      quota_appetite = #{record.quotaAppetite,jdbcType=VARCHAR},
+      betting_delay = #{record.bettingDelay,jdbcType=VARCHAR},
+      open_result = #{record.openResult,jdbcType=VARCHAR},
+      verify_result = #{record.verifyResult,jdbcType=VARCHAR},
+      settled_result = #{record.settledResult,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mifan.guessing.dao.model.Market" >
+    update market
+    <set >
+      <if test="marketId != null" >
+        market_id = #{marketId,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleType != null" >
+        rule_type = #{ruleType,jdbcType=VARCHAR},
+      </if>
+      <if test="periodType != null" >
+        period_type = #{periodType,jdbcType=VARCHAR},
+      </if>
+      <if test="periodValue != null" >
+        period_value = #{periodValue,jdbcType=VARCHAR},
+      </if>
+      <if test="periodBegin != null" >
+        period_begin = #{periodBegin,jdbcType=VARCHAR},
+      </if>
+      <if test="periodEnd != null" >
+        period_end = #{periodEnd,jdbcType=VARCHAR},
+      </if>
+      <if test="quotaAppetite != null" >
+        quota_appetite = #{quotaAppetite,jdbcType=VARCHAR},
+      </if>
+      <if test="bettingDelay != null" >
+        betting_delay = #{bettingDelay,jdbcType=VARCHAR},
+      </if>
+      <if test="openResult != null" >
+        open_result = #{openResult,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyResult != null" >
+        verify_result = #{verifyResult,jdbcType=VARCHAR},
+      </if>
+      <if test="settledResult != null" >
+        settled_result = #{settledResult,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mifan.guessing.dao.model.Market" >
+    update market
+    set market_id = #{marketId,jdbcType=VARCHAR},
+      rule_type = #{ruleType,jdbcType=VARCHAR},
+      period_type = #{periodType,jdbcType=VARCHAR},
+      period_value = #{periodValue,jdbcType=VARCHAR},
+      period_begin = #{periodBegin,jdbcType=VARCHAR},
+      period_end = #{periodEnd,jdbcType=VARCHAR},
+      quota_appetite = #{quotaAppetite,jdbcType=VARCHAR},
+      betting_delay = #{bettingDelay,jdbcType=VARCHAR},
+      open_result = #{openResult,jdbcType=VARCHAR},
+      verify_result = #{verifyResult,jdbcType=VARCHAR},
+      settled_result = #{settledResult,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

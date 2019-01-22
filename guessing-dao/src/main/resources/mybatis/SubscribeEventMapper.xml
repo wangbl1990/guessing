@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mifan.guessing.dao.mapper.SubscribeEventMapper" >
+  <resultMap id="BaseResultMap" type="com.mifan.guessing.dao.model.SubscribeEvent" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="user_code" property="userCode" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="event_id" property="eventId" jdbcType="VARCHAR" />
+    <result column="event_time" property="eventTime" jdbcType="TIMESTAMP" />
+    <result column="event_type" property="eventType" jdbcType="VARCHAR" />
+    <result column="event_name" property="eventName" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, user_code, phone, event_id, event_time, event_type, event_name, create_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mifan.guessing.dao.model.SubscribeEventExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from subscribe_event
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from subscribe_event
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from subscribe_event
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mifan.guessing.dao.model.SubscribeEventExample" >
+    delete from subscribe_event
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mifan.guessing.dao.model.SubscribeEvent" >
+    insert into subscribe_event (id, user_code, phone, 
+      event_id, event_time, event_type, 
+      event_name, create_time)
+    values (#{id,jdbcType=VARCHAR}, #{userCode,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{eventId,jdbcType=VARCHAR}, #{eventTime,jdbcType=TIMESTAMP}, #{eventType,jdbcType=VARCHAR}, 
+      #{eventName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mifan.guessing.dao.model.SubscribeEvent" >
+    insert into subscribe_event
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userCode != null" >
+        user_code,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="eventId != null" >
+        event_id,
+      </if>
+      <if test="eventTime != null" >
+        event_time,
+      </if>
+      <if test="eventType != null" >
+        event_type,
+      </if>
+      <if test="eventName != null" >
+        event_name,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userCode != null" >
+        #{userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="eventId != null" >
+        #{eventId,jdbcType=VARCHAR},
+      </if>
+      <if test="eventTime != null" >
+        #{eventTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="eventType != null" >
+        #{eventType,jdbcType=VARCHAR},
+      </if>
+      <if test="eventName != null" >
+        #{eventName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mifan.guessing.dao.model.SubscribeEventExample" resultType="java.lang.Integer" >
+    select count(*) from subscribe_event
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update subscribe_event
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userCode != null" >
+        user_code = #{record.userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.eventId != null" >
+        event_id = #{record.eventId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.eventTime != null" >
+        event_time = #{record.eventTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.eventType != null" >
+        event_type = #{record.eventType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.eventName != null" >
+        event_name = #{record.eventName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update subscribe_event
+    set id = #{record.id,jdbcType=VARCHAR},
+      user_code = #{record.userCode,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      event_id = #{record.eventId,jdbcType=VARCHAR},
+      event_time = #{record.eventTime,jdbcType=TIMESTAMP},
+      event_type = #{record.eventType,jdbcType=VARCHAR},
+      event_name = #{record.eventName,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mifan.guessing.dao.model.SubscribeEvent" >
+    update subscribe_event
+    <set >
+      <if test="userCode != null" >
+        user_code = #{userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="eventId != null" >
+        event_id = #{eventId,jdbcType=VARCHAR},
+      </if>
+      <if test="eventTime != null" >
+        event_time = #{eventTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="eventType != null" >
+        event_type = #{eventType,jdbcType=VARCHAR},
+      </if>
+      <if test="eventName != null" >
+        event_name = #{eventName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mifan.guessing.dao.model.SubscribeEvent" >
+    update subscribe_event
+    set user_code = #{userCode,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      event_id = #{eventId,jdbcType=VARCHAR},
+      event_time = #{eventTime,jdbcType=TIMESTAMP},
+      event_type = #{eventType,jdbcType=VARCHAR},
+      event_name = #{eventName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

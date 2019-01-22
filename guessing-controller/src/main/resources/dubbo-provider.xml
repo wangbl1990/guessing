@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://dubbo-xsd.ppweb.com.cn/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://dubbo-xsd.ppweb.com.cn/dubbo.xsd">
+		
+    <!-- 提供方应用信息，用于计算依赖关系 -->
+<!--    <dubbo:application name="unionPayServiceProvider" />-->
+ 
+     <!--注册中心暴露服务地址--> 
+    <dubbo:registry protocol="zookeeper" address="192.168.1.155:2181"/>
+   
+    <dubbo:protocol name="dubbo" port="-1" />
+    
+<!--    <dubbo:monitor protocol="registry"/>-->
+
+    <dubbo:provider timeout="5000"/>
+     
+    <!-- 声明需要暴露的服务接口 -->
+
+    <dubbo:service interface="com.mifan.guessing.rpcService.BannerService"
+                   timeout="15000" version="1.0.0" delay="-1"  ref="bannerService"/>
+    <dubbo:service interface="com.mifan.guessing.rpcService.OrderService"
+                   timeout="15000" version="1.0.0" delay="-1"  ref="orderService"/>
+    
+</beans>

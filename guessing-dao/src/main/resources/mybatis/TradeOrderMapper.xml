@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mifan.guessing.dao.mapper.TradeOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.mifan.guessing.dao.model.TradeOrder" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="event_id" property="eventId" jdbcType="VARCHAR" />
+    <result column="market_id" property="marketId" jdbcType="VARCHAR" />
+    <result column="selection_id" property="selectionId" jdbcType="VARCHAR" />
+    <result column="request_amount" property="requestAmount" jdbcType="DECIMAL" />
+    <result column="request_price" property="requestPrice" jdbcType="DECIMAL" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="submitted_time" property="submittedTime" jdbcType="TIMESTAMP" />
+    <result column="user_code" property="userCode" jdbcType="VARCHAR" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="event_type" property="eventType" jdbcType="VARCHAR" />
+    <result column="event_name" property="eventName" jdbcType="VARCHAR" />
+    <result column="fill_amount" property="fillAmount" jdbcType="DECIMAL" />
+    <result column="fill_price" property="fillPrice" jdbcType="DECIMAL" />
+    <result column="placed_result" property="placedResult" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, order_id, event_id, market_id, selection_id, request_amount, request_price, status, 
+    submitted_time, user_code, user_name, event_type, event_name, fill_amount, fill_price, 
+    placed_result
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mifan.guessing.dao.model.TradeOrderExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from trade_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from trade_order
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from trade_order
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mifan.guessing.dao.model.TradeOrderExample" >
+    delete from trade_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mifan.guessing.dao.model.TradeOrder" >
+    insert into trade_order (id, order_id, event_id, 
+      market_id, selection_id, request_amount, 
+      request_price, status, submitted_time, 
+      user_code, user_name, event_type, 
+      event_name, fill_amount, fill_price, 
+      placed_result)
+    values (#{id,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, #{eventId,jdbcType=VARCHAR}, 
+      #{marketId,jdbcType=VARCHAR}, #{selectionId,jdbcType=VARCHAR}, #{requestAmount,jdbcType=DECIMAL}, 
+      #{requestPrice,jdbcType=DECIMAL}, #{status,jdbcType=VARCHAR}, #{submittedTime,jdbcType=TIMESTAMP}, 
+      #{userCode,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{eventType,jdbcType=VARCHAR}, 
+      #{eventName,jdbcType=VARCHAR}, #{fillAmount,jdbcType=DECIMAL}, #{fillPrice,jdbcType=DECIMAL}, 
+      #{placedResult,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mifan.guessing.dao.model.TradeOrder" >
+    insert into trade_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="eventId != null" >
+        event_id,
+      </if>
+      <if test="marketId != null" >
+        market_id,
+      </if>
+      <if test="selectionId != null" >
+        selection_id,
+      </if>
+      <if test="requestAmount != null" >
+        request_amount,
+      </if>
+      <if test="requestPrice != null" >
+        request_price,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="submittedTime != null" >
+        submitted_time,
+      </if>
+      <if test="userCode != null" >
+        user_code,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="eventType != null" >
+        event_type,
+      </if>
+      <if test="eventName != null" >
+        event_name,
+      </if>
+      <if test="fillAmount != null" >
+        fill_amount,
+      </if>
+      <if test="fillPrice != null" >
+        fill_price,
+      </if>
+      <if test="placedResult != null" >
+        placed_result,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="eventId != null" >
+        #{eventId,jdbcType=VARCHAR},
+      </if>
+      <if test="marketId != null" >
+        #{marketId,jdbcType=VARCHAR},
+      </if>
+      <if test="selectionId != null" >
+        #{selectionId,jdbcType=VARCHAR},
+      </if>
+      <if test="requestAmount != null" >
+        #{requestAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="requestPrice != null" >
+        #{requestPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="submittedTime != null" >
+        #{submittedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userCode != null" >
+        #{userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="eventType != null" >
+        #{eventType,jdbcType=VARCHAR},
+      </if>
+      <if test="eventName != null" >
+        #{eventName,jdbcType=VARCHAR},
+      </if>
+      <if test="fillAmount != null" >
+        #{fillAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="fillPrice != null" >
+        #{fillPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="placedResult != null" >
+        #{placedResult,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mifan.guessing.dao.model.TradeOrderExample" resultType="java.lang.Integer" >
+    select count(*) from trade_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update trade_order
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderId != null" >
+        order_id = #{record.orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.eventId != null" >
+        event_id = #{record.eventId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.marketId != null" >
+        market_id = #{record.marketId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.selectionId != null" >
+        selection_id = #{record.selectionId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.requestAmount != null" >
+        request_amount = #{record.requestAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.requestPrice != null" >
+        request_price = #{record.requestPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.submittedTime != null" >
+        submitted_time = #{record.submittedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.userCode != null" >
+        user_code = #{record.userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userName != null" >
+        user_name = #{record.userName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.eventType != null" >
+        event_type = #{record.eventType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.eventName != null" >
+        event_name = #{record.eventName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fillAmount != null" >
+        fill_amount = #{record.fillAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fillPrice != null" >
+        fill_price = #{record.fillPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.placedResult != null" >
+        placed_result = #{record.placedResult,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update trade_order
+    set id = #{record.id,jdbcType=VARCHAR},
+      order_id = #{record.orderId,jdbcType=VARCHAR},
+      event_id = #{record.eventId,jdbcType=VARCHAR},
+      market_id = #{record.marketId,jdbcType=VARCHAR},
+      selection_id = #{record.selectionId,jdbcType=VARCHAR},
+      request_amount = #{record.requestAmount,jdbcType=DECIMAL},
+      request_price = #{record.requestPrice,jdbcType=DECIMAL},
+      status = #{record.status,jdbcType=VARCHAR},
+      submitted_time = #{record.submittedTime,jdbcType=TIMESTAMP},
+      user_code = #{record.userCode,jdbcType=VARCHAR},
+      user_name = #{record.userName,jdbcType=VARCHAR},
+      event_type = #{record.eventType,jdbcType=VARCHAR},
+      event_name = #{record.eventName,jdbcType=VARCHAR},
+      fill_amount = #{record.fillAmount,jdbcType=DECIMAL},
+      fill_price = #{record.fillPrice,jdbcType=DECIMAL},
+      placed_result = #{record.placedResult,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mifan.guessing.dao.model.TradeOrder" >
+    update trade_order
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="eventId != null" >
+        event_id = #{eventId,jdbcType=VARCHAR},
+      </if>
+      <if test="marketId != null" >
+        market_id = #{marketId,jdbcType=VARCHAR},
+      </if>
+      <if test="selectionId != null" >
+        selection_id = #{selectionId,jdbcType=VARCHAR},
+      </if>
+      <if test="requestAmount != null" >
+        request_amount = #{requestAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="requestPrice != null" >
+        request_price = #{requestPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="submittedTime != null" >
+        submitted_time = #{submittedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userCode != null" >
+        user_code = #{userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="eventType != null" >
+        event_type = #{eventType,jdbcType=VARCHAR},
+      </if>
+      <if test="eventName != null" >
+        event_name = #{eventName,jdbcType=VARCHAR},
+      </if>
+      <if test="fillAmount != null" >
+        fill_amount = #{fillAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="fillPrice != null" >
+        fill_price = #{fillPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="placedResult != null" >
+        placed_result = #{placedResult,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mifan.guessing.dao.model.TradeOrder" >
+    update trade_order
+    set order_id = #{orderId,jdbcType=VARCHAR},
+      event_id = #{eventId,jdbcType=VARCHAR},
+      market_id = #{marketId,jdbcType=VARCHAR},
+      selection_id = #{selectionId,jdbcType=VARCHAR},
+      request_amount = #{requestAmount,jdbcType=DECIMAL},
+      request_price = #{requestPrice,jdbcType=DECIMAL},
+      status = #{status,jdbcType=VARCHAR},
+      submitted_time = #{submittedTime,jdbcType=TIMESTAMP},
+      user_code = #{userCode,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      event_type = #{eventType,jdbcType=VARCHAR},
+      event_name = #{eventName,jdbcType=VARCHAR},
+      fill_amount = #{fillAmount,jdbcType=DECIMAL},
+      fill_price = #{fillPrice,jdbcType=DECIMAL},
+      placed_result = #{placedResult,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

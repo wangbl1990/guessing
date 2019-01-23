@@ -7,10 +7,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.core.annotation.Order;
 
 @SpringBootApplication
+@ComponentScan(basePackages = { "com.mifan.guessing" })
 @MapperScan("com.mifan.guessing.dao.mapper")
 @ImportResource({"classpath:dubbo-consumer.xml","classpath:dubbo-provider.xml"})
 @EnableAutoConfiguration(exclude = DataSourceAutoConfiguration.class)

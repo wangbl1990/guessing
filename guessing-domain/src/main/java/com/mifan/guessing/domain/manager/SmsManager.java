@@ -1,6 +1,7 @@
 package com.mifan.guessing.domain.manager;
 
 import com.cloopen.rest.sdk.CCPRestSDK;
+import org.springframework.stereotype.Component;
 import tv.zhangyu.util.JacksonUtil;
 
 import java.util.HashMap;
@@ -14,6 +15,7 @@ import java.util.logging.Logger;
  * @author hongwei.zhang
  * @version 2016-1-12 12:36:03
  */
+@Component
 public class SmsManager {
 
     private static CCPRestSDK restAPI = new CCPRestSDK();

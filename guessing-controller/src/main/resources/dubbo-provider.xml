@@ -21,9 +21,9 @@
      
     <!-- 声明需要暴露的服务接口 -->
 
-    <dubbo:service interface="com.mifan.guessing.rpcService.BannerService"
+    <dubbo:service interface="com.mifan.guessing.service.BannerService"
                    timeout="15000" version="1.0.0" delay="-1"  ref="bannerService"/>
-    <dubbo:service interface="com.mifan.guessing.rpcService.OrderService"
+    <dubbo:service interface="com.mifan.guessing.service.OrderService"
                    timeout="15000" version="1.0.0" delay="-1"  ref="orderService"/>
     
 </beans>

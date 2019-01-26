@@ -1,5 +1,6 @@
 package com.mifan.guessing.domain;
 
+import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.mifan.guessing.dao.mapper.EventMapper;
 import com.mifan.guessing.dao.mapper.SubscribeEventMapper;
@@ -45,22 +46,15 @@ public class EventDomain {
      */
     public PageInfo<EventListResponse> eventList(EventListRequest eventListRequest) {
 
-        EventExample example = new EventExample();
-        EventExample.Criteria criteria = example.createCriteria();
-        criteria.andCompetitionNameEqualTo(eventListRequest.getEventType());
         //查询从今天开始四天之内的赛事
         Date date = new Date();
         Date beginDate = DateUtils.paseDateYYYYMMDD(date);
         Date endDate = DateUtils.addDays(beginDate,4);
-//        criteria.andEventTimeBetween(beginDate,endDate );
-//        PageHelper.startPage(eventListRequest.getPageNum(), eventListRequest.getPageSize(),true);
-//        List<Event> events = eventMapper.selectByExample(example);
-//        if(null == events){
+        PageHelper.startPage(eventListRequest.getPageNum(), eventListRequest.getPageSize(),true);
         List<Event> events = rollingBallManager.eventList(beginDate, endDate);
-//        }
         PageInfo<EventListResponse> repageList = new PageInfo(events);
         List<EventListResponse> eventList = BeanMapper.mapList(events, EventListResponse.class);
-        repageList.setList(eventList);
+        repageList.setList(eventList.subList(eventListRequest.getPageNum()-1,eventListRequest.getPageNum() + eventListRequest.getPageSize() -1));
         return repageList;
     }
 

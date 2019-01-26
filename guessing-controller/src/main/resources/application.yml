@@ -39,9 +39,8 @@ pagehelper:
 logging:
   config: classpath:log4j2.xml
 gunqiu:
-    vendorIdValue: 1521
-    vendorAppIdValue: 1001
-    secretKey: test001
+    vendorIdValue: mf
+    secretKey: mi%fan#4bg35n6e
 
 elaticjob:
     zookeeper:

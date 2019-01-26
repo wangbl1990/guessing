@@ -795,143 +795,213 @@ public class EventExample {
             return (Criteria) this;
         }
 
-        public Criteria andHomeTeamScoreIsNull() {
-            addCriterion("home_team_score is null");
+        public Criteria andHomeTeamNameEnIsNull() {
+            addCriterion("home_team_name_en is null");
             return (Criteria) this;
         }
 
-        public Criteria andHomeTeamScoreIsNotNull() {
-            addCriterion("home_team_score is not null");
+        public Criteria andHomeTeamNameEnIsNotNull() {
+            addCriterion("home_team_name_en is not null");
             return (Criteria) this;
         }
 
-        public Criteria andHomeTeamScoreEqualTo(String value) {
-            addCriterion("home_team_score =", value, "homeTeamScore");
+        public Criteria andHomeTeamNameEnEqualTo(String value) {
+            addCriterion("home_team_name_en =", value, "homeTeamNameEn");
             return (Criteria) this;
         }
 
-        public Criteria andHomeTeamScoreNotEqualTo(String value) {
-            addCriterion("home_team_score <>", value, "homeTeamScore");
+        public Criteria andHomeTeamNameEnNotEqualTo(String value) {
+            addCriterion("home_team_name_en <>", value, "homeTeamNameEn");
             return (Criteria) this;
         }
 
-        public Criteria andHomeTeamScoreGreaterThan(String value) {
-            addCriterion("home_team_score >", value, "homeTeamScore");
+        public Criteria andHomeTeamNameEnGreaterThan(String value) {
+            addCriterion("home_team_name_en >", value, "homeTeamNameEn");
             return (Criteria) this;
         }
 
-        public Criteria andHomeTeamScoreGreaterThanOrEqualTo(String value) {
-            addCriterion("home_team_score >=", value, "homeTeamScore");
+        public Criteria andHomeTeamNameEnGreaterThanOrEqualTo(String value) {
+            addCriterion("home_team_name_en >=", value, "homeTeamNameEn");
             return (Criteria) this;
         }
 
-        public Criteria andHomeTeamScoreLessThan(String value) {
-            addCriterion("home_team_score <", value, "homeTeamScore");
+        public Criteria andHomeTeamNameEnLessThan(String value) {
+            addCriterion("home_team_name_en <", value, "homeTeamNameEn");
             return (Criteria) this;
         }
 
-        public Criteria andHomeTeamScoreLessThanOrEqualTo(String value) {
-            addCriterion("home_team_score <=", value, "homeTeamScore");
+        public Criteria andHomeTeamNameEnLessThanOrEqualTo(String value) {
+            addCriterion("home_team_name_en <=", value, "homeTeamNameEn");
             return (Criteria) this;
         }
 
-        public Criteria andHomeTeamScoreLike(String value) {
-            addCriterion("home_team_score like", value, "homeTeamScore");
+        public Criteria andHomeTeamNameEnLike(String value) {
+            addCriterion("home_team_name_en like", value, "homeTeamNameEn");
             return (Criteria) this;
         }
 
-        public Criteria andHomeTeamScoreNotLike(String value) {
-            addCriterion("home_team_score not like", value, "homeTeamScore");
+        public Criteria andHomeTeamNameEnNotLike(String value) {
+            addCriterion("home_team_name_en not like", value, "homeTeamNameEn");
             return (Criteria) this;
         }
 
-        public Criteria andHomeTeamScoreIn(List<String> values) {
-            addCriterion("home_team_score in", values, "homeTeamScore");
+        public Criteria andHomeTeamNameEnIn(List<String> values) {
+            addCriterion("home_team_name_en in", values, "homeTeamNameEn");
             return (Criteria) this;
         }
 
-        public Criteria andHomeTeamScoreNotIn(List<String> values) {
-            addCriterion("home_team_score not in", values, "homeTeamScore");
+        public Criteria andHomeTeamNameEnNotIn(List<String> values) {
+            addCriterion("home_team_name_en not in", values, "homeTeamNameEn");
             return (Criteria) this;
         }
 
-        public Criteria andHomeTeamScoreBetween(String value1, String value2) {
-            addCriterion("home_team_score between", value1, value2, "homeTeamScore");
+        public Criteria andHomeTeamNameEnBetween(String value1, String value2) {
+            addCriterion("home_team_name_en between", value1, value2, "homeTeamNameEn");
             return (Criteria) this;
         }
 
-        public Criteria andHomeTeamScoreNotBetween(String value1, String value2) {
-            addCriterion("home_team_score not between", value1, value2, "homeTeamScore");
+        public Criteria andHomeTeamNameEnNotBetween(String value1, String value2) {
+            addCriterion("home_team_name_en not between", value1, value2, "homeTeamNameEn");
             return (Criteria) this;
         }
 
-        public Criteria andAwayTeamScoreIsNull() {
-            addCriterion("away_team_score is null");
+        public Criteria andAwayTeamNameEnIsNull() {
+            addCriterion("away_team_name_en is null");
             return (Criteria) this;
         }
 
-        public Criteria andAwayTeamScoreIsNotNull() {
-            addCriterion("away_team_score is not null");
+        public Criteria andAwayTeamNameEnIsNotNull() {
+            addCriterion("away_team_name_en is not null");
             return (Criteria) this;
         }
 
-        public Criteria andAwayTeamScoreEqualTo(String value) {
-            addCriterion("away_team_score =", value, "awayTeamScore");
+        public Criteria andAwayTeamNameEnEqualTo(String value) {
+            addCriterion("away_team_name_en =", value, "awayTeamNameEn");
             return (Criteria) this;
         }
 
-        public Criteria andAwayTeamScoreNotEqualTo(String value) {
-            addCriterion("away_team_score <>", value, "awayTeamScore");
+        public Criteria andAwayTeamNameEnNotEqualTo(String value) {
+            addCriterion("away_team_name_en <>", value, "awayTeamNameEn");
             return (Criteria) this;
         }
 
-        public Criteria andAwayTeamScoreGreaterThan(String value) {
-            addCriterion("away_team_score >", value, "awayTeamScore");
+        public Criteria andAwayTeamNameEnGreaterThan(String value) {
+            addCriterion("away_team_name_en >", value, "awayTeamNameEn");
             return (Criteria) this;
         }
 
-        public Criteria andAwayTeamScoreGreaterThanOrEqualTo(String value) {
-            addCriterion("away_team_score >=", value, "awayTeamScore");
+        public Criteria andAwayTeamNameEnGreaterThanOrEqualTo(String value) {
+            addCriterion("away_team_name_en >=", value, "awayTeamNameEn");
             return (Criteria) this;
         }
 
-        public Criteria andAwayTeamScoreLessThan(String value) {
-            addCriterion("away_team_score <", value, "awayTeamScore");
+        public Criteria andAwayTeamNameEnLessThan(String value) {
+            addCriterion("away_team_name_en <", value, "awayTeamNameEn");
             return (Criteria) this;
         }
 
-        public Criteria andAwayTeamScoreLessThanOrEqualTo(String value) {
-            addCriterion("away_team_score <=", value, "awayTeamScore");
+        public Criteria andAwayTeamNameEnLessThanOrEqualTo(String value) {
+            addCriterion("away_team_name_en <=", value, "awayTeamNameEn");
             return (Criteria) this;
         }
 
-        public Criteria andAwayTeamScoreLike(String value) {
-            addCriterion("away_team_score like", value, "awayTeamScore");
+        public Criteria andAwayTeamNameEnLike(String value) {
+            addCriterion("away_team_name_en like", value, "awayTeamNameEn");
             return (Criteria) this;
         }
 
-        public Criteria andAwayTeamScoreNotLike(String value) {
-            addCriterion("away_team_score not like", value, "awayTeamScore");
+        public Criteria andAwayTeamNameEnNotLike(String value) {
+            addCriterion("away_team_name_en not like", value, "awayTeamNameEn");
             return (Criteria) this;
         }
 
-        public Criteria andAwayTeamScoreIn(List<String> values) {
-            addCriterion("away_team_score in", values, "awayTeamScore");
+        public Criteria andAwayTeamNameEnIn(List<String> values) {
+            addCriterion("away_team_name_en in", values, "awayTeamNameEn");
             return (Criteria) this;
         }
 
-        public Criteria andAwayTeamScoreNotIn(List<String> values) {
-            addCriterion("away_team_score not in", values, "awayTeamScore");
+        public Criteria andAwayTeamNameEnNotIn(List<String> values) {
+            addCriterion("away_team_name_en not in", values, "awayTeamNameEn");
             return (Criteria) this;
         }
 
-        public Criteria andAwayTeamScoreBetween(String value1, String value2) {
-            addCriterion("away_team_score between", value1, value2, "awayTeamScore");
+        public Criteria andAwayTeamNameEnBetween(String value1, String value2) {
+            addCriterion("away_team_name_en between", value1, value2, "awayTeamNameEn");
             return (Criteria) this;
         }
 
-        public Criteria andAwayTeamScoreNotBetween(String value1, String value2) {
-            addCriterion("away_team_score not between", value1, value2, "awayTeamScore");
+        public Criteria andAwayTeamNameEnNotBetween(String value1, String value2) {
+            addCriterion("away_team_name_en not between", value1, value2, "awayTeamNameEn");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreIsNull() {
+            addCriterion("score is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreIsNotNull() {
+            addCriterion("score is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreEqualTo(String value) {
+            addCriterion("score =", value, "score");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreNotEqualTo(String value) {
+            addCriterion("score <>", value, "score");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreGreaterThan(String value) {
+            addCriterion("score >", value, "score");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreGreaterThanOrEqualTo(String value) {
+            addCriterion("score >=", value, "score");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreLessThan(String value) {
+            addCriterion("score <", value, "score");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreLessThanOrEqualTo(String value) {
+            addCriterion("score <=", value, "score");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreLike(String value) {
+            addCriterion("score like", value, "score");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreNotLike(String value) {
+            addCriterion("score not like", value, "score");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreIn(List<String> values) {
+            addCriterion("score in", values, "score");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreNotIn(List<String> values) {
+            addCriterion("score not in", values, "score");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreBetween(String value1, String value2) {
+            addCriterion("score between", value1, value2, "score");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreNotBetween(String value1, String value2) {
+            addCriterion("score not between", value1, value2, "score");
             return (Criteria) this;
         }
 
@@ -1005,73 +1075,73 @@ public class EventExample {
             return (Criteria) this;
         }
 
-        public Criteria andStageIsNull() {
-            addCriterion("stage is null");
+        public Criteria andHotIsNull() {
+            addCriterion("hot is null");
             return (Criteria) this;
         }
 
-        public Criteria andStageIsNotNull() {
-            addCriterion("stage is not null");
+        public Criteria andHotIsNotNull() {
+            addCriterion("hot is not null");
             return (Criteria) this;
         }
 
-        public Criteria andStageEqualTo(String value) {
-            addCriterion("stage =", value, "stage");
+        public Criteria andHotEqualTo(String value) {
+            addCriterion("hot =", value, "hot");
             return (Criteria) this;
         }
 
-        public Criteria andStageNotEqualTo(String value) {
-            addCriterion("stage <>", value, "stage");
+        public Criteria andHotNotEqualTo(String value) {
+            addCriterion("hot <>", value, "hot");
             return (Criteria) this;
         }
 
-        public Criteria andStageGreaterThan(String value) {
-            addCriterion("stage >", value, "stage");
+        public Criteria andHotGreaterThan(String value) {
+            addCriterion("hot >", value, "hot");
             return (Criteria) this;
         }
 
-        public Criteria andStageGreaterThanOrEqualTo(String value) {
-            addCriterion("stage >=", value, "stage");
+        public Criteria andHotGreaterThanOrEqualTo(String value) {
+            addCriterion("hot >=", value, "hot");
             return (Criteria) this;
         }
 
-        public Criteria andStageLessThan(String value) {
-            addCriterion("stage <", value, "stage");
+        public Criteria andHotLessThan(String value) {
+            addCriterion("hot <", value, "hot");
             return (Criteria) this;
         }
 
-        public Criteria andStageLessThanOrEqualTo(String value) {
-            addCriterion("stage <=", value, "stage");
+        public Criteria andHotLessThanOrEqualTo(String value) {
+            addCriterion("hot <=", value, "hot");
             return (Criteria) this;
         }
 
-        public Criteria andStageLike(String value) {
-            addCriterion("stage like", value, "stage");
+        public Criteria andHotLike(String value) {
+            addCriterion("hot like", value, "hot");
             return (Criteria) this;
         }
 
-        public Criteria andStageNotLike(String value) {
-            addCriterion("stage not like", value, "stage");
+        public Criteria andHotNotLike(String value) {
+            addCriterion("hot not like", value, "hot");
             return (Criteria) this;
         }
 
-        public Criteria andStageIn(List<String> values) {
-            addCriterion("stage in", values, "stage");
+        public Criteria andHotIn(List<String> values) {
+            addCriterion("hot in", values, "hot");
             return (Criteria) this;
         }
 
-        public Criteria andStageNotIn(List<String> values) {
-            addCriterion("stage not in", values, "stage");
+        public Criteria andHotNotIn(List<String> values) {
+            addCriterion("hot not in", values, "hot");
             return (Criteria) this;
         }
 
-        public Criteria andStageBetween(String value1, String value2) {
-            addCriterion("stage between", value1, value2, "stage");
+        public Criteria andHotBetween(String value1, String value2) {
+            addCriterion("hot between", value1, value2, "hot");
             return (Criteria) this;
         }
 
-        public Criteria andStageNotBetween(String value1, String value2) {
-            addCriterion("stage not between", value1, value2, "stage");
+        public Criteria andHotNotBetween(String value1, String value2) {
+            addCriterion("hot not between", value1, value2, "hot");
             return (Criteria) this;
         }
     }

@@ -10,12 +10,16 @@ import com.mifan.guessingapi.exception.GuessingRunTimeException;
 import com.mifan.guessingapi.request.order.SubmitOrderRequest;
 import com.mifan.guessingutils.DateUtils;
 import com.mifan.guessingutils.HttpClientUtil;
+import com.mifan.guessingutils.MD5Utils;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.tomcat.util.security.MD5Encoder;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.*;
 
 /**
@@ -30,26 +34,20 @@ public class RollingBallManager {
 
     private static final String vendorIdKey = "vendor_id=";
 
-    private static final String vendorAppAIdKey = "vendor_app_id=";
-
     private static final String requestTimeKey = "request_time=";
 
     private static final String requestSgin = "request_sgin=";
 
     @Value("${gunqiu.vendorIdValue}")
     private String vendorIdValue;
-    @Value("${gunqiu.vendorAppIdValue}")
-    private String vendorAppIdValue;
     @Value("${gunqiu.secretKey}")
     private String secretKey;
 
 
-    private String sign(){
+    private String sign(long unixTimeStamp){
         StringBuffer stringBuffer = new StringBuffer();
-        long unixTimeStamp = DateUtils.getUnixDate();
-        stringBuffer.append(vendorIdKey).append(vendorIdValue).append("&").append(vendorAppAIdKey).append(vendorAppIdValue)
-                .append("&").append(requestTimeKey).append(unixTimeStamp).append("&").append(secretKey);
-        String encode = MD5Encoder.encode(stringBuffer.toString().getBytes());
+        stringBuffer.append(vendorIdKey).append(vendorIdValue).append("&").append(requestTimeKey).append(unixTimeStamp).append("&").append(secretKey);
+        String encode = DigestUtils.md5Hex(stringBuffer.toString());
         return encode;
     }
 
@@ -59,20 +57,16 @@ public class RollingBallManager {
      */
     public List<Event> eventList(Date beginDate, Date endDate){
 
-        Map<String,Object> param = new HashMap<String,Object>();
-        param.put("vendor_id",vendorIdValue);
-        param.put("vendor_app_id",vendorAppIdValue);
-        param.put("request_time",new Date().getTime());
-        param.put("request_sgin",sign());
-        param.put("sport_id",1);
-        param.put("begin_time",beginDate.getTime()/1000);
-        param.put("end_time",endDate.getTime()/1000);
+        long unixTimeStamp = DateUtils.getUnixDate();
+        String param = "vendor_id="+vendorIdValue+"&request_time="+unixTimeStamp+"&request_sign="+sign(unixTimeStamp)+"&begin_time="
+                +beginDate.getTime()/1000+"&end_time="+endDate.getTime()/1000;
         logger.info("赛事列表入参:"+ JSONObject.toJSONString(param));
-        String result = HttpClientUtil.post(RollingBallRequestUrl.eventList, null, param);
-        logger.info("赛事列表结果:"+ result);
+        String result = HttpClientUtil.SendGET(RollingBallRequestUrl.eventList, param);
         JSONObject jsonObject = JSONObject.parseObject(result);
+        logger.info("赛事列表结果:"+ jsonObject.toJSONString());
+//        JSONObject jsonObject = JSONObject.parseObject(result);
         List<Event> eventList = new ArrayList<Event>();
-        if("0".equals(jsonObject.get("errno"))){
+        if("0".equals(jsonObject.get("errno").toString())){
             List<JSONObject> datas = (List<JSONObject>)jsonObject.get("data");
             for(JSONObject data:datas){
                 Event event = JSONObject.toJavaObject(data,Event.class);
@@ -90,12 +84,11 @@ public class RollingBallManager {
      * @return
      */
     public Event eventInfo(String eventId){
-
+        long unixTimeStamp = DateUtils.getUnixDate();
         Map<String,Object> param = new HashMap<String,Object>();
         param.put("vendor_id",vendorIdValue);
-        param.put("vendor_app_id",vendorAppIdValue);
         param.put("request_time",new Date().getTime());
-        param.put("request_sgin",sign());
+        param.put("request_sgin",sign(unixTimeStamp));
         param.put("event_id",eventId);
         logger.info("赛事详情入参:"+ JSONObject.toJSONString(param));
         String result = HttpClientUtil.post(RollingBallRequestUrl.eventInfo, null, param);
@@ -117,14 +110,15 @@ public class RollingBallManager {
      * @return
      */
     public List<EventMarket> eventMarket(String eventId){
-        Map<String,Object> param = new HashMap<String,Object>();
-        param.put("vendor_id",vendorIdValue);
-        param.put("vendor_app_id",vendorAppIdValue);
-        param.put("request_time",new Date().getTime());
-        param.put("request_sgin",sign());
-        param.put("event_id",eventId);
+//        Map<String,Object> param = new HashMap<String,Object>();
+//        param.put("vendor_id",vendorIdValue);
+//        param.put("request_time",new Date().getTime());
+//        param.put("request_sgin",sign());
+//        param.put("event_markets",eventId);
+        long unixTimeStamp = DateUtils.getUnixDate();
+        String param = "event_markets="+eventId;
         logger.info("赛事市场入参:"+ JSONObject.toJSONString(param));
-        String result = HttpClientUtil.post(RollingBallRequestUrl.eventMarkets, null, param);
+        String result = HttpClientUtil.SendGET(RollingBallRequestUrl.eventMarkets,  param);
         logger.info("赛事市场结果:"+ result);
         JSONObject jsonObject = JSONObject.parseObject(result);
         List<EventMarket> eventMarketList = new ArrayList<EventMarket>();
@@ -152,11 +146,12 @@ public class RollingBallManager {
      * 下单
      */
     public TradeOrder order(TradeOrder tradeOrder, SubmitOrderRequest submitOrderRequest){
+
+        long unixTimeStamp = DateUtils.getUnixDate();
         Map<String,Object> param = new HashMap<String,Object>();
         param.put("vendor_id",vendorIdValue);
-        param.put("vendor_app_id",vendorAppIdValue);
         param.put("request_time",new Date().getTime());
-        param.put("request_sgin",sign());
+        param.put("request_sgin",sign(unixTimeStamp));
         param.put("correlation_order_id",tradeOrder.getOrderId());
         param.put("vendor_player_id",tradeOrder.getUserCode());
         param.put("event_id",tradeOrder.getEventId());

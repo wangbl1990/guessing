@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+
+    <!--<classPathEntry location="D:/mifan_code/guessing/src/test/resources/mysql-connector-java-5.1.35.jar" />-->
+    <classPathEntry location="D:\gitworkspace\guessing\guessing-dao\src\test\java\com\mifan\guessing\dao\mysql-connector-java-5.1.35.jar" />
+    <context id="DB2Tables"  targetRuntime="MyBatis3">
+
+        <!-- 查询单条数据插件 -->
+        <!--<plugin type="com.itfsw.mybatis.generator.plugins.SelectOneByExamplePlugin"/>-->
+
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!--数据库链接URL，用户名、密码 -->
+        <!--<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1/guessing" userId="root" password="Aa12345678"></jdbcConnection>-->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://192.168.1.151/guessing" userId="system" password="Aa12345678"></jdbcConnection>
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <!-- 生成模型的包名和位置-->
+        <javaModelGenerator targetPackage="com.mifan.guessing.dao.model" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!-- 生成映射文件的包名和位置-->
+        <sqlMapGenerator targetPackage="mybatis" targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <!-- 生成DAO的包名和位置-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.mifan.guessing.dao.mapper" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+        <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
+
+        <table tableName="event" domainObjectName="Event"></table>
+        <!--<table tableName="banner" domainObjectName="Banner"></table>-->
+        <!--<table tableName="trade_order" domainObjectName="TradeOrder"></table>-->
+        <!--<table tableName="subscribe_event" domainObjectName="SubscribeEvent"></table>-->
+        <!--<table tableName="order_settle" domainObjectName="OrderSettle"></table>-->
+        <!--<table tableName="market" domainObjectName="Market"></table>-->
+        <!--<table tableName="selection" domainObjectName="Selection"></table>-->
+
+    </context>
+</generatorConfiguration>

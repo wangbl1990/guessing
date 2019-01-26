@@ -23,13 +23,15 @@ public class Event {
 
     private String awayTeamName;
 
-    private String homeTeamScore;
+    private String homeTeamNameEn;
 
-    private String awayTeamScore;
+    private String awayTeamNameEn;
+
+    private String score;
 
     private String state;
 
-    private String stage;
+    private String hot;
 
     public String getId() {
         return id;
@@ -111,20 +113,28 @@ public class Event {
         this.awayTeamName = awayTeamName == null ? null : awayTeamName.trim();
     }
 
-    public String getHomeTeamScore() {
-        return homeTeamScore;
+    public String getHomeTeamNameEn() {
+        return homeTeamNameEn;
     }
 
-    public void setHomeTeamScore(String homeTeamScore) {
-        this.homeTeamScore = homeTeamScore == null ? null : homeTeamScore.trim();
+    public void setHomeTeamNameEn(String homeTeamNameEn) {
+        this.homeTeamNameEn = homeTeamNameEn == null ? null : homeTeamNameEn.trim();
     }
 
-    public String getAwayTeamScore() {
-        return awayTeamScore;
+    public String getAwayTeamNameEn() {
+        return awayTeamNameEn;
     }
 
-    public void setAwayTeamScore(String awayTeamScore) {
-        this.awayTeamScore = awayTeamScore == null ? null : awayTeamScore.trim();
+    public void setAwayTeamNameEn(String awayTeamNameEn) {
+        this.awayTeamNameEn = awayTeamNameEn == null ? null : awayTeamNameEn.trim();
+    }
+
+    public String getScore() {
+        return score;
+    }
+
+    public void setScore(String score) {
+        this.score = score == null ? null : score.trim();
     }
 
     public String getState() {
@@ -135,11 +145,11 @@ public class Event {
         this.state = state == null ? null : state.trim();
     }
 
-    public String getStage() {
-        return stage;
+    public String getHot() {
+        return hot;
     }
 
-    public void setStage(String stage) {
-        this.stage = stage == null ? null : stage.trim();
+    public void setHot(String hot) {
+        this.hot = hot == null ? null : hot.trim();
     }
 }

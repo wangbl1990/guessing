@@ -12,10 +12,11 @@
     <result column="round_name" property="roundName" jdbcType="VARCHAR" />
     <result column="home_team_name" property="homeTeamName" jdbcType="VARCHAR" />
     <result column="away_team_name" property="awayTeamName" jdbcType="VARCHAR" />
-    <result column="home_team_score" property="homeTeamScore" jdbcType="VARCHAR" />
-    <result column="away_team_score" property="awayTeamScore" jdbcType="VARCHAR" />
+    <result column="home_team_name_en" property="homeTeamNameEn" jdbcType="VARCHAR" />
+    <result column="away_team_name_en" property="awayTeamNameEn" jdbcType="VARCHAR" />
+    <result column="score" property="score" jdbcType="VARCHAR" />
     <result column="state" property="state" jdbcType="VARCHAR" />
-    <result column="stage" property="stage" jdbcType="VARCHAR" />
+    <result column="hot" property="hot" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -77,7 +78,8 @@
   </sql>
   <sql id="Base_Column_List" >
     id, event_id, sport_id, event_name, event_time, competition_name, season_name, round_name, 
-    home_team_name, away_team_name, home_team_score, away_team_score, state, stage
+    home_team_name, away_team_name, home_team_name_en, away_team_name_en, score, state, 
+    hot
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mifan.guessing.dao.model.EventExample" >
     select
@@ -113,13 +115,13 @@
     insert into event (id, event_id, sport_id, 
       event_name, event_time, competition_name, 
       season_name, round_name, home_team_name, 
-      away_team_name, home_team_score, away_team_score, 
-      state, stage)
+      away_team_name, home_team_name_en, away_team_name_en, 
+      score, state, hot)
     values (#{id,jdbcType=VARCHAR}, #{eventId,jdbcType=VARCHAR}, #{sportId,jdbcType=VARCHAR}, 
       #{eventName,jdbcType=VARCHAR}, #{eventTime,jdbcType=TIMESTAMP}, #{competitionName,jdbcType=VARCHAR}, 
       #{seasonName,jdbcType=VARCHAR}, #{roundName,jdbcType=VARCHAR}, #{homeTeamName,jdbcType=VARCHAR}, 
-      #{awayTeamName,jdbcType=VARCHAR}, #{homeTeamScore,jdbcType=VARCHAR}, #{awayTeamScore,jdbcType=VARCHAR}, 
-      #{state,jdbcType=VARCHAR}, #{stage,jdbcType=VARCHAR})
+      #{awayTeamName,jdbcType=VARCHAR}, #{homeTeamNameEn,jdbcType=VARCHAR}, #{awayTeamNameEn,jdbcType=VARCHAR}, 
+      #{score,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{hot,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.mifan.guessing.dao.model.Event" >
     insert into event
@@ -154,17 +156,20 @@
       <if test="awayTeamName != null" >
         away_team_name,
       </if>
-      <if test="homeTeamScore != null" >
-        home_team_score,
+      <if test="homeTeamNameEn != null" >
+        home_team_name_en,
       </if>
-      <if test="awayTeamScore != null" >
-        away_team_score,
+      <if test="awayTeamNameEn != null" >
+        away_team_name_en,
+      </if>
+      <if test="score != null" >
+        score,
       </if>
       <if test="state != null" >
         state,
       </if>
-      <if test="stage != null" >
-        stage,
+      <if test="hot != null" >
+        hot,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -198,17 +203,20 @@
       <if test="awayTeamName != null" >
         #{awayTeamName,jdbcType=VARCHAR},
       </if>
-      <if test="homeTeamScore != null" >
-        #{homeTeamScore,jdbcType=VARCHAR},
+      <if test="homeTeamNameEn != null" >
+        #{homeTeamNameEn,jdbcType=VARCHAR},
       </if>
-      <if test="awayTeamScore != null" >
-        #{awayTeamScore,jdbcType=VARCHAR},
+      <if test="awayTeamNameEn != null" >
+        #{awayTeamNameEn,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=VARCHAR},
       </if>
       <if test="state != null" >
         #{state,jdbcType=VARCHAR},
       </if>
-      <if test="stage != null" >
-        #{stage,jdbcType=VARCHAR},
+      <if test="hot != null" >
+        #{hot,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -251,17 +259,20 @@
       <if test="record.awayTeamName != null" >
         away_team_name = #{record.awayTeamName,jdbcType=VARCHAR},
       </if>
-      <if test="record.homeTeamScore != null" >
-        home_team_score = #{record.homeTeamScore,jdbcType=VARCHAR},
+      <if test="record.homeTeamNameEn != null" >
+        home_team_name_en = #{record.homeTeamNameEn,jdbcType=VARCHAR},
       </if>
-      <if test="record.awayTeamScore != null" >
-        away_team_score = #{record.awayTeamScore,jdbcType=VARCHAR},
+      <if test="record.awayTeamNameEn != null" >
+        away_team_name_en = #{record.awayTeamNameEn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.score != null" >
+        score = #{record.score,jdbcType=VARCHAR},
       </if>
       <if test="record.state != null" >
         state = #{record.state,jdbcType=VARCHAR},
       </if>
-      <if test="record.stage != null" >
-        stage = #{record.stage,jdbcType=VARCHAR},
+      <if test="record.hot != null" >
+        hot = #{record.hot,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -280,10 +291,11 @@
       round_name = #{record.roundName,jdbcType=VARCHAR},
       home_team_name = #{record.homeTeamName,jdbcType=VARCHAR},
       away_team_name = #{record.awayTeamName,jdbcType=VARCHAR},
-      home_team_score = #{record.homeTeamScore,jdbcType=VARCHAR},
-      away_team_score = #{record.awayTeamScore,jdbcType=VARCHAR},
+      home_team_name_en = #{record.homeTeamNameEn,jdbcType=VARCHAR},
+      away_team_name_en = #{record.awayTeamNameEn,jdbcType=VARCHAR},
+      score = #{record.score,jdbcType=VARCHAR},
       state = #{record.state,jdbcType=VARCHAR},
-      stage = #{record.stage,jdbcType=VARCHAR}
+      hot = #{record.hot,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -318,17 +330,20 @@
       <if test="awayTeamName != null" >
         away_team_name = #{awayTeamName,jdbcType=VARCHAR},
       </if>
-      <if test="homeTeamScore != null" >
-        home_team_score = #{homeTeamScore,jdbcType=VARCHAR},
+      <if test="homeTeamNameEn != null" >
+        home_team_name_en = #{homeTeamNameEn,jdbcType=VARCHAR},
       </if>
-      <if test="awayTeamScore != null" >
-        away_team_score = #{awayTeamScore,jdbcType=VARCHAR},
+      <if test="awayTeamNameEn != null" >
+        away_team_name_en = #{awayTeamNameEn,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        score = #{score,jdbcType=VARCHAR},
       </if>
       <if test="state != null" >
         state = #{state,jdbcType=VARCHAR},
       </if>
-      <if test="stage != null" >
-        stage = #{stage,jdbcType=VARCHAR},
+      <if test="hot != null" >
+        hot = #{hot,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
@@ -344,10 +359,11 @@
       round_name = #{roundName,jdbcType=VARCHAR},
       home_team_name = #{homeTeamName,jdbcType=VARCHAR},
       away_team_name = #{awayTeamName,jdbcType=VARCHAR},
-      home_team_score = #{homeTeamScore,jdbcType=VARCHAR},
-      away_team_score = #{awayTeamScore,jdbcType=VARCHAR},
+      home_team_name_en = #{homeTeamNameEn,jdbcType=VARCHAR},
+      away_team_name_en = #{awayTeamNameEn,jdbcType=VARCHAR},
+      score = #{score,jdbcType=VARCHAR},
       state = #{state,jdbcType=VARCHAR},
-      stage = #{stage,jdbcType=VARCHAR}
+      hot = #{hot,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

@@ -50,6 +50,11 @@
 			<artifactId>guava</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>io.socket</groupId>
+			<artifactId>socket.io-client</artifactId>
+		</dependency>
+
 
 	</dependencies>
 </project>

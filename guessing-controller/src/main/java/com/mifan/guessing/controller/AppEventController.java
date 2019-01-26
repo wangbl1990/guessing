@@ -44,13 +44,13 @@ public class AppEventController extends BaseController {
         return BaseResponse.generateOKResponseEntity(result);
     }
 
-    @ApiOperation(value = "赛事详情" , notes = "赛事详情" )
-    @ApiImplicitParam(name = "eventDetailRequest" , value = "赛事详情" , required = true , dataType = "EventDetailRequest" )
-    @RequestMapping( value = "/eventDetail" , method = RequestMethod.POST , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public BaseResponse<EventListResponse> eventDetail(@RequestBody @Validated final EventDetailRequest eventDetailRequest ){
-        EventListResponse result = eventDomain.eventDetail(eventDetailRequest);
-        return BaseResponse.generateOKResponseEntity(result);
-    }
+//    @ApiOperation(value = "赛事详情" , notes = "赛事详情" )
+//    @ApiImplicitParam(name = "eventDetailRequest" , value = "赛事详情" , required = true , dataType = "EventDetailRequest" )
+//    @RequestMapping( value = "/eventDetail" , method = RequestMethod.POST , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+//    public BaseResponse<EventListResponse> eventDetail(@RequestBody @Validated final EventDetailRequest eventDetailRequest ){
+//        EventListResponse result = eventDomain.eventDetail(eventDetailRequest);
+//        return BaseResponse.generateOKResponseEntity(result);
+//    }
 
     @ApiOperation(value = "赛事分类" , notes = "赛事分类" )
     @RequestMapping( value = "/eventType" , method = RequestMethod.POST , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)

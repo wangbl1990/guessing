@@ -12,12 +12,10 @@ import com.mifan.guessing.domain.enums.OrderStatus;
 import com.mifan.guessing.domain.manager.RollingBallManager;
 import com.mifan.guessingapi.exception.GuessingErrorCode;
 import com.mifan.guessingapi.exception.GuessingRunTimeException;
-import com.mifan.guessingapi.request.order.BossOrderListRequest;
-import com.mifan.guessingapi.request.order.BossSettleOrderListRequest;
-import com.mifan.guessingapi.request.order.OrderSettleRequest;
-import com.mifan.guessingapi.request.order.SubmitOrderRequest;
+import com.mifan.guessingapi.request.order.*;
 import com.mifan.guessingapi.response.order.BossOrderListResponse;
 import com.mifan.guessingapi.response.order.BossSettleOrderListResponse;
+import com.mifan.guessingapi.response.order.MyOrderListResponse;
 import com.mifan.guessingapi.response.order.SubmitOrderResponse;
 import com.mifan.guessingutils.BeanMapper;
 import com.mifan.guessingutils.IdMakerUtils;
@@ -185,5 +183,9 @@ public class OrderDomain {
             pageInfo.setList(BeanMapper.mapList(tradeOrders, BossSettleOrderListResponse.class));
         }
         return pageInfo;
+    }
+
+    public MyOrderListResponse myOrderList(MyOrderListRequest myOrderListRequest) {
+        return new MyOrderListResponse();
     }
 }

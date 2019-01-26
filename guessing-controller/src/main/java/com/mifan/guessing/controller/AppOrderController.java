@@ -1,8 +1,10 @@
 package com.mifan.guessing.controller;
 
 import com.mifan.guessing.domain.OrderDomain;
+import com.mifan.guessingapi.request.order.MyOrderListRequest;
 import com.mifan.guessingapi.request.order.SubmitOrderRequest;
 import com.mifan.guessingapi.response.BaseResponse;
+import com.mifan.guessingapi.response.order.MyOrderListResponse;
 import com.mifan.guessingapi.response.order.SubmitOrderResponse;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -35,6 +37,15 @@ public class AppOrderController extends BaseController {
     @Access
     public BaseResponse<SubmitOrderResponse> submitOrder(@RequestBody @Validated final SubmitOrderRequest submitOrderRequest ){
         SubmitOrderResponse result = orderDomain.submitOrder(submitOrderRequest);
+        return BaseResponse.generateOKResponseEntity(result);
+    }
+
+    @ApiOperation(value = "我的订单列表" , notes = "我的订单列表" )
+    @ApiImplicitParam(name = "myOrderListRequest" , value = "我的订单列表" , required = true , dataType = "MyOrderListRequest" )
+    @RequestMapping( value = "/myOrderList" , method = RequestMethod.POST , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @Access
+    public BaseResponse<MyOrderListResponse> myOrderList(@RequestBody @Validated final MyOrderListRequest myOrderListRequest ){
+        MyOrderListResponse result = orderDomain.myOrderList(myOrderListRequest);
         return BaseResponse.generateOKResponseEntity(result);
     }
 

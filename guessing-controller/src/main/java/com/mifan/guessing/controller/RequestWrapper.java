@@ -39,6 +39,9 @@ public class RequestWrapper extends HttpServletRequestWrapper {
             }
         }
         JSONObject param = JSONObject.parseObject( stringBuilder.toString() );
+        if(null == param){
+            param = new JSONObject();
+        }
         param.put( "userCode",request.getAttribute( "userId" ));
         param.put( "clinetIp", IpUtil.getIpAddr( request ));
         body = param.toJSONString();

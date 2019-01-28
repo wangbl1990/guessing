@@ -47,7 +47,7 @@ public class SwaggerConfig {
 
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.mifan.guessing.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.mifan.guessing"))
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(metaData())

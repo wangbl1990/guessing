@@ -1,38 +1,40 @@
 package com.mifan.guessingapi.response.order;
 
+import io.swagger.annotations.ApiModelProperty;
+
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class MyOrderListResponse {
+public class MyOrderListResponse implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
+    @ApiModelProperty( name = "orderId" , value = "订单编号" )
     private String orderId;
-
+    @ApiModelProperty( name = "eventId" , value = "赛事ID" )
     private String eventId;
-
+    @ApiModelProperty( name = "marketId" , value = "市场ID" )
     private String marketId;
-
+    @ApiModelProperty( name = "selectionId" , value = "子项ID" )
     private String selectionId;
-
+    @ApiModelProperty( name = "requestAmount" , value = "下单金额" )
     private BigDecimal requestAmount;
-
+    @ApiModelProperty( name = "requestPrice" , value = "下单赔率" )
     private BigDecimal requestPrice;
-
+    @ApiModelProperty( name = "status" , value = "订单状态 0 :下单成功;1:接单成功;2:订单已结算;3:订单取消;4:订单⽆无效;5:订单被拒" )
     private String status;
-
+    @ApiModelProperty( name = "submittedTime" , value = "结算时间" )
     private Date submittedTime;
-
+    @ApiModelProperty( name = "userCode" , value = "用户ID" )
     private String userCode;
-
+    @ApiModelProperty( name = "userName" , value = "用户名称" )
     private String userName;
-
+    @ApiModelProperty( name = "eventType" , value = "赛事类型" )
     private String eventType;
-
+    @ApiModelProperty( name = "eventName" , value = "赛事名称" )
     private String eventName;
-
-    private Long fillAmount;
-
-    private Long fillPrice;
-
+    @ApiModelProperty( name = "placedResult" , value = "下单时比分" )
     private String placedResult;
 
     public String getOrderId() {
@@ -129,22 +131,6 @@ public class MyOrderListResponse {
 
     public void setEventName(String eventName) {
         this.eventName = eventName;
-    }
-
-    public Long getFillAmount() {
-        return fillAmount;
-    }
-
-    public void setFillAmount(Long fillAmount) {
-        this.fillAmount = fillAmount;
-    }
-
-    public Long getFillPrice() {
-        return fillPrice;
-    }
-
-    public void setFillPrice(Long fillPrice) {
-        this.fillPrice = fillPrice;
     }
 
     public String getPlacedResult() {

@@ -1,5 +1,6 @@
 package com.mifan.guessingapi.request.banner;
 
+import java.io.Serializable;
 import java.util.List;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -9,7 +10,9 @@ import io.swagger.annotations.ApiModelProperty;
  * @create 2018/12/4
  */
 @ApiModel
-public class BossDeletBannerRequest {
+public class BossDeletBannerRequest implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @ApiModelProperty( name = "bannerIds" , value = "bannerId集合" )
     private List<String> bannerIds;

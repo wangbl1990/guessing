@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 /**
  * @auther wangbinlei
  * @create 2018/12/4
@@ -15,7 +17,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @ApiModel
-public class EventDetailRequest extends BaseRequest {
+public class EventDetailRequest extends BaseRequest implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @ApiModelProperty( name = "eventId" , value = "赛事ID" )
     private String eventId;//赛事ID

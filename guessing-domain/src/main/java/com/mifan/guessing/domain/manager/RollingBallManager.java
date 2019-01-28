@@ -146,26 +146,16 @@ public class RollingBallManager {
      * 下单
      */
     public TradeOrder order(TradeOrder tradeOrder, SubmitOrderRequest submitOrderRequest){
-
         long unixTimeStamp = DateUtils.getUnixDate();
-        Map<String,Object> param = new HashMap<String,Object>();
-        param.put("vendor_id",vendorIdValue);
-        param.put("request_time",new Date().getTime());
-        param.put("request_sgin",sign(unixTimeStamp));
-        param.put("correlation_order_id",tradeOrder.getOrderId());
-        param.put("vendor_player_id",tradeOrder.getUserCode());
-        param.put("event_id",tradeOrder.getEventId());
-        param.put("market_id",tradeOrder.getMarketId());
-        param.put("selection_id",tradeOrder.getSelectionId());
-        param.put("placed_result",submitOrderRequest.getPlaceResult());
-        param.put("request_price",tradeOrder.getRequestPrice());
-        param.put("request_amount",tradeOrder.getRequestAmount());
+        String param = "vendor_id="+vendorIdValue+"&request_time="+unixTimeStamp+"&request_sign="+sign(unixTimeStamp)+
+                "&player_id=" +tradeOrder.getUserCode()+"&order_id="+tradeOrder.getId()+"&event_id="+tradeOrder.getEventId()+"&market_id="+
+                tradeOrder.getMarketId()+"&selection_id="+tradeOrder.getSelectionId()+"&request_price="+tradeOrder.getRequestPrice().floatValue()+"&request_amount="+tradeOrder.getRequestAmount().intValue();
         logger.info("下单入参:"+ JSONObject.toJSONString(param));
-        String result = HttpClientUtil.post(RollingBallRequestUrl.eventInfo, null, param);
+        String result = HttpClientUtil.SendGET(RollingBallRequestUrl.order,param);
         logger.info("下单结果:"+ result);
         JSONObject jsonObject = JSONObject.parseObject(result);
         TradeOrder orderResult = null;
-        if("0".equals(jsonObject.get("errno"))){
+        if("0".equals(jsonObject.get("errno").toString())){
             JSONObject data = (JSONObject)jsonObject.get("data");
             orderResult = JSONObject.toJavaObject(data,TradeOrder.class);
         }else{

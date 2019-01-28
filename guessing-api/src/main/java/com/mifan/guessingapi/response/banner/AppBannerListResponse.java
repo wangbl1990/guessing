@@ -19,6 +19,8 @@ import java.util.Date;
 @ApiModel
 public class AppBannerListResponse implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     @ApiModelProperty( name = "id" , value = "bannnerID" )
     private String id;
 

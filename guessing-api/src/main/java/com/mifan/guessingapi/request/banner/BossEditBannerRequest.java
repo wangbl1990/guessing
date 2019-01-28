@@ -3,6 +3,7 @@ package com.mifan.guessingapi.request.banner;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -10,7 +11,9 @@ import java.util.Date;
  * @create 2018/12/4
  */
 @ApiModel
-public class BossEditBannerRequest {
+public class BossEditBannerRequest implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @ApiModelProperty( name = "id" , value = "bannnerID" )
     private String id;

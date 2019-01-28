@@ -6,4 +6,7 @@ import java.io.Serializable;
 
 @ApiModel
 public class SubmitOrderResponse implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
 }

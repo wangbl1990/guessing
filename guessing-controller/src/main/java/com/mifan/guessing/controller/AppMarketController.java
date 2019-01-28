@@ -34,8 +34,8 @@ public class AppMarketController extends BaseController {
     @ApiOperation(value = "市场列表" , notes = "市场列表" )
     @ApiImplicitParam(name = "marketListRequest" , value = "市场列表" , required = true , dataType = "MarketListRequest" )
     @RequestMapping( value = "/marketList" , method = RequestMethod.POST , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public BaseResponse<List<MarketListResponse>> marketList(@RequestBody @Validated final MarketListRequest marketListRequest ){
-        List<MarketListResponse> result = marketDomain.marketList(marketListRequest);
+    public BaseResponse<String> marketList(@RequestBody @Validated final MarketListRequest marketListRequest ){
+        String result = marketDomain.marketList(marketListRequest);
         return BaseResponse.generateOKResponseEntity(result);
     }
 

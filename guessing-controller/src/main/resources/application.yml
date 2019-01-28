@@ -44,5 +44,5 @@ gunqiu:
 
 elaticjob:
     zookeeper:
-        server-lists: 10.170.1.44:2181
+        server-lists: 192.168.1.155:2181
         namespace: elastic-job-lite-springboot

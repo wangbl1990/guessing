@@ -3,10 +3,14 @@ package com.mifan.guessing.controller;
 import com.github.pagehelper.PageInfo;
 import com.mifan.guessing.domain.EventDomain;
 import com.mifan.guessing.domain.MarketDomain;
+import com.mifan.guessing.domain.OrderDomain;
 import com.mifan.guessing.domain.model.EventMarket;
 import com.mifan.guessingapi.request.event.EventListRequest;
 import com.mifan.guessingapi.request.market.MarketListRequest;
+import com.mifan.guessingapi.request.order.MyOrderListRequest;
+import com.mifan.guessingapi.request.order.SubmitOrderRequest;
 import com.mifan.guessingapi.response.event.EventListResponse;
+import com.mifan.guessingapi.response.order.MyOrderListResponse;
 import com.mifan.guessingutils.MD5Utils;
 import com.mifan.guessingutils.SocketUtils;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -17,6 +21,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
 import java.net.URLDecoder;
 
 /**
@@ -32,7 +37,9 @@ public class EventControllerTest {
     @Autowired
     private MarketDomain marketDomain;
     @Autowired
-    private SocketUtils socketUtils;
+    private OrderDomain orderDomain;
+//    @Autowired
+//    private SocketUtils socketUtils;
 
     @Test
     public void eventList() throws UnsupportedEncodingException {
@@ -40,16 +47,39 @@ public class EventControllerTest {
         request.setPageNum(1);
         request.setPageSize(10);
         PageInfo<EventListResponse> eventListResponsePageInfo = eventDomain.eventList(request);
-
-//        String decode = URLDecoder.decode("\u975e\u6cd5\u8bf7\u6c42", "UTF-8");
         System.out.println(eventListResponsePageInfo);
     }
 
     @Test
     public void eventMarket(){
         MarketListRequest request = new MarketListRequest();
-        request.setEnvetId("17175");
+        request.setEnvetId("19879");
         marketDomain.marketList(request);
+    }
+
+    @Test
+    public void order(){
+        SubmitOrderRequest request = new SubmitOrderRequest();
+        request.setUserCode("123456789");
+        request.setEventId("19879");
+        request.setEventName("东北联-泰坦");
+        request.setSportId("1");
+        request.setSelectionId("476201");
+        request.setMarketId("207782");
+        request.setRequestAmount(new BigDecimal(100));
+        request.setRequestPrice(new BigDecimal(2.87));
+        orderDomain.submitOrder(request);
+    }
+
+    @Test
+    public void myOrderList(){
+        MyOrderListRequest request = new MyOrderListRequest();
+        request.setPageNum(1);
+        request.setPageSize(10);
+        request.setUserCode("123456789");
+        PageInfo<MyOrderListResponse> myOrderListResponse = orderDomain.myOrderList(request);
+        System.out.print(myOrderListResponse);
+
     }
 
     @Test
@@ -59,8 +89,4 @@ public class EventControllerTest {
         System.out.println(encode);
     }
 
-    @Test
-    public void socket(){
-        socketUtils.getData("http://sendbox.io.987games.coms");
-    }
 }

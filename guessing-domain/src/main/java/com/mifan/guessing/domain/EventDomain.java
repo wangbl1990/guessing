@@ -59,17 +59,6 @@ public class EventDomain {
     }
 
     /**
-     * 赛事详情查询
-     * @param eventDetailRequest
-     * @return
-     */
-    public EventListResponse eventDetail(EventDetailRequest eventDetailRequest) {
-//        Event event = eventMapper.selectByPrimaryKey(eventDetailRequest.getEventId());
-        Event event = rollingBallManager.eventInfo(eventDetailRequest.getEventId());
-        return BeanMapper.map(event,EventListResponse.class);
-    }
-
-    /**
      * 预约赛事
      * @param subscribeEventRequest
      * @return

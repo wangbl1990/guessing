@@ -4,10 +4,13 @@ import com.mifan.guessingapi.request.BaseRequest;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 @ApiModel
-public class MyOrderListRequest extends BaseRequest {
+public class MyOrderListRequest extends BaseRequest implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private int pageNum;
 

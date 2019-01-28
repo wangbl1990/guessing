@@ -4,8 +4,8 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
 
-    <!--<classPathEntry location="D:/mifan_code/guessing/src/test/resources/mysql-connector-java-5.1.35.jar" />-->
-    <classPathEntry location="D:\gitworkspace\guessing\guessing-dao\src\test\java\com\mifan\guessing\dao\mysql-connector-java-5.1.35.jar" />
+    <classPathEntry location="D:\mifan_code_new\guessing\guessing-dao\src\test\java\com\mifan\guessing\dao\mysql-connector-java-5.1.35.jar" />
+    <!--<classPathEntry location="D:\gitworkspace\guessing\guessing-dao\src\test\java\com\mifan\guessing\dao\mysql-connector-java-5.1.35.jar" />-->
     <context id="DB2Tables"  targetRuntime="MyBatis3">
 
         <!-- 查询单条数据插件 -->
@@ -37,9 +37,9 @@
         </javaClientGenerator>
         <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
 
-        <table tableName="event" domainObjectName="Event"></table>
+        <!--<table tableName="event" domainObjectName="Event"></table>-->
         <!--<table tableName="banner" domainObjectName="Banner"></table>-->
-        <!--<table tableName="trade_order" domainObjectName="TradeOrder"></table>-->
+        <table tableName="trade_order" domainObjectName="TradeOrder"></table>
         <!--<table tableName="subscribe_event" domainObjectName="SubscribeEvent"></table>-->
         <!--<table tableName="order_settle" domainObjectName="OrderSettle"></table>-->
         <!--<table tableName="market" domainObjectName="Market"></table>-->

@@ -1,9 +1,12 @@
 package com.mifan.guessingapi.response.order;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class BossOrderListResponse {
+public class BossOrderListResponse implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private String orderId;
 

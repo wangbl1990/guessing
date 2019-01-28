@@ -1,6 +1,10 @@
 package com.mifan.guessingapi.request.order;
 
-public class BossSettleOrderListRequest {
+import java.io.Serializable;
+
+public class BossSettleOrderListRequest implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private int pageNum;
 

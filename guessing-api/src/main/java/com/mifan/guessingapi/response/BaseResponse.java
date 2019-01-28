@@ -2,7 +2,11 @@ package com.mifan.guessingapi.response;
 
 import com.mifan.guessingapi.exception.GuessingErrorCode;
 
-public class BaseResponse<T> {
+import java.io.Serializable;
+
+public class BaseResponse<T> implements Serializable{
+
+    private static final long serialVersionUID = 1L;
 
     private int responseCode;
 

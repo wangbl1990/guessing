@@ -19,6 +19,8 @@ import java.util.Date;
 @ApiModel
 public class EventDetailResponse implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     @ApiModelProperty( name = "id" , value = "赛事ID" )
     private String id;//赛事ID
     @ApiModelProperty( name = "eventId" , value = "滚球赛事ID" )

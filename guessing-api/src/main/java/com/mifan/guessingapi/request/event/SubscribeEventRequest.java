@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -17,7 +18,9 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @ApiModel
-public class SubscribeEventRequest extends BaseRequest {
+public class SubscribeEventRequest extends BaseRequest implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @ApiModelProperty( name = "userCode" , value = "用户编码" )
     private String userCode;

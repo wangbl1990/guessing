@@ -1,6 +1,10 @@
 package com.mifan.guessingapi.request.callback;
 
-public class CallbackRequest {
+import java.io.Serializable;
+
+public class CallbackRequest implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private String messageId;
 

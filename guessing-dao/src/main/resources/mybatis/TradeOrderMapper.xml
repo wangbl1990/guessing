@@ -15,8 +15,6 @@
     <result column="user_name" property="userName" jdbcType="VARCHAR" />
     <result column="event_type" property="eventType" jdbcType="VARCHAR" />
     <result column="event_name" property="eventName" jdbcType="VARCHAR" />
-    <result column="fill_amount" property="fillAmount" jdbcType="DECIMAL" />
-    <result column="fill_price" property="fillPrice" jdbcType="DECIMAL" />
     <result column="placed_result" property="placedResult" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -79,8 +77,7 @@
   </sql>
   <sql id="Base_Column_List" >
     id, order_id, event_id, market_id, selection_id, request_amount, request_price, status, 
-    submitted_time, user_code, user_name, event_type, event_name, fill_amount, fill_price, 
-    placed_result
+    submitted_time, user_code, user_name, event_type, event_name, placed_result
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mifan.guessing.dao.model.TradeOrderExample" >
     select
@@ -117,14 +114,12 @@
       market_id, selection_id, request_amount, 
       request_price, status, submitted_time, 
       user_code, user_name, event_type, 
-      event_name, fill_amount, fill_price, 
-      placed_result)
+      event_name, placed_result)
     values (#{id,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, #{eventId,jdbcType=VARCHAR}, 
       #{marketId,jdbcType=VARCHAR}, #{selectionId,jdbcType=VARCHAR}, #{requestAmount,jdbcType=DECIMAL}, 
       #{requestPrice,jdbcType=DECIMAL}, #{status,jdbcType=VARCHAR}, #{submittedTime,jdbcType=TIMESTAMP}, 
       #{userCode,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{eventType,jdbcType=VARCHAR}, 
-      #{eventName,jdbcType=VARCHAR}, #{fillAmount,jdbcType=DECIMAL}, #{fillPrice,jdbcType=DECIMAL}, 
-      #{placedResult,jdbcType=VARCHAR})
+      #{eventName,jdbcType=VARCHAR}, #{placedResult,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.mifan.guessing.dao.model.TradeOrder" >
     insert into trade_order
@@ -167,12 +162,6 @@
       </if>
       <if test="eventName != null" >
         event_name,
-      </if>
-      <if test="fillAmount != null" >
-        fill_amount,
-      </if>
-      <if test="fillPrice != null" >
-        fill_price,
       </if>
       <if test="placedResult != null" >
         placed_result,
@@ -217,12 +206,6 @@
       </if>
       <if test="eventName != null" >
         #{eventName,jdbcType=VARCHAR},
-      </if>
-      <if test="fillAmount != null" >
-        #{fillAmount,jdbcType=DECIMAL},
-      </if>
-      <if test="fillPrice != null" >
-        #{fillPrice,jdbcType=DECIMAL},
       </if>
       <if test="placedResult != null" >
         #{placedResult,jdbcType=VARCHAR},
@@ -277,12 +260,6 @@
       <if test="record.eventName != null" >
         event_name = #{record.eventName,jdbcType=VARCHAR},
       </if>
-      <if test="record.fillAmount != null" >
-        fill_amount = #{record.fillAmount,jdbcType=DECIMAL},
-      </if>
-      <if test="record.fillPrice != null" >
-        fill_price = #{record.fillPrice,jdbcType=DECIMAL},
-      </if>
       <if test="record.placedResult != null" >
         placed_result = #{record.placedResult,jdbcType=VARCHAR},
       </if>
@@ -306,8 +283,6 @@
       user_name = #{record.userName,jdbcType=VARCHAR},
       event_type = #{record.eventType,jdbcType=VARCHAR},
       event_name = #{record.eventName,jdbcType=VARCHAR},
-      fill_amount = #{record.fillAmount,jdbcType=DECIMAL},
-      fill_price = #{record.fillPrice,jdbcType=DECIMAL},
       placed_result = #{record.placedResult,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -352,12 +327,6 @@
       <if test="eventName != null" >
         event_name = #{eventName,jdbcType=VARCHAR},
       </if>
-      <if test="fillAmount != null" >
-        fill_amount = #{fillAmount,jdbcType=DECIMAL},
-      </if>
-      <if test="fillPrice != null" >
-        fill_price = #{fillPrice,jdbcType=DECIMAL},
-      </if>
       <if test="placedResult != null" >
         placed_result = #{placedResult,jdbcType=VARCHAR},
       </if>
@@ -378,8 +347,6 @@
       user_name = #{userName,jdbcType=VARCHAR},
       event_type = #{eventType,jdbcType=VARCHAR},
       event_name = #{eventName,jdbcType=VARCHAR},
-      fill_amount = #{fillAmount,jdbcType=DECIMAL},
-      fill_price = #{fillPrice,jdbcType=DECIMAL},
       placed_result = #{placedResult,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>

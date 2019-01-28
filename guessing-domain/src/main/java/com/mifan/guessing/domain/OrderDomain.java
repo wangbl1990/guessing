@@ -59,10 +59,10 @@ public class OrderDomain {
         TradeOrder tradeOrder = new TradeOrder();
         tradeOrder.setEventId(submitOrderRequest.getEventId());
         tradeOrder.setEventName(submitOrderRequest.getEventName());
-        tradeOrder.setEventType(submitOrderRequest.getEventType());
+        tradeOrder.setEventType(submitOrderRequest.getSportId());
         tradeOrder.setId(IdMakerUtils.getOrderId());
         tradeOrder.setMarketId(submitOrderRequest.getMarketId());
-        tradeOrder.setOrderId(tradeOrder.getOrderId());
+        tradeOrder.setOrderId(tradeOrder.getId());
         tradeOrder.setRequestAmount(submitOrderRequest.getRequestAmount());
         tradeOrder.setRequestPrice(submitOrderRequest.getRequestPrice());
         tradeOrder.setSelectionId(submitOrderRequest.getSelectionId());
@@ -185,7 +185,16 @@ public class OrderDomain {
         return pageInfo;
     }
 
-    public MyOrderListResponse myOrderList(MyOrderListRequest myOrderListRequest) {
-        return new MyOrderListResponse();
+    public PageInfo<MyOrderListResponse> myOrderList(MyOrderListRequest myOrderListRequest) {
+
+        TradeOrderExample example = new TradeOrderExample();
+        example.createCriteria().andUserCodeEqualTo(myOrderListRequest.getUserCode());
+        PageHelper.startPage(myOrderListRequest.getPageNum(), myOrderListRequest.getPageSize(), true);
+        List<TradeOrder> tradeOrders = tradeOrderMapper.selectByExample(example);
+        PageInfo<MyOrderListResponse> pageInfo = new PageInfo(tradeOrders);
+        if (null != tradeOrders) {
+            pageInfo.setList(BeanMapper.mapList(tradeOrders, MyOrderListResponse.class));
+        }
+        return pageInfo;
     }
 }

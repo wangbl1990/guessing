@@ -13,7 +13,7 @@ public class RollingBallRequestUrl {
     //
     public static String eventMarkets = "http://sendbox.io.987games.com";
 
-    public static String tradeOrderPlace = "http://sendbox.api.987games.com/api/tradeOrderPlace";
+    public static String order = "http://sendbox.api.987games.com/Api/placeAnOrder";
 
     public static String tradeOrderCancel = "http://sendbox.api.987games.com/api/tradeOrderCancel";
 

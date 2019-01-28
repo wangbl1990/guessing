@@ -15,6 +15,8 @@ import java.util.List;
 @ApiModel
 public class MarketListResponse implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     @ApiModelProperty( name = "eventId" , value = "开放市场ID" )
     private String marketId;
     @ApiModelProperty( name = "ruleType" , value = "规则类型" )

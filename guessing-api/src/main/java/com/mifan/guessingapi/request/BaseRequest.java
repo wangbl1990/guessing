@@ -4,9 +4,13 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 @Data
 @NoArgsConstructor
-public class BaseRequest {
+public class BaseRequest implements Serializable{
+
+    private static final long serialVersionUID = 1L;
 
     @ApiModelProperty(  name = "userCode" , value = "用户Id token转换不涉及前段上送" , hidden = true )
     private String userCode;

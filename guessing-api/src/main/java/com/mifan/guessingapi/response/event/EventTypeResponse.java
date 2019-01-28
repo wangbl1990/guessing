@@ -18,6 +18,8 @@ import java.io.Serializable;
 @ApiModel
 public class EventTypeResponse implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     @ApiModelProperty( name = "eventType" , value = "赛事类型" )
     private String eventType;//赛事ID
 

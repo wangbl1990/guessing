@@ -1,8 +1,11 @@
 package com.mifan.guessingapi.request.market;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class MarketChangeRequest {
+public class MarketChangeRequest implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private String marketId;
     private String ruleType;

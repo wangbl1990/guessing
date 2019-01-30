@@ -1,5 +1,6 @@
-package com.mifan.guessing.controller;
+package com.mifan.guessing;
 
+import com.mifan.guessing.controller.Access;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.util.PathMatcher;

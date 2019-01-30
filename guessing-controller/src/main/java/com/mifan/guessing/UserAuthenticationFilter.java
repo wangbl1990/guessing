@@ -1,4 +1,4 @@
-package com.mifan.guessing.controller;
+package com.mifan.guessing;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -38,6 +38,8 @@ public class UserAuthenticationFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
         } else {
             filterChain.doFilter(requestWrapper, responseWrapper);
+            byte[] bytes = responseWrapper.getBytes(); // 获取缓存的响应数据
+            resp.getOutputStream().write( bytes ); // 将压缩数据响应给客户端
         }
     }
 }

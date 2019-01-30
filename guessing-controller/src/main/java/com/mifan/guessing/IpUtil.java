@@ -1,4 +1,4 @@
-package com.mifan.guessing.controller;
+package com.mifan.guessing;
 
 import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;

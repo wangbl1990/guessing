@@ -53,7 +53,7 @@ public class AppEventController extends BaseController {
 //    }
 
     @ApiOperation(value = "赛事分类" , notes = "赛事分类" )
-    @RequestMapping( value = "/eventType" , method = RequestMethod.POST , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping( value = "/eventType" , method = RequestMethod.POST ,  produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public BaseResponse<List<String>> eventType(){
         List<String> eventList = new ArrayList<String>();
         for(EventType eventType:EventType.values()){

@@ -1,6 +1,7 @@
 package com.mifan.guessing.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.mifan.guessing.GuessingApplication;
 import com.mifan.guessing.domain.EventDomain;
 import com.mifan.guessing.domain.MarketDomain;
 import com.mifan.guessing.domain.OrderDomain;

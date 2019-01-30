@@ -1,4 +1,4 @@
-package com.mifan.guessing.controller;
+package com.mifan.guessing;
 
 import com.alibaba.fastjson.JSONObject;
 import javax.servlet.ReadListener;

@@ -1,4 +1,4 @@
-package com.mifan.guessing.controller;
+package com.mifan.guessing;
 
 import com.fasterxml.classmate.TypeResolver;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.mifan.guessing.controller;
+package com.mifan.guessing;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.WriteListener;

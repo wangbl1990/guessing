@@ -34,7 +34,7 @@ public class AppOrderController extends BaseController {
 
     @ApiOperation(value = "下注" , notes = "下注" )
     @ApiImplicitParam(name = "submitOrderRequest" , value = "下注" , required = true , dataType = "SubmitOrderRequest" )
-    @RequestMapping( value = "/submitOrder" , method = RequestMethod.POST , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping( value = "/submitOrder" , method = RequestMethod.GET , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @Access
     public BaseResponse<SubmitOrderResponse> submitOrder(@RequestBody @Validated final SubmitOrderRequest submitOrderRequest ){
         SubmitOrderResponse result = orderDomain.submitOrder(submitOrderRequest);
@@ -43,7 +43,7 @@ public class AppOrderController extends BaseController {
 
     @ApiOperation(value = "我的订单列表" , notes = "我的订单列表" )
     @ApiImplicitParam(name = "myOrderListRequest" , value = "我的订单列表" , required = true , dataType = "MyOrderListRequest" )
-    @RequestMapping( value = "/myOrderList" , method = RequestMethod.POST , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping( value = "/myOrderList" , method = RequestMethod.GET , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @Access
     public BaseResponse<PageInfo<MyOrderListResponse>> myOrderList(@RequestBody @Validated final MyOrderListRequest myOrderListRequest ){
         PageInfo<MyOrderListResponse> result = orderDomain.myOrderList(myOrderListRequest);

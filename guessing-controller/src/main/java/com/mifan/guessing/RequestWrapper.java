@@ -38,7 +38,12 @@ public class RequestWrapper extends HttpServletRequestWrapper {
                 }
             }
         }
-        JSONObject param = JSONObject.parseObject( stringBuilder.toString() );
+        JSONObject param = null;
+        if("".equals(stringBuilder.toString())){
+            param = new JSONObject();
+        }else {
+            param = JSONObject.parseObject( stringBuilder.toString() );
+        }
         if(null == param){
             param = new JSONObject();
         }

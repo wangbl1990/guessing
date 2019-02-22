@@ -9,9 +9,7 @@ public class OrderSettle {
 
     private Long orderAmount;
 
-    private Long settleIncome;
-
-    private Long settleLoss;
+    private Long settleIncomeLose;
 
     private String type;
 
@@ -27,7 +25,9 @@ public class OrderSettle {
 
     private Date createTime;
 
-    private String userNikeName;
+    private String userCode;
+
+    private String userName;
 
     public String getId() {
         return id;
@@ -53,20 +53,12 @@ public class OrderSettle {
         this.orderAmount = orderAmount;
     }
 
-    public Long getSettleIncome() {
-        return settleIncome;
+    public Long getSettleIncomeLose() {
+        return settleIncomeLose;
     }
 
-    public void setSettleIncome(Long settleIncome) {
-        this.settleIncome = settleIncome;
-    }
-
-    public Long getSettleLoss() {
-        return settleLoss;
-    }
-
-    public void setSettleLoss(Long settleLoss) {
-        this.settleLoss = settleLoss;
+    public void setSettleIncomeLose(Long settleIncomeLose) {
+        this.settleIncomeLose = settleIncomeLose;
     }
 
     public String getType() {
@@ -125,11 +117,19 @@ public class OrderSettle {
         this.createTime = createTime;
     }
 
-    public String getUserNikeName() {
-        return userNikeName;
+    public String getUserCode() {
+        return userCode;
     }
 
-    public void setUserNikeName(String userNikeName) {
-        this.userNikeName = userNikeName == null ? null : userNikeName.trim();
+    public void setUserCode(String userCode) {
+        this.userCode = userCode == null ? null : userCode.trim();
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName == null ? null : userName.trim();
     }
 }

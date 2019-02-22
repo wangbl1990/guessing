@@ -8,39 +8,46 @@ public class OrderSettleRequest implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private String order_id;//系统订单号唯⼀
-    private String correlation_order_id;//合作商订单号唯⼀一
+    private String vendor_id;//合作商ID
+    private String vendor_order_id;//合作商订单号
     private String vendor_player_id;//合作商⽤用户ID
     private String event_id;//赛事ID
     private String market_id;//市场ID
-    private String selection_id;//⼦子项ID
+    private String rule_type;//投注玩法
+    private String selection_id;//选项ID
+    private String selection_type;//选项描述
     private BigDecimal request_amount;//下单⾦金金额：分
-    private BigDecimal request_price;//下单价格：赔率
-    private BigDecimal fill_amount;//接单⾦金金额：分
-    private BigDecimal fill_price;//接单价格：赔率
-    private String placed_result;//下单时⽐比分
+    private BigDecimal request_price;//下单赔率
+    private Date request_time;//下单时间
+    private BigDecimal accepted_amount;//接单金额：分
+    private BigDecimal accepted_price;//接单价格：赔率
+    private String accepted_odds;//接单盘口
+    private String accepted_result;//接单时比分
+    private Date accepted_time;//接单时间
+    private String placed_result;//验证参数
     private String status;//订单状态
-    private Date submitted_time;//下单时间
     private String settled_result;//结算结果
     private Date settled_time;//结算时间
-    private BigDecimal pn_l;//结算盈亏
-    private BigDecimal net_return;//净收⼊
+    private Date rejected_time;//拒单时间
+    private Date cancelled_time;//取消时间
+    private Date invalid_time;//无效时间
+    private BigDecimal net_return;//中奖额度 分
     private BigDecimal net_pn_l;//净盈亏
 
-    public String getOrder_id() {
-        return order_id;
+    public String getVendor_id() {
+        return vendor_id;
     }
 
-    public void setOrder_id(String order_id) {
-        this.order_id = order_id;
+    public void setVendor_id(String vendor_id) {
+        this.vendor_id = vendor_id;
     }
 
-    public String getCorrelation_order_id() {
-        return correlation_order_id;
+    public String getVendor_order_id() {
+        return vendor_order_id;
     }
 
-    public void setCorrelation_order_id(String correlation_order_id) {
-        this.correlation_order_id = correlation_order_id;
+    public void setVendor_order_id(String vendor_order_id) {
+        this.vendor_order_id = vendor_order_id;
     }
 
     public String getVendor_player_id() {
@@ -67,12 +74,28 @@ public class OrderSettleRequest implements Serializable {
         this.market_id = market_id;
     }
 
+    public String getRule_type() {
+        return rule_type;
+    }
+
+    public void setRule_type(String rule_type) {
+        this.rule_type = rule_type;
+    }
+
     public String getSelection_id() {
         return selection_id;
     }
 
     public void setSelection_id(String selection_id) {
         this.selection_id = selection_id;
+    }
+
+    public String getSelection_type() {
+        return selection_type;
+    }
+
+    public void setSelection_type(String selection_type) {
+        this.selection_type = selection_type;
     }
 
     public BigDecimal getRequest_amount() {
@@ -91,20 +114,52 @@ public class OrderSettleRequest implements Serializable {
         this.request_price = request_price;
     }
 
-    public BigDecimal getFill_amount() {
-        return fill_amount;
+    public Date getRequest_time() {
+        return request_time;
     }
 
-    public void setFill_amount(BigDecimal fill_amount) {
-        this.fill_amount = fill_amount;
+    public void setRequest_time(Date request_time) {
+        this.request_time = request_time;
     }
 
-    public BigDecimal getFill_price() {
-        return fill_price;
+    public BigDecimal getAccepted_amount() {
+        return accepted_amount;
     }
 
-    public void setFill_price(BigDecimal fill_price) {
-        this.fill_price = fill_price;
+    public void setAccepted_amount(BigDecimal accepted_amount) {
+        this.accepted_amount = accepted_amount;
+    }
+
+    public BigDecimal getAccepted_price() {
+        return accepted_price;
+    }
+
+    public void setAccepted_price(BigDecimal accepted_price) {
+        this.accepted_price = accepted_price;
+    }
+
+    public String getAccepted_odds() {
+        return accepted_odds;
+    }
+
+    public void setAccepted_odds(String accepted_odds) {
+        this.accepted_odds = accepted_odds;
+    }
+
+    public String getAccepted_result() {
+        return accepted_result;
+    }
+
+    public void setAccepted_result(String accepted_result) {
+        this.accepted_result = accepted_result;
+    }
+
+    public Date getAccepted_time() {
+        return accepted_time;
+    }
+
+    public void setAccepted_time(Date accepted_time) {
+        this.accepted_time = accepted_time;
     }
 
     public String getPlaced_result() {
@@ -123,14 +178,6 @@ public class OrderSettleRequest implements Serializable {
         this.status = status;
     }
 
-    public Date getSubmitted_time() {
-        return submitted_time;
-    }
-
-    public void setSubmitted_time(Date submitted_time) {
-        this.submitted_time = submitted_time;
-    }
-
     public String getSettled_result() {
         return settled_result;
     }
@@ -147,12 +194,28 @@ public class OrderSettleRequest implements Serializable {
         this.settled_time = settled_time;
     }
 
-    public BigDecimal getPn_l() {
-        return pn_l;
+    public Date getRejected_time() {
+        return rejected_time;
     }
 
-    public void setPn_l(BigDecimal pn_l) {
-        this.pn_l = pn_l;
+    public void setRejected_time(Date rejected_time) {
+        this.rejected_time = rejected_time;
+    }
+
+    public Date getCancelled_time() {
+        return cancelled_time;
+    }
+
+    public void setCancelled_time(Date cancelled_time) {
+        this.cancelled_time = cancelled_time;
+    }
+
+    public Date getInvalid_time() {
+        return invalid_time;
+    }
+
+    public void setInvalid_time(Date invalid_time) {
+        this.invalid_time = invalid_time;
     }
 
     public BigDecimal getNet_return() {

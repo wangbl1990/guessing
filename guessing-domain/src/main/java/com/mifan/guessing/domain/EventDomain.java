@@ -19,6 +19,7 @@ import com.mifan.guessingutils.DateUtils;
 import com.mifan.guessingutils.IdMakerUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import tv.zhangyu.rpcservice.base.User;
 
 import java.util.Date;
 import java.util.List;
@@ -31,13 +32,13 @@ import java.util.List;
 public class EventDomain {
 
     @Autowired
-    private EventMapper eventMapper;
-    @Autowired
     private RollingBallManager rollingBallManager;
     @Autowired
     private SubscribeEventMapper subscribeEventMapper;
     @Autowired
     private SmsManager smsManager;
+    //    @Autowired
+//    private UserService userService;
 
     /**
      * 赛事活动列表
@@ -66,8 +67,11 @@ public class EventDomain {
     public Integer subscribeEvent(SubscribeEventRequest subscribeEventRequest) {
 
         SubscribeEvent subscribeEvent = BeanMapper.map(subscribeEventRequest,SubscribeEvent.class);
+        //User user = userService.getUserByUserId(submitOrderRequest.getUserCode());
+        User user = new User();
         subscribeEvent.setId(IdMakerUtils.getOrderId());
         subscribeEvent.setCreateTime(new Date());
+        subscribeEvent.setPhone(user.getPhone());
         int result = subscribeEventMapper.insertSelective(subscribeEvent);
         return result;
     }

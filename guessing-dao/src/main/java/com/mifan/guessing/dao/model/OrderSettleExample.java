@@ -305,123 +305,63 @@ public class OrderSettleExample {
             return (Criteria) this;
         }
 
-        public Criteria andSettleIncomeIsNull() {
-            addCriterion("settle_income is null");
+        public Criteria andSettleIncomeLoseIsNull() {
+            addCriterion("settle_income_lose is null");
             return (Criteria) this;
         }
 
-        public Criteria andSettleIncomeIsNotNull() {
-            addCriterion("settle_income is not null");
+        public Criteria andSettleIncomeLoseIsNotNull() {
+            addCriterion("settle_income_lose is not null");
             return (Criteria) this;
         }
 
-        public Criteria andSettleIncomeEqualTo(Long value) {
-            addCriterion("settle_income =", value, "settleIncome");
+        public Criteria andSettleIncomeLoseEqualTo(Long value) {
+            addCriterion("settle_income_lose =", value, "settleIncomeLose");
             return (Criteria) this;
         }
 
-        public Criteria andSettleIncomeNotEqualTo(Long value) {
-            addCriterion("settle_income <>", value, "settleIncome");
+        public Criteria andSettleIncomeLoseNotEqualTo(Long value) {
+            addCriterion("settle_income_lose <>", value, "settleIncomeLose");
             return (Criteria) this;
         }
 
-        public Criteria andSettleIncomeGreaterThan(Long value) {
-            addCriterion("settle_income >", value, "settleIncome");
+        public Criteria andSettleIncomeLoseGreaterThan(Long value) {
+            addCriterion("settle_income_lose >", value, "settleIncomeLose");
             return (Criteria) this;
         }
 
-        public Criteria andSettleIncomeGreaterThanOrEqualTo(Long value) {
-            addCriterion("settle_income >=", value, "settleIncome");
+        public Criteria andSettleIncomeLoseGreaterThanOrEqualTo(Long value) {
+            addCriterion("settle_income_lose >=", value, "settleIncomeLose");
             return (Criteria) this;
         }
 
-        public Criteria andSettleIncomeLessThan(Long value) {
-            addCriterion("settle_income <", value, "settleIncome");
+        public Criteria andSettleIncomeLoseLessThan(Long value) {
+            addCriterion("settle_income_lose <", value, "settleIncomeLose");
             return (Criteria) this;
         }
 
-        public Criteria andSettleIncomeLessThanOrEqualTo(Long value) {
-            addCriterion("settle_income <=", value, "settleIncome");
+        public Criteria andSettleIncomeLoseLessThanOrEqualTo(Long value) {
+            addCriterion("settle_income_lose <=", value, "settleIncomeLose");
             return (Criteria) this;
         }
 
-        public Criteria andSettleIncomeIn(List<Long> values) {
-            addCriterion("settle_income in", values, "settleIncome");
+        public Criteria andSettleIncomeLoseIn(List<Long> values) {
+            addCriterion("settle_income_lose in", values, "settleIncomeLose");
             return (Criteria) this;
         }
 
-        public Criteria andSettleIncomeNotIn(List<Long> values) {
-            addCriterion("settle_income not in", values, "settleIncome");
+        public Criteria andSettleIncomeLoseNotIn(List<Long> values) {
+            addCriterion("settle_income_lose not in", values, "settleIncomeLose");
             return (Criteria) this;
         }
 
-        public Criteria andSettleIncomeBetween(Long value1, Long value2) {
-            addCriterion("settle_income between", value1, value2, "settleIncome");
+        public Criteria andSettleIncomeLoseBetween(Long value1, Long value2) {
+            addCriterion("settle_income_lose between", value1, value2, "settleIncomeLose");
             return (Criteria) this;
         }
 
-        public Criteria andSettleIncomeNotBetween(Long value1, Long value2) {
-            addCriterion("settle_income not between", value1, value2, "settleIncome");
-            return (Criteria) this;
-        }
-
-        public Criteria andSettleLossIsNull() {
-            addCriterion("settle_loss is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andSettleLossIsNotNull() {
-            addCriterion("settle_loss is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andSettleLossEqualTo(Long value) {
-            addCriterion("settle_loss =", value, "settleLoss");
-            return (Criteria) this;
-        }
-
-        public Criteria andSettleLossNotEqualTo(Long value) {
-            addCriterion("settle_loss <>", value, "settleLoss");
-            return (Criteria) this;
-        }
-
-        public Criteria andSettleLossGreaterThan(Long value) {
-            addCriterion("settle_loss >", value, "settleLoss");
-            return (Criteria) this;
-        }
-
-        public Criteria andSettleLossGreaterThanOrEqualTo(Long value) {
-            addCriterion("settle_loss >=", value, "settleLoss");
-            return (Criteria) this;
-        }
-
-        public Criteria andSettleLossLessThan(Long value) {
-            addCriterion("settle_loss <", value, "settleLoss");
-            return (Criteria) this;
-        }
-
-        public Criteria andSettleLossLessThanOrEqualTo(Long value) {
-            addCriterion("settle_loss <=", value, "settleLoss");
-            return (Criteria) this;
-        }
-
-        public Criteria andSettleLossIn(List<Long> values) {
-            addCriterion("settle_loss in", values, "settleLoss");
-            return (Criteria) this;
-        }
-
-        public Criteria andSettleLossNotIn(List<Long> values) {
-            addCriterion("settle_loss not in", values, "settleLoss");
-            return (Criteria) this;
-        }
-
-        public Criteria andSettleLossBetween(Long value1, Long value2) {
-            addCriterion("settle_loss between", value1, value2, "settleLoss");
-            return (Criteria) this;
-        }
-
-        public Criteria andSettleLossNotBetween(Long value1, Long value2) {
-            addCriterion("settle_loss not between", value1, value2, "settleLoss");
+        public Criteria andSettleIncomeLoseNotBetween(Long value1, Long value2) {
+            addCriterion("settle_income_lose not between", value1, value2, "settleIncomeLose");
             return (Criteria) this;
         }
 
@@ -895,73 +835,143 @@ public class OrderSettleExample {
             return (Criteria) this;
         }
 
-        public Criteria andUserNikeNameIsNull() {
-            addCriterion("user_nike_name is null");
+        public Criteria andUserCodeIsNull() {
+            addCriterion("user_code is null");
             return (Criteria) this;
         }
 
-        public Criteria andUserNikeNameIsNotNull() {
-            addCriterion("user_nike_name is not null");
+        public Criteria andUserCodeIsNotNull() {
+            addCriterion("user_code is not null");
             return (Criteria) this;
         }
 
-        public Criteria andUserNikeNameEqualTo(String value) {
-            addCriterion("user_nike_name =", value, "userNikeName");
+        public Criteria andUserCodeEqualTo(String value) {
+            addCriterion("user_code =", value, "userCode");
             return (Criteria) this;
         }
 
-        public Criteria andUserNikeNameNotEqualTo(String value) {
-            addCriterion("user_nike_name <>", value, "userNikeName");
+        public Criteria andUserCodeNotEqualTo(String value) {
+            addCriterion("user_code <>", value, "userCode");
             return (Criteria) this;
         }
 
-        public Criteria andUserNikeNameGreaterThan(String value) {
-            addCriterion("user_nike_name >", value, "userNikeName");
+        public Criteria andUserCodeGreaterThan(String value) {
+            addCriterion("user_code >", value, "userCode");
             return (Criteria) this;
         }
 
-        public Criteria andUserNikeNameGreaterThanOrEqualTo(String value) {
-            addCriterion("user_nike_name >=", value, "userNikeName");
+        public Criteria andUserCodeGreaterThanOrEqualTo(String value) {
+            addCriterion("user_code >=", value, "userCode");
             return (Criteria) this;
         }
 
-        public Criteria andUserNikeNameLessThan(String value) {
-            addCriterion("user_nike_name <", value, "userNikeName");
+        public Criteria andUserCodeLessThan(String value) {
+            addCriterion("user_code <", value, "userCode");
             return (Criteria) this;
         }
 
-        public Criteria andUserNikeNameLessThanOrEqualTo(String value) {
-            addCriterion("user_nike_name <=", value, "userNikeName");
+        public Criteria andUserCodeLessThanOrEqualTo(String value) {
+            addCriterion("user_code <=", value, "userCode");
             return (Criteria) this;
         }
 
-        public Criteria andUserNikeNameLike(String value) {
-            addCriterion("user_nike_name like", value, "userNikeName");
+        public Criteria andUserCodeLike(String value) {
+            addCriterion("user_code like", value, "userCode");
             return (Criteria) this;
         }
 
-        public Criteria andUserNikeNameNotLike(String value) {
-            addCriterion("user_nike_name not like", value, "userNikeName");
+        public Criteria andUserCodeNotLike(String value) {
+            addCriterion("user_code not like", value, "userCode");
             return (Criteria) this;
         }
 
-        public Criteria andUserNikeNameIn(List<String> values) {
-            addCriterion("user_nike_name in", values, "userNikeName");
+        public Criteria andUserCodeIn(List<String> values) {
+            addCriterion("user_code in", values, "userCode");
             return (Criteria) this;
         }
 
-        public Criteria andUserNikeNameNotIn(List<String> values) {
-            addCriterion("user_nike_name not in", values, "userNikeName");
+        public Criteria andUserCodeNotIn(List<String> values) {
+            addCriterion("user_code not in", values, "userCode");
             return (Criteria) this;
         }
 
-        public Criteria andUserNikeNameBetween(String value1, String value2) {
-            addCriterion("user_nike_name between", value1, value2, "userNikeName");
+        public Criteria andUserCodeBetween(String value1, String value2) {
+            addCriterion("user_code between", value1, value2, "userCode");
             return (Criteria) this;
         }
 
-        public Criteria andUserNikeNameNotBetween(String value1, String value2) {
-            addCriterion("user_nike_name not between", value1, value2, "userNikeName");
+        public Criteria andUserCodeNotBetween(String value1, String value2) {
+            addCriterion("user_code not between", value1, value2, "userCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserNameIsNull() {
+            addCriterion("user_name is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserNameIsNotNull() {
+            addCriterion("user_name is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserNameEqualTo(String value) {
+            addCriterion("user_name =", value, "userName");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserNameNotEqualTo(String value) {
+            addCriterion("user_name <>", value, "userName");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserNameGreaterThan(String value) {
+            addCriterion("user_name >", value, "userName");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserNameGreaterThanOrEqualTo(String value) {
+            addCriterion("user_name >=", value, "userName");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserNameLessThan(String value) {
+            addCriterion("user_name <", value, "userName");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserNameLessThanOrEqualTo(String value) {
+            addCriterion("user_name <=", value, "userName");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserNameLike(String value) {
+            addCriterion("user_name like", value, "userName");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserNameNotLike(String value) {
+            addCriterion("user_name not like", value, "userName");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserNameIn(List<String> values) {
+            addCriterion("user_name in", values, "userName");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserNameNotIn(List<String> values) {
+            addCriterion("user_name not in", values, "userName");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserNameBetween(String value1, String value2) {
+            addCriterion("user_name between", value1, value2, "userName");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserNameNotBetween(String value1, String value2) {
+            addCriterion("user_name not between", value1, value2, "userName");
             return (Criteria) this;
         }
     }

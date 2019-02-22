@@ -7,6 +7,7 @@ import com.mifan.guessing.domain.MarketDomain;
 import com.mifan.guessing.domain.OrderDomain;
 import com.mifan.guessing.domain.model.EventMarket;
 import com.mifan.guessingapi.request.event.EventListRequest;
+import com.mifan.guessingapi.request.event.SubscribeEventRequest;
 import com.mifan.guessingapi.request.market.MarketListRequest;
 import com.mifan.guessingapi.request.order.MyOrderListRequest;
 import com.mifan.guessingapi.request.order.SubmitOrderRequest;
@@ -24,6 +25,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.net.URLDecoder;
+import java.util.Date;
 
 /**
  * @auther wangbinlei
@@ -54,7 +56,7 @@ public class EventControllerTest {
     @Test
     public void eventMarket(){
         MarketListRequest request = new MarketListRequest();
-        request.setEnvetId("19879");
+        request.setEnvetId("36966");
         marketDomain.marketList(request);
     }
 
@@ -62,13 +64,13 @@ public class EventControllerTest {
     public void order(){
         SubmitOrderRequest request = new SubmitOrderRequest();
         request.setUserCode("123456789");
-        request.setEventId("19879");
-        request.setEventName("东北联-泰坦");
+        request.setEventId("36966");
+        request.setEventName("阿德莱得城女足-阿德莱德大学女足");
         request.setSportId("1");
-        request.setSelectionId("476201");
-        request.setMarketId("207782");
+        request.setSelectionId("888636");
+        request.setMarketId("385675");
         request.setRequestAmount(new BigDecimal(100));
-        request.setRequestPrice(new BigDecimal(2.87));
+        request.setRequestPrice(new BigDecimal(1.88));
         orderDomain.submitOrder(request);
     }
 
@@ -80,7 +82,18 @@ public class EventControllerTest {
         request.setUserCode("123456789");
         PageInfo<MyOrderListResponse> myOrderListResponse = orderDomain.myOrderList(request);
         System.out.print(myOrderListResponse);
+    }
 
+    @Test
+    public void subscribeEvent(){
+        SubscribeEventRequest subscribeEventRequest = new SubscribeEventRequest();
+        subscribeEventRequest.setEventId("19879");
+        subscribeEventRequest.setEventName("东北联-泰坦");
+        subscribeEventRequest.setEventTime(new Date());
+        subscribeEventRequest.setEventType("冰联杯");
+        subscribeEventRequest.setUserCode("1234567890");
+        Integer integer = eventDomain.subscribeEvent(subscribeEventRequest);
+        System.out.print(integer);
     }
 
     @Test

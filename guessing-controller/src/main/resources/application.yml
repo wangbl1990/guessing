@@ -42,7 +42,11 @@ gunqiu:
     vendorIdValue: mf
     secretKey: mi%fan#4bg35n6e
 
-elaticjob:
-    zookeeper:
-        server-lists: 192.168.1.155:2181
-        namespace: elastic-job-lite-springboot
+regCenter:
+  serverList: 10.170.1.44:2181
+  namespace: guessing-job
+
+subEventMsgJob:
+  cron: 0 0/10 * * * ?
+  shardingTotalCount: 1
+  shardingItemParameters: 1=1

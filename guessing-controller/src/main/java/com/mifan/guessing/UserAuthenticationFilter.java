@@ -21,12 +21,14 @@ public class UserAuthenticationFilter extends OncePerRequestFilter {
         String userId = "" ;
         try {
             //从cookie中获取用户ID
-            userId = LoginUtils.tryAutoLogin(request,response);
+            //userId = LoginUtils.tryAutoLogin(request,response);
+            userId = "123456789";
             request.setAttribute("userId", userId);
             if (request instanceof HttpServletRequest) {
                 requestWrapper = new RequestWrapper((HttpServletRequest) request);
             }
         } catch (Exception e) {
+            logger.error("token error:",e);
             if (request instanceof HttpServletRequest) {
                 requestWrapper = new RequestWrapper((HttpServletRequest) request);
             }

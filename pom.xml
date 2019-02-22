@@ -136,13 +136,26 @@
 			</dependency>
 
 			<dependency>
-				<groupId>com.github.kuhn-he</groupId>
-				<artifactId>elastic-job-lite-spring-boot-starter</artifactId>
+				<groupId>com.dangdang</groupId>
+				<artifactId>elastic-job-lite-spring</artifactId>
+				<version>2.1.5</version>
+			</dependency>
+			<dependency>
+				<groupId>com.dangdang</groupId>
+				<artifactId>elastic-job-lite-core</artifactId>
 				<version>2.1.5</version>
 				<exclusions>
 					<exclusion>
-						<artifactId>log4j</artifactId>
-						<groupId>log4j</groupId>
+						<artifactId>curator-client</artifactId>
+						<groupId>org.apache.curator</groupId>
+					</exclusion>
+					<exclusion>
+						<artifactId>curator-framework</artifactId>
+						<groupId>org.apache.curator</groupId>
+					</exclusion>
+					<exclusion>
+						<artifactId>curator-recipes</artifactId>
+						<groupId>org.apache.curator</groupId>
 					</exclusion>
 				</exclusions>
 			</dependency>

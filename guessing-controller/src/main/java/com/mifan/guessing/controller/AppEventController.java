@@ -53,7 +53,7 @@ public class AppEventController extends BaseController {
 //    }
 
     @ApiOperation(value = "赛事分类" , notes = "赛事分类" )
-    @RequestMapping( value = "/eventType" , method = RequestMethod.POST ,  produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping( value = "/eventType" , method = RequestMethod.GET ,  produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public BaseResponse<List<String>> eventType(){
         List<String> eventList = new ArrayList<String>();
         for(EventType eventType:EventType.values()){
@@ -64,7 +64,7 @@ public class AppEventController extends BaseController {
 
     @ApiOperation(value = "预约赛事" , notes = "预约赛事" )
     @ApiImplicitParam(name = "subscribeEventRequest" , value = "预约赛事" , required = true , dataType = "SubscribeEventRequest" )
-    @RequestMapping( value = "/subscribeEvent" , method = RequestMethod.POST , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping( value = "/subscribeEvent" , method = RequestMethod.GET , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @Access
     public BaseResponse<Integer> subscribeEvent(@RequestBody @Validated final SubscribeEventRequest subscribeEventRequest ){
         Integer result = eventDomain.subscribeEvent(subscribeEventRequest);

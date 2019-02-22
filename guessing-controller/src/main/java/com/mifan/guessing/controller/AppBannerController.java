@@ -36,7 +36,7 @@ public class AppBannerController extends BaseController {
 
     @ApiOperation(value = "banner列表" , notes = "banner列表" )
     @ApiImplicitParam(name = "appBannerListRequest" , value = "banner列表" , required = true , dataType = "AppBannerListRequest" )
-    @RequestMapping( value = "/list" , method = RequestMethod.POST , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping( value = "/list" , method = RequestMethod.GET , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public BaseResponse<List<AppBannerListResponse>> list(@RequestBody @Validated final AppBannerListRequest appBannerListRequest ){
         List<AppBannerListResponse> result = bannerDomain.listForApp(appBannerListRequest);
         return BaseResponse.generateOKResponseEntity(result);

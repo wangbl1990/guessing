@@ -2,12 +2,9 @@ package com.mifan.guessing.dao.mapper;
 
 import com.mifan.guessing.dao.model.OrderSettle;
 import com.mifan.guessing.dao.model.OrderSettleExample;
-import org.apache.ibatis.annotations.Mapper;
+import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
-import java.util.List;
-
-@Mapper
 public interface OrderSettleMapper {
     int countByExample(OrderSettleExample example);
 

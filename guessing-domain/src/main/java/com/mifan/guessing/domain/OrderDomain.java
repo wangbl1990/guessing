@@ -1,5 +1,6 @@
 package com.mifan.guessing.domain;
 
+import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.mifan.guessing.dao.mapper.OrderSettleMapper;
@@ -9,6 +10,7 @@ import com.mifan.guessing.dao.model.OrderSettleExample;
 import com.mifan.guessing.dao.model.TradeOrder;
 import com.mifan.guessing.dao.model.TradeOrderExample;
 import com.mifan.guessing.domain.enums.OrderStatus;
+import com.mifan.guessing.domain.job.SubEventMsgJob;
 import com.mifan.guessing.domain.manager.RollingBallManager;
 import com.mifan.guessingapi.exception.GuessingErrorCode;
 import com.mifan.guessingapi.exception.GuessingRunTimeException;
@@ -20,6 +22,8 @@ import com.mifan.guessingapi.response.order.SubmitOrderResponse;
 import com.mifan.guessingutils.BeanMapper;
 import com.mifan.guessingutils.IdMakerUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import tv.zhangyu.rpcservice.base.User;
@@ -34,6 +38,8 @@ import java.util.List;
  */
 @Component
 public class OrderDomain {
+
+    private static Logger logger = LogManager.getLogger( OrderDomain.class );
 
     @Autowired
     private TradeOrderMapper tradeOrderMapper;
@@ -52,6 +58,8 @@ public class OrderDomain {
      * @return
      */
     public SubmitOrderResponse submitOrder(SubmitOrderRequest submitOrderRequest) {
+
+        logger.info("下注入参"+ JSONObject.toJSONString(submitOrderRequest));
         //校验用户信息
 //        User user = userService.getUserByUserId(submitOrderRequest.getUserCode());
         User user = new User();
@@ -79,6 +87,7 @@ public class OrderDomain {
             TradeOrder order = rollingBallManager.order(tradeOrder, submitOrderRequest);
             response = BeanMapper.map(order,SubmitOrderResponse.class);
         }catch (Exception e){
+            logger.error("滚球下注异常",e);
             //解冻用户米粒
 //            moneyService.addMoney(submitOrderRequest.getUserCode(),submitOrderRequest.getRequestAmount().longValue(),"竞猜投注失败恢复扣减用户米粒");
             //更新订单状态投注失败
@@ -86,7 +95,7 @@ public class OrderDomain {
             updateOrder.setId(tradeOrder.getId());
             updateOrder.setStatus(OrderStatus.FAIL.getCode());
             tradeOrderMapper.updateByPrimaryKey(updateOrder);
-            throw new GuessingRunTimeException(GuessingErrorCode.SYSTEM_ERROR);
+            throw e;
         }
 
         return response;
@@ -98,11 +107,12 @@ public class OrderDomain {
      * @param orderSettleRequest
      */
     public void settle(OrderSettleRequest orderSettleRequest){
+        logger.info("结算入参"+ JSONObject.toJSONString(orderSettleRequest));
         //原订单信息
-        TradeOrder tradeOrder = tradeOrderMapper.selectByPrimaryKey(orderSettleRequest.getCorrelation_order_id());
-        //跟新原订单已结算
+        TradeOrder tradeOrder = tradeOrderMapper.selectByPrimaryKey(orderSettleRequest.getVendor_order_id());
+        //更新原订单已结算
         TradeOrderExample tradeOrderExample = new TradeOrderExample();
-        tradeOrderExample.createCriteria().andIdEqualTo(orderSettleRequest.getCorrelation_order_id()).andStatusEqualTo(OrderStatus.PAYED.getCode());
+        tradeOrderExample.createCriteria().andIdEqualTo(orderSettleRequest.getVendor_order_id()).andStatusEqualTo(OrderStatus.PAYED.getCode());
         TradeOrder updateTradeOrder = new TradeOrder();
         updateTradeOrder.setStatus(OrderStatus.SETTLED.getCode());
         int result = tradeOrderMapper.updateByExampleSelective(updateTradeOrder, tradeOrderExample);
@@ -116,8 +126,7 @@ public class OrderDomain {
             orderSettle.setOrderAmount(tradeOrder.getRequestAmount().longValue());
             orderSettle.setOrderId(tradeOrder.getOrderId());
             orderSettle.setPlayName("");
-            orderSettle.setSettleIncome(orderSettleRequest.getNet_return().longValue());
-            orderSettle.setSettleLoss(orderSettleRequest.getNet_pn_l().longValue());
+            orderSettle.setSettleIncomeLose(orderSettleRequest.getNet_pn_l().longValue());//结算盈亏
             orderSettle.setSettleTime(orderSettleRequest.getSettled_time());
             orderSettle.setStatus(OrderStatus.valueOf(orderSettleRequest.getStatus()).getCode());
             orderSettle.setType("");
@@ -129,7 +138,7 @@ public class OrderDomain {
 //                moneyService.addMoney(tradeOrder.getUserCode(),addAmount.longValue(),"结算盈利加账");
             }else{
                 //亏损
-                BigDecimal addAmount = orderSettleRequest.getRequest_amount().subtract(orderSettleRequest.getNet_return());
+                BigDecimal addAmount = orderSettleRequest.getRequest_amount().add(orderSettleRequest.getNet_return());
                 if(1 == addAmount.compareTo(new BigDecimal(0))){
 //                    moneyService.addMoney(tradeOrder.getUserCode(),addAmount.longValue(),"结算亏损加账");
                 }
@@ -171,7 +180,7 @@ public class OrderDomain {
         OrderSettleExample example = new OrderSettleExample();
         OrderSettleExample.Criteria criteria = example.createCriteria();
         if (StringUtils.isNotEmpty(bossSettleOrderListRequest.getUserName())) {
-            criteria.andUserNikeNameLike("%" + bossSettleOrderListRequest.getUserName() + "%");
+            criteria.andUserNameLike("%" + bossSettleOrderListRequest.getUserName() + "%");
         }
         if (StringUtils.isNotEmpty(bossSettleOrderListRequest.getOrderId())) {
             criteria.andOrderIdEqualTo(bossSettleOrderListRequest.getOrderId());

@@ -26,6 +26,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import tv.zhangyu.rpcservice.base.User;
 
 import java.math.BigDecimal;
@@ -57,6 +58,7 @@ public class OrderDomain {
      * @param submitOrderRequest
      * @return
      */
+//    @Transactional
     public SubmitOrderResponse submitOrder(SubmitOrderRequest submitOrderRequest) {
 
         logger.info("下注入参"+ JSONObject.toJSONString(submitOrderRequest));
@@ -106,6 +108,7 @@ public class OrderDomain {
      * 结算
      * @param orderSettleRequest
      */
+    @Transactional
     public void settle(OrderSettleRequest orderSettleRequest){
         logger.info("结算入参"+ JSONObject.toJSONString(orderSettleRequest));
         //原订单信息
@@ -205,5 +208,28 @@ public class OrderDomain {
             pageInfo.setList(BeanMapper.mapList(tradeOrders, MyOrderListResponse.class));
         }
         return pageInfo;
+    }
+
+    public void orderConfirm(OrderSettleRequest orderSettleRequest) {
+        //根据下单确认结果更新订单状态
+        if("1".equals(orderSettleRequest.getStatus())){
+            //接单成功,更新订单状态
+            TradeOrderExample tradeOrderExample = new TradeOrderExample();
+            tradeOrderExample.createCriteria().andIdEqualTo(orderSettleRequest.getVendor_order_id()).andStatusEqualTo(OrderStatus.INIT.getCode());
+            TradeOrder updateTradeOrder = new TradeOrder();
+            updateTradeOrder.setStatus(OrderStatus.PAYED.getCode());
+            tradeOrderMapper.updateByExampleSelective(updateTradeOrder, tradeOrderExample);
+        }else if("3".equals(orderSettleRequest.getStatus()) || "4".equals(orderSettleRequest.getStatus()) || "5".equals(orderSettleRequest.getStatus())){
+            //订单取消;订单无效;订单被拒 更新订单状态，退还用户下单米粒
+            TradeOrderExample tradeOrderExample = new TradeOrderExample();
+            tradeOrderExample.createCriteria().andIdEqualTo(orderSettleRequest.getVendor_order_id()).andStatusEqualTo(OrderStatus.INIT.getCode());
+            TradeOrder updateTradeOrder = new TradeOrder();
+            updateTradeOrder.setStatus(orderSettleRequest.getStatus());
+            int result = tradeOrderMapper.updateByExampleSelective(updateTradeOrder, tradeOrderExample);
+            if(1 == result){
+                TradeOrder tradeOrder = tradeOrderMapper.selectByPrimaryKey(orderSettleRequest.getVendor_order_id());
+//                moneyService.addMoney(tradeOrder.getUserCode(),tradeOrder.getRequestAmount(),"下注失败退还用户米粒");
+            }
+        }
     }
 }

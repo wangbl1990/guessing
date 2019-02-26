@@ -160,7 +160,7 @@ public class RollingBallManager {
             orderResult = JSONObject.toJavaObject(data,TradeOrder.class);
         }else{
             logger.error("下单失败"+jsonObject.toJSONString());
-            throw new GuessingRunTimeException(GuessingErrorCode.SYSTEM_ERROR.getValue(),jsonObject.get("errmsg"));
+            throw new GuessingRunTimeException(GuessingErrorCode.SYSTEM_ERROR.getValue(),jsonObject.get("errmsg").toString());
         }
         return orderResult;
     }

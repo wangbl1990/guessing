@@ -1,5 +1,9 @@
 package com.mifan.guessingutils;
 
+import org.apache.commons.lang3.StringUtils;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.Calendar;
@@ -46,6 +50,21 @@ public class DateUtils {
         c.set(Calendar.SECOND, 00);
         Date resultDate = c.getTime();
         return resultDate;
+    }
+
+    public static Date parseDate(Object dateObj){
+
+        if(null == dateObj){
+            return null;
+        }
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-mm-dd hh:MM:ss");
+        Date date = null;
+        try {
+            date = simpleDateFormat.parse(dateObj.toString());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
     }
 
 }

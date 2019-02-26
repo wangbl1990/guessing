@@ -56,7 +56,7 @@ public class EventControllerTest {
     @Test
     public void eventMarket(){
         MarketListRequest request = new MarketListRequest();
-        request.setEnvetId("36966");
+        request.setEnvetId("37770");
         marketDomain.marketList(request);
     }
 
@@ -64,13 +64,13 @@ public class EventControllerTest {
     public void order(){
         SubmitOrderRequest request = new SubmitOrderRequest();
         request.setUserCode("123456789");
-        request.setEventId("36966");
-        request.setEventName("阿德莱得城女足-阿德莱德大学女足");
+        request.setEventId("37770");
+        request.setEventName("库内巴博勒-克尔曼");
         request.setSportId("1");
-        request.setSelectionId("888636");
-        request.setMarketId("385675");
-        request.setRequestAmount(new BigDecimal(100));
-        request.setRequestPrice(new BigDecimal(1.88));
+        request.setSelectionId("970073");
+        request.setMarketId("421025");
+        request.setRequestAmount(new BigDecimal(10000));
+        request.setRequestPrice(new BigDecimal(1.86));
         orderDomain.submitOrder(request);
     }
 
@@ -90,7 +90,7 @@ public class EventControllerTest {
         subscribeEventRequest.setEventId("19879");
         subscribeEventRequest.setEventName("东北联-泰坦");
         subscribeEventRequest.setEventTime(new Date());
-        subscribeEventRequest.setEventType("冰联杯");
+        subscribeEventRequest.setSportId("冰联杯");
         subscribeEventRequest.setUserCode("1234567890");
         Integer integer = eventDomain.subscribeEvent(subscribeEventRequest);
         System.out.print(integer);

@@ -96,7 +96,7 @@ public class OrderDomain {
             TradeOrder updateOrder = new TradeOrder();
             updateOrder.setId(tradeOrder.getId());
             updateOrder.setStatus(OrderStatus.FAIL.getCode());
-            tradeOrderMapper.updateByPrimaryKey(updateOrder);
+            tradeOrderMapper.updateByPrimaryKeySelective(updateOrder);
             throw e;
         }
 

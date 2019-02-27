@@ -56,7 +56,7 @@ public class EventControllerTest {
     @Test
     public void eventMarket(){
         MarketListRequest request = new MarketListRequest();
-        request.setEnvetId("37770");
+        request.setEnvetId("35143");
         marketDomain.marketList(request);
     }
 
@@ -64,13 +64,13 @@ public class EventControllerTest {
     public void order(){
         SubmitOrderRequest request = new SubmitOrderRequest();
         request.setUserCode("123456789");
-        request.setEventId("37770");
+        request.setEventId("35143");
         request.setEventName("库内巴博勒-克尔曼");
         request.setSportId("1");
-        request.setSelectionId("970073");
-        request.setMarketId("421025");
-        request.setRequestAmount(new BigDecimal(10000));
-        request.setRequestPrice(new BigDecimal(1.86));
+        request.setSelectionId("989541");
+        request.setMarketId("428583");
+        request.setRequestAmount(new BigDecimal(100));
+        request.setRequestPrice(new BigDecimal(2.37));
         orderDomain.submitOrder(request);
     }
 

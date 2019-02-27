@@ -11,7 +11,7 @@
 <!--    <dubbo:application name="unionPayServiceProvider" />-->
  
      <!--注册中心暴露服务地址--> 
-    <dubbo:registry protocol="zookeeper" address="192.168.1.155:2181"/>
+    <dubbo:registry protocol="zookeeper" address="${regCenter.serverList}"/>
    
     <dubbo:protocol name="dubbo" port="-1" />
     

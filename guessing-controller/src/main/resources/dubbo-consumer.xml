@@ -10,7 +10,7 @@
 
     <dubbo:application name="mifan-guessing" />
 
-    <dubbo:registry protocol="zookeeper" address="192.168.1.155:2181"/>
+    <dubbo:registry protocol="zookeeper" address="${regCenter.serverList}"/>
 
     <dubbo:monitor protocol="registry"/>
 

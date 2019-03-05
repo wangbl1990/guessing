@@ -99,7 +99,6 @@ public class OrderDomain {
             tradeOrderMapper.updateByPrimaryKeySelective(updateOrder);
             throw e;
         }
-
         return response;
 
     }
@@ -228,7 +227,7 @@ public class OrderDomain {
             int result = tradeOrderMapper.updateByExampleSelective(updateTradeOrder, tradeOrderExample);
             if(1 == result){
                 TradeOrder tradeOrder = tradeOrderMapper.selectByPrimaryKey(orderSettleRequest.getVendor_order_id());
-//                moneyService.addMoney(tradeOrder.getUserCode(),tradeOrder.getRequestAmount(),"下注失败退还用户米粒");
+//                moneyService.addMoney(tradeOrder.getUserCode(),tradeOrder.getRequestAmount().longValue(),"下注失败退还用户米粒");
             }
         }
     }

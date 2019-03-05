@@ -37,7 +37,7 @@ public class EventDomain {
     private SubscribeEventMapper subscribeEventMapper;
     @Autowired
     private SmsManager smsManager;
-    //    @Autowired
+//    @Autowired
 //    private UserService userService;
 
     /**
@@ -67,7 +67,7 @@ public class EventDomain {
     public Integer subscribeEvent(SubscribeEventRequest subscribeEventRequest) {
 
         SubscribeEvent subscribeEvent = BeanMapper.map(subscribeEventRequest,SubscribeEvent.class);
-        //User user = userService.getUserByUserId(submitOrderRequest.getUserCode());
+//        User user = userService.getUserByUserId(subscribeEvent.getUserCode());
         User user = new User();
         subscribeEvent.setId(IdMakerUtils.getOrderId());
         subscribeEvent.setCreateTime(new Date());

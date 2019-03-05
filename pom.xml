@@ -29,6 +29,17 @@
 		<java.version>1.8</java.version>
 	</properties>
 
+	<!--<distributionManagement>-->
+		<!--<repository>-->
+			<!--<id>maven-releases</id>-->
+			<!--<url>http://nexus.ppweb.com.cn/repository/maven-releases/</url>-->
+		<!--</repository>-->
+		<!--<snapshotRepository>-->
+			<!--<id>maven-snapshots</id>-->
+			<!--<url>http://nexus.ppweb.com.cn/repository/maven-snapshots/</url>-->
+		<!--</snapshotRepository>-->
+	<!--</distributionManagement>-->
+
 	<dependencyManagement>
 		<dependencies>
 

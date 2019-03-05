@@ -2,7 +2,7 @@
 <Configuration status="info" name="defaultLogConfig"
                packages="">
     <properties>
-        <property name="LOG_HOME">/var/log/guessing/</property>
+        <property name="LOG_HOME">/home/dev/guessing/log/</property>
         <property name="patternlayout">%-d{yyyy-MM-dd HH:mm:ss}[ %t:%r ]- [%X{cliIp}]  - [%-5p] %c-%M:%L - %m%n%throwable{full}</property>
     </properties>
     <Appenders>

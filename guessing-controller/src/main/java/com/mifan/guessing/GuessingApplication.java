@@ -14,7 +14,7 @@ import org.springframework.core.annotation.Order;
 @SpringBootApplication
 @ComponentScan(basePackages = { "com.mifan.guessing" })
 @MapperScan("com.mifan.guessing.dao.mapper")
-@ImportResource({"classpath:dubbo-consumer.xml","classpath:dubbo-provider.xml"})
+//@ImportResource({"classpath:dubbo-consumer.xml","classpath:dubbo-provider.xml"})
 @EnableAutoConfiguration(exclude = DataSourceAutoConfiguration.class)
 public class GuessingApplication {
 

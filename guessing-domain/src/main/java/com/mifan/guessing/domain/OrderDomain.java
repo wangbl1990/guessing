@@ -27,6 +27,8 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+import tv.zhangyu.rpcservice.MoneyService;
+import tv.zhangyu.rpcservice.UserService;
 import tv.zhangyu.rpcservice.base.User;
 
 import java.math.BigDecimal;
@@ -46,10 +48,10 @@ public class OrderDomain {
     private TradeOrderMapper tradeOrderMapper;
     @Autowired
     private RollingBallManager rollingBallManager;
-//    @Autowired
-//    private UserService userService;
-//    @Autowired
-//    private MoneyService moneyService;
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private MoneyService moneyService;
     @Autowired
     private OrderSettleMapper orderSettleMapper;
 
@@ -63,8 +65,8 @@ public class OrderDomain {
 
         logger.info("下注入参"+ JSONObject.toJSONString(submitOrderRequest));
         //校验用户信息
-//        User user = userService.getUserByUserId(submitOrderRequest.getUserCode());
-        User user = new User();
+        User user = userService.getUserByUserId(submitOrderRequest.getUserCode());
+//        User user = new User();
         //落单
         TradeOrder tradeOrder = new TradeOrder();
         tradeOrder.setEventId(submitOrderRequest.getEventId());
@@ -82,7 +84,7 @@ public class OrderDomain {
         tradeOrder.setUserName(user.getNickname());
         tradeOrderMapper.insert(tradeOrder);
         //冻结用户下单米粒
-//        moneyService.removeMoney(submitOrderRequest.getUserCode(),submitOrderRequest.getRequestAmount().longValue(),"竞猜投注扣减用户米粒");
+        moneyService.removeMoney(submitOrderRequest.getUserCode(),submitOrderRequest.getRequestAmount().longValue(),"竞猜投注扣减用户米粒");
         //请求滚球下单
         SubmitOrderResponse response = null;
         try {
@@ -91,7 +93,7 @@ public class OrderDomain {
         }catch (Exception e){
             logger.error("滚球下注异常",e);
             //解冻用户米粒
-//            moneyService.addMoney(submitOrderRequest.getUserCode(),submitOrderRequest.getRequestAmount().longValue(),"竞猜投注失败恢复扣减用户米粒");
+            moneyService.addMoney(submitOrderRequest.getUserCode(),submitOrderRequest.getRequestAmount().longValue(),"竞猜投注失败恢复扣减用户米粒");
             //更新订单状态投注失败
             TradeOrder updateOrder = new TradeOrder();
             updateOrder.setId(tradeOrder.getId());
@@ -137,12 +139,12 @@ public class OrderDomain {
             if(null != orderSettleRequest.getNet_return() && 1 == orderSettleRequest.getNet_return().compareTo(new BigDecimal(0))){
                 //盈利
                 BigDecimal addAmount = orderSettleRequest.getRequest_amount().add(orderSettleRequest.getNet_return());
-//                moneyService.addMoney(tradeOrder.getUserCode(),addAmount.longValue(),"结算盈利加账");
+                moneyService.addMoney(tradeOrder.getUserCode(),addAmount.longValue(),"结算盈利加账");
             }else{
                 //亏损
                 BigDecimal addAmount = orderSettleRequest.getRequest_amount().add(orderSettleRequest.getNet_return());
                 if(1 == addAmount.compareTo(new BigDecimal(0))){
-//                    moneyService.addMoney(tradeOrder.getUserCode(),addAmount.longValue(),"结算亏损加账");
+                    moneyService.addMoney(tradeOrder.getUserCode(),addAmount.longValue(),"结算亏损加账");
                 }
 
             }
@@ -227,7 +229,7 @@ public class OrderDomain {
             int result = tradeOrderMapper.updateByExampleSelective(updateTradeOrder, tradeOrderExample);
             if(1 == result){
                 TradeOrder tradeOrder = tradeOrderMapper.selectByPrimaryKey(orderSettleRequest.getVendor_order_id());
-//                moneyService.addMoney(tradeOrder.getUserCode(),tradeOrder.getRequestAmount().longValue(),"下注失败退还用户米粒");
+                moneyService.addMoney(tradeOrder.getUserCode(),tradeOrder.getRequestAmount().longValue(),"下注失败退还用户米粒");
             }
         }
     }

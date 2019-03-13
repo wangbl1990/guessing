@@ -7,11 +7,13 @@ import com.mifan.guessing.domain.MarketDomain;
 import com.mifan.guessing.domain.OrderDomain;
 import com.mifan.guessing.domain.model.EventMarket;
 import com.mifan.guessingapi.request.event.EventListRequest;
+import com.mifan.guessingapi.request.event.SubscribeEventListRequest;
 import com.mifan.guessingapi.request.event.SubscribeEventRequest;
 import com.mifan.guessingapi.request.market.MarketListRequest;
 import com.mifan.guessingapi.request.order.MyOrderListRequest;
 import com.mifan.guessingapi.request.order.SubmitOrderRequest;
 import com.mifan.guessingapi.response.event.EventListResponse;
+import com.mifan.guessingapi.response.event.SubscribeEventListResponse;
 import com.mifan.guessingapi.response.order.MyOrderListResponse;
 import com.mifan.guessingutils.MD5Utils;
 import com.mifan.guessingutils.SocketUtils;
@@ -93,6 +95,14 @@ public class EventControllerTest {
         subscribeEventRequest.setSportId("冰联杯");
         subscribeEventRequest.setUserCode("1234567890");
         Integer integer = eventDomain.subscribeEvent(subscribeEventRequest);
+        System.out.print(integer);
+    }
+
+    @Test
+    public void subscribeEventList(){
+        SubscribeEventListRequest subscribeEventRequest = new SubscribeEventListRequest();
+        subscribeEventRequest.setUserCode("123456789");
+        PageInfo<SubscribeEventListResponse> integer = eventDomain.subscribeEventList(subscribeEventRequest);
         System.out.print(integer);
     }
 

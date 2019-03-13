@@ -1,5 +1,6 @@
 package com.mifan.guessing.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
 import com.mifan.guessing.domain.OrderDomain;
 import com.mifan.guessingapi.request.order.MyOrderListRequest;
@@ -37,7 +38,9 @@ public class AppOrderController extends BaseController {
     @RequestMapping( value = "/submitOrder" , method = RequestMethod.POST , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @Access
     public BaseResponse<SubmitOrderResponse> submitOrder(@RequestBody @Validated final SubmitOrderRequest submitOrderRequest ){
+        logger.info("下注入参"+ JSONObject.toJSONString(submitOrderRequest));
         SubmitOrderResponse result = orderDomain.submitOrder(submitOrderRequest);
+        logger.info("下注出参"+ JSONObject.toJSONString(result));
         return BaseResponse.generateOKResponseEntity(result);
     }
 
@@ -46,7 +49,9 @@ public class AppOrderController extends BaseController {
     @RequestMapping( value = "/myOrderList" , method = RequestMethod.POST , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @Access
     public BaseResponse<PageInfo<MyOrderListResponse>> myOrderList(@RequestBody @Validated final MyOrderListRequest myOrderListRequest ){
+        logger.info("我的订单列表入参"+ JSONObject.toJSONString(myOrderListRequest));
         PageInfo<MyOrderListResponse> result = orderDomain.myOrderList(myOrderListRequest);
+        logger.info("我的订单列表出参"+ JSONObject.toJSONString(result));
         return BaseResponse.generateOKResponseEntity(result);
     }
 

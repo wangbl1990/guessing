@@ -1,13 +1,16 @@
 package com.mifan.guessing.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
 import com.mifan.guessing.domain.EventDomain;
 import com.mifan.guessing.domain.enums.EventType;
 import com.mifan.guessingapi.request.event.EventDetailRequest;
 import com.mifan.guessingapi.request.event.EventListRequest;
+import com.mifan.guessingapi.request.event.SubscribeEventListRequest;
 import com.mifan.guessingapi.request.event.SubscribeEventRequest;
 import com.mifan.guessingapi.response.BaseResponse;
 import com.mifan.guessingapi.response.event.EventListResponse;
+import com.mifan.guessingapi.response.event.SubscribeEventListResponse;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.apache.logging.log4j.LogManager;
@@ -67,7 +70,20 @@ public class AppEventController extends BaseController {
     @RequestMapping( value = "/subscribeEvent" , method = RequestMethod.POST , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @Access
     public BaseResponse<Integer> subscribeEvent(@RequestBody @Validated final SubscribeEventRequest subscribeEventRequest ){
+        logger.info("预约赛事入参"+ JSONObject.toJSONString(subscribeEventRequest));
         Integer result = eventDomain.subscribeEvent(subscribeEventRequest);
+        logger.info("预约赛事出参"+ JSONObject.toJSONString(result));
+        return BaseResponse.generateOKResponseEntity(result);
+    }
+
+    @ApiOperation(value = "预约赛事列表" , notes = "预约赛事列表" )
+    @ApiImplicitParam(name = "subscribeEventListRequest" , value = "预约赛事" , required = true , dataType = "SubscribeEventListRequest" )
+    @RequestMapping( value = "/subscribeEventList" , method = RequestMethod.POST , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @Access
+    public BaseResponse<PageInfo<SubscribeEventListResponse>> subscribeEvent(@RequestBody @Validated final SubscribeEventListRequest subscribeEventListRequest ){
+        logger.info("预约赛事列表入参"+ JSONObject.toJSONString(subscribeEventListRequest));
+        PageInfo<SubscribeEventListResponse> result = eventDomain.subscribeEventList(subscribeEventListRequest);
+        logger.info("预约赛事列表出参"+ JSONObject.toJSONString(result));
         return BaseResponse.generateOKResponseEntity(result);
     }
 

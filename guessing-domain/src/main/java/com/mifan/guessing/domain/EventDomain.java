@@ -12,13 +12,16 @@ import com.mifan.guessing.domain.manager.RollingBallManager;
 import com.mifan.guessing.domain.manager.SmsManager;
 import com.mifan.guessingapi.request.event.EventDetailRequest;
 import com.mifan.guessingapi.request.event.EventListRequest;
+import com.mifan.guessingapi.request.event.SubscribeEventListRequest;
 import com.mifan.guessingapi.request.event.SubscribeEventRequest;
 import com.mifan.guessingapi.response.event.EventListResponse;
+import com.mifan.guessingapi.response.event.SubscribeEventListResponse;
 import com.mifan.guessingutils.BeanMapper;
 import com.mifan.guessingutils.DateUtils;
 import com.mifan.guessingutils.IdMakerUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import tv.zhangyu.rpcservice.UserService;
 import tv.zhangyu.rpcservice.base.User;
 
 import java.util.Date;
@@ -37,8 +40,8 @@ public class EventDomain {
     private SubscribeEventMapper subscribeEventMapper;
     @Autowired
     private SmsManager smsManager;
-//    @Autowired
-//    private UserService userService;
+    @Autowired
+    private UserService userService;
 
     /**
      * 赛事活动列表
@@ -67,8 +70,8 @@ public class EventDomain {
     public Integer subscribeEvent(SubscribeEventRequest subscribeEventRequest) {
 
         SubscribeEvent subscribeEvent = BeanMapper.map(subscribeEventRequest,SubscribeEvent.class);
-//        User user = userService.getUserByUserId(subscribeEvent.getUserCode());
-        User user = new User();
+        User user = userService.getUserByUserId(subscribeEvent.getUserCode());
+//        User user = new User();
         subscribeEvent.setId(IdMakerUtils.getOrderId());
         subscribeEvent.setCreateTime(new Date());
         subscribeEvent.setPhone(user.getPhone());
@@ -88,5 +91,17 @@ public class EventDomain {
         for(SubscribeEvent subscribeEvent : subscribeEvents){
             smsManager.sendSms(subscribeEvent.getPhone(),"");
         }
+    }
+
+    public PageInfo<SubscribeEventListResponse> subscribeEventList(SubscribeEventListRequest subscribeEventListRequest) {
+        SubscribeEventExample example = new SubscribeEventExample();
+        example.setOrderByClause(" event_time desc ");
+        SubscribeEventExample.Criteria criteria = example.createCriteria();
+        criteria.andUserCodeEqualTo(subscribeEventListRequest.getUserCode());
+        PageHelper.startPage(subscribeEventListRequest.getPageNum(), subscribeEventListRequest.getPageSize(),true);
+        List<SubscribeEvent> subscribeEvents = subscribeEventMapper.selectByExample(example);
+        PageInfo<SubscribeEventListResponse> pageList = new PageInfo(subscribeEvents);
+        pageList.setList(BeanMapper.mapList(subscribeEvents,SubscribeEventListResponse.class));
+        return pageList;
     }
 }

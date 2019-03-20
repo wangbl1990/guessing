@@ -10,10 +10,7 @@ import com.mifan.guessing.dao.model.SubscribeEvent;
 import com.mifan.guessing.dao.model.SubscribeEventExample;
 import com.mifan.guessing.domain.manager.RollingBallManager;
 import com.mifan.guessing.domain.manager.SmsManager;
-import com.mifan.guessingapi.request.event.EventDetailRequest;
-import com.mifan.guessingapi.request.event.EventListRequest;
-import com.mifan.guessingapi.request.event.SubscribeEventListRequest;
-import com.mifan.guessingapi.request.event.SubscribeEventRequest;
+import com.mifan.guessingapi.request.event.*;
 import com.mifan.guessingapi.response.event.EventListResponse;
 import com.mifan.guessingapi.response.event.SubscribeEventListResponse;
 import com.mifan.guessingutils.BeanMapper;
@@ -75,6 +72,7 @@ public class EventDomain {
         subscribeEvent.setId(IdMakerUtils.getOrderId());
         subscribeEvent.setCreateTime(new Date());
         subscribeEvent.setPhone(user.getPhone());
+        subscribeEvent.setDeleted(0);
         int result = subscribeEventMapper.insertSelective(subscribeEvent);
         return result;
     }
@@ -86,7 +84,7 @@ public class EventDomain {
         //查询5分钟后开始的比赛
         SubscribeEventExample eventExample = new SubscribeEventExample();
         Date date = DateUtils.addMinutes(new Date(),5);
-        eventExample.createCriteria().andEventTimeEqualTo(date);
+        eventExample.createCriteria().andEventTimeEqualTo(date).andDeletedEqualTo(0);
         List<SubscribeEvent> subscribeEvents = subscribeEventMapper.selectByExample(eventExample);
         for(SubscribeEvent subscribeEvent : subscribeEvents){
             smsManager.sendSms(subscribeEvent.getPhone(),"");
@@ -97,11 +95,19 @@ public class EventDomain {
         SubscribeEventExample example = new SubscribeEventExample();
         example.setOrderByClause(" event_time desc ");
         SubscribeEventExample.Criteria criteria = example.createCriteria();
-        criteria.andUserCodeEqualTo(subscribeEventListRequest.getUserCode());
+        criteria.andUserCodeEqualTo(subscribeEventListRequest.getUserCode()).andDeletedEqualTo(0);
         PageHelper.startPage(subscribeEventListRequest.getPageNum(), subscribeEventListRequest.getPageSize(),true);
         List<SubscribeEvent> subscribeEvents = subscribeEventMapper.selectByExample(example);
         PageInfo<SubscribeEventListResponse> pageList = new PageInfo(subscribeEvents);
         pageList.setList(BeanMapper.mapList(subscribeEvents,SubscribeEventListResponse.class));
         return pageList;
+    }
+
+    public Integer cancleSubscribeEvent(CancleSubscribeRequest cancleSubscribeRequest) {
+        SubscribeEvent subscribeEvent = new SubscribeEvent();
+        subscribeEvent.setId(cancleSubscribeRequest.getSubscribeEventId());
+        subscribeEvent.setDeleted(1);
+        int result = subscribeEventMapper.updateByPrimaryKeySelective(subscribeEvent);
+        return result;
     }
 }

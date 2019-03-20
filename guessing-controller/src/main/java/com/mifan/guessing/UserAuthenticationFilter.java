@@ -1,5 +1,6 @@
 package com.mifan.guessing;
 
+import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -32,11 +33,13 @@ public class UserAuthenticationFilter extends OncePerRequestFilter {
         try {
             //从cookie中获取用户ID
             User user = null;
+            logger.info("cookies："+ JSONObject.toJSONString(request.getCookies()));
             String u = CookieUtils.getCookieValue(request.getCookies(), "u");
             String p = CookieUtils.getCookieValue(request.getCookies(), "p");
             if (u != null && p != null) {
                 user = userService.getUserByUserId(u);
-                if (user != null) {
+                logger.info("用户信息："+ JSONObject.toJSONString(user));
+                if (user != null && StringUtils.isNotEmpty(user.getUpass())) {
                     String md5passMd5 = MD5Util.salt(user.getUpass(), user.getRandom());
                     if (!StringUtils.equals(p, md5passMd5)) {
                         user = null;

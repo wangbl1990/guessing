@@ -19,6 +19,8 @@ public class SubscribeEvent {
 
     private Date createTime;
 
+    private Integer deleted;
+
     public String getId() {
         return id;
     }
@@ -81,5 +83,13 @@ public class SubscribeEvent {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public Integer getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(Integer deleted) {
+        this.deleted = deleted;
     }
 }

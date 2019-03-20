@@ -4,10 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
 import com.mifan.guessing.domain.EventDomain;
 import com.mifan.guessing.domain.enums.EventType;
-import com.mifan.guessingapi.request.event.EventDetailRequest;
-import com.mifan.guessingapi.request.event.EventListRequest;
-import com.mifan.guessingapi.request.event.SubscribeEventListRequest;
-import com.mifan.guessingapi.request.event.SubscribeEventRequest;
+import com.mifan.guessingapi.request.event.*;
 import com.mifan.guessingapi.response.BaseResponse;
 import com.mifan.guessingapi.response.event.EventListResponse;
 import com.mifan.guessingapi.response.event.SubscribeEventListResponse;
@@ -84,6 +81,17 @@ public class AppEventController extends BaseController {
         logger.info("预约赛事列表入参"+ JSONObject.toJSONString(subscribeEventListRequest));
         PageInfo<SubscribeEventListResponse> result = eventDomain.subscribeEventList(subscribeEventListRequest);
         logger.info("预约赛事列表出参"+ JSONObject.toJSONString(result));
+        return BaseResponse.generateOKResponseEntity(result);
+    }
+
+    @ApiOperation(value = "取消预约" , notes = "取消预约" )
+    @ApiImplicitParam(name = "cancleSubscribeRequest" , value = "取消预约" , required = true , dataType = "CancleSubscribeRequest" )
+    @RequestMapping( value = "/cancleSubscribeEvent" , method = RequestMethod.POST , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @Access
+    public BaseResponse<Integer> cancleSubscribeEvent(@RequestBody @Validated final CancleSubscribeRequest cancleSubscribeRequest ){
+        logger.info("取消预约赛事入参"+ JSONObject.toJSONString(cancleSubscribeRequest));
+        Integer result = eventDomain.cancleSubscribeEvent(cancleSubscribeRequest);
+        logger.info("取消预约赛事出参"+ JSONObject.toJSONString(result));
         return BaseResponse.generateOKResponseEntity(result);
     }
 

@@ -16,6 +16,12 @@
     <result column="event_type" property="eventType" jdbcType="VARCHAR" />
     <result column="event_name" property="eventName" jdbcType="VARCHAR" />
     <result column="placed_result" property="placedResult" jdbcType="VARCHAR" />
+    <result column="competition_name" property="competitionName" jdbcType="VARCHAR" />
+    <result column="season_name" property="seasonName" jdbcType="VARCHAR" />
+    <result column="round_name" property="roundName" jdbcType="VARCHAR" />
+    <result column="rule_type_name" property="ruleTypeName" jdbcType="VARCHAR" />
+    <result column="selection_odds" property="selectionOdds" jdbcType="VARCHAR" />
+    <result column="event_time" property="eventTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -77,7 +83,8 @@
   </sql>
   <sql id="Base_Column_List" >
     id, order_id, event_id, market_id, selection_id, request_amount, request_price, status, 
-    submitted_time, user_code, user_name, event_type, event_name, placed_result
+    submitted_time, user_code, user_name, event_type, event_name, placed_result, competition_name, 
+    season_name, round_name, rule_type_name, selection_odds, event_time
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mifan.guessing.dao.model.TradeOrderExample" >
     select
@@ -114,12 +121,16 @@
       market_id, selection_id, request_amount, 
       request_price, status, submitted_time, 
       user_code, user_name, event_type, 
-      event_name, placed_result)
+      event_name, placed_result, competition_name, 
+      season_name, round_name, rule_type_name, 
+      selection_odds, event_time)
     values (#{id,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, #{eventId,jdbcType=VARCHAR}, 
       #{marketId,jdbcType=VARCHAR}, #{selectionId,jdbcType=VARCHAR}, #{requestAmount,jdbcType=DECIMAL}, 
       #{requestPrice,jdbcType=DECIMAL}, #{status,jdbcType=VARCHAR}, #{submittedTime,jdbcType=TIMESTAMP}, 
       #{userCode,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{eventType,jdbcType=VARCHAR}, 
-      #{eventName,jdbcType=VARCHAR}, #{placedResult,jdbcType=VARCHAR})
+      #{eventName,jdbcType=VARCHAR}, #{placedResult,jdbcType=VARCHAR}, #{competitionName,jdbcType=VARCHAR}, 
+      #{seasonName,jdbcType=VARCHAR}, #{roundName,jdbcType=VARCHAR}, #{ruleTypeName,jdbcType=VARCHAR}, 
+      #{selectionOdds,jdbcType=VARCHAR}, #{eventTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.mifan.guessing.dao.model.TradeOrder" >
     insert into trade_order
@@ -166,6 +177,24 @@
       <if test="placedResult != null" >
         placed_result,
       </if>
+      <if test="competitionName != null" >
+        competition_name,
+      </if>
+      <if test="seasonName != null" >
+        season_name,
+      </if>
+      <if test="roundName != null" >
+        round_name,
+      </if>
+      <if test="ruleTypeName != null" >
+        rule_type_name,
+      </if>
+      <if test="selectionOdds != null" >
+        selection_odds,
+      </if>
+      <if test="eventTime != null" >
+        event_time,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -209,6 +238,24 @@
       </if>
       <if test="placedResult != null" >
         #{placedResult,jdbcType=VARCHAR},
+      </if>
+      <if test="competitionName != null" >
+        #{competitionName,jdbcType=VARCHAR},
+      </if>
+      <if test="seasonName != null" >
+        #{seasonName,jdbcType=VARCHAR},
+      </if>
+      <if test="roundName != null" >
+        #{roundName,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleTypeName != null" >
+        #{ruleTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="selectionOdds != null" >
+        #{selectionOdds,jdbcType=VARCHAR},
+      </if>
+      <if test="eventTime != null" >
+        #{eventTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -263,6 +310,24 @@
       <if test="record.placedResult != null" >
         placed_result = #{record.placedResult,jdbcType=VARCHAR},
       </if>
+      <if test="record.competitionName != null" >
+        competition_name = #{record.competitionName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.seasonName != null" >
+        season_name = #{record.seasonName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.roundName != null" >
+        round_name = #{record.roundName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ruleTypeName != null" >
+        rule_type_name = #{record.ruleTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.selectionOdds != null" >
+        selection_odds = #{record.selectionOdds,jdbcType=VARCHAR},
+      </if>
+      <if test="record.eventTime != null" >
+        event_time = #{record.eventTime,jdbcType=TIMESTAMP},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -283,7 +348,13 @@
       user_name = #{record.userName,jdbcType=VARCHAR},
       event_type = #{record.eventType,jdbcType=VARCHAR},
       event_name = #{record.eventName,jdbcType=VARCHAR},
-      placed_result = #{record.placedResult,jdbcType=VARCHAR}
+      placed_result = #{record.placedResult,jdbcType=VARCHAR},
+      competition_name = #{record.competitionName,jdbcType=VARCHAR},
+      season_name = #{record.seasonName,jdbcType=VARCHAR},
+      round_name = #{record.roundName,jdbcType=VARCHAR},
+      rule_type_name = #{record.ruleTypeName,jdbcType=VARCHAR},
+      selection_odds = #{record.selectionOdds,jdbcType=VARCHAR},
+      event_time = #{record.eventTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -330,6 +401,24 @@
       <if test="placedResult != null" >
         placed_result = #{placedResult,jdbcType=VARCHAR},
       </if>
+      <if test="competitionName != null" >
+        competition_name = #{competitionName,jdbcType=VARCHAR},
+      </if>
+      <if test="seasonName != null" >
+        season_name = #{seasonName,jdbcType=VARCHAR},
+      </if>
+      <if test="roundName != null" >
+        round_name = #{roundName,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleTypeName != null" >
+        rule_type_name = #{ruleTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="selectionOdds != null" >
+        selection_odds = #{selectionOdds,jdbcType=VARCHAR},
+      </if>
+      <if test="eventTime != null" >
+        event_time = #{eventTime,jdbcType=TIMESTAMP},
+      </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
@@ -347,7 +436,13 @@
       user_name = #{userName,jdbcType=VARCHAR},
       event_type = #{eventType,jdbcType=VARCHAR},
       event_name = #{eventName,jdbcType=VARCHAR},
-      placed_result = #{placedResult,jdbcType=VARCHAR}
+      placed_result = #{placedResult,jdbcType=VARCHAR},
+      competition_name = #{competitionName,jdbcType=VARCHAR},
+      season_name = #{seasonName,jdbcType=VARCHAR},
+      round_name = #{roundName,jdbcType=VARCHAR},
+      rule_type_name = #{ruleTypeName,jdbcType=VARCHAR},
+      selection_odds = #{selectionOdds,jdbcType=VARCHAR},
+      event_time = #{eventTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiModelProperty;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
 
 @ApiModel
 public class SubmitOrderRequest extends BaseRequest implements Serializable {
@@ -28,6 +29,19 @@ public class SubmitOrderRequest extends BaseRequest implements Serializable {
     private BigDecimal requestPrice;
     @ApiModelProperty( name = "requestAmount" , value = "下单金额单位分" )
     private BigDecimal requestAmount;
+
+    @ApiModelProperty( name = "competitionName" , value = "联赛名称" )
+    private String competitionName;
+    @ApiModelProperty( name = "seasonName" , value = "赛季" )
+    private String seasonName;
+    @ApiModelProperty( name = "roundName" , value = "轮次" )
+    private String roundName;
+    @ApiModelProperty( name = "ruleTypeName" , value = "玩法名称" )
+    private String ruleTypeName;
+    @ApiModelProperty( name = "selectionOdds" , value = "选项详情" )
+    private String selectionOdds;
+    @ApiModelProperty( name = "eventTime" , value = "赛事时间" )
+    private Date eventTime;
 
     public String getSportId() {
         return sportId;
@@ -83,5 +97,53 @@ public class SubmitOrderRequest extends BaseRequest implements Serializable {
 
     public void setRequestAmount(BigDecimal requestAmount) {
         this.requestAmount = requestAmount;
+    }
+
+    public String getCompetitionName() {
+        return competitionName;
+    }
+
+    public void setCompetitionName(String competitionName) {
+        this.competitionName = competitionName;
+    }
+
+    public String getSeasonName() {
+        return seasonName;
+    }
+
+    public void setSeasonName(String seasonName) {
+        this.seasonName = seasonName;
+    }
+
+    public String getRoundName() {
+        return roundName;
+    }
+
+    public void setRoundName(String roundName) {
+        this.roundName = roundName;
+    }
+
+    public String getRuleTypeName() {
+        return ruleTypeName;
+    }
+
+    public void setRuleTypeName(String ruleTypeName) {
+        this.ruleTypeName = ruleTypeName;
+    }
+
+    public String getSelectionOdds() {
+        return selectionOdds;
+    }
+
+    public void setSelectionOdds(String selectionOdds) {
+        this.selectionOdds = selectionOdds;
+    }
+
+    public Date getEventTime() {
+        return eventTime;
+    }
+
+    public void setEventTime(Date eventTime) {
+        this.eventTime = eventTime;
     }
 }

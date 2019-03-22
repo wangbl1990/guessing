@@ -30,5 +30,7 @@ public class SubscribeEventRequest extends BaseRequest implements Serializable {
     private String sportId;
     @ApiModelProperty( name = "eventName" , value = "赛事名称" )
     private String eventName;
+    @ApiModelProperty( name = "competitionname" , value = "联赛名称" )
+    private String competitionname;
 
 }

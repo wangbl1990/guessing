@@ -21,6 +21,7 @@ import org.springframework.stereotype.Component;
 import tv.zhangyu.rpcservice.UserService;
 import tv.zhangyu.rpcservice.base.User;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -54,8 +55,13 @@ public class EventDomain {
         PageHelper.startPage(eventListRequest.getPageNum(), eventListRequest.getPageSize(),true);
         List<Event> events = rollingBallManager.eventList(beginDate, endDate);
         PageInfo<EventListResponse> repageList = new PageInfo(events);
-        List<EventListResponse> eventList = BeanMapper.mapList(events, EventListResponse.class);
-        repageList.setList(eventList.subList(eventListRequest.getPageNum()-1,eventListRequest.getPageNum() + eventListRequest.getPageSize() -1));
+        List<Event> resultList = events.subList(eventListRequest.getPageNum()-1,eventListRequest.getPageNum() + eventListRequest.getPageSize() -1);
+        List<EventListResponse> eventList = BeanMapper.mapList(resultList, EventListResponse.class);
+        repageList.setList(eventList);
+        int pages = new BigDecimal(events.size()).divide(new BigDecimal(eventListRequest.getPageSize()),BigDecimal.ROUND_UP).intValue();
+        repageList.setPages(pages);
+        repageList.setPageSize(eventListRequest.getPageSize());
+        repageList.setTotal(events.size());
         return repageList;
     }
 

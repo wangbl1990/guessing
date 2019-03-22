@@ -82,6 +82,12 @@ public class OrderDomain {
         tradeOrder.setStatus(OrderStatus.INIT.getCode());
         tradeOrder.setUserCode(submitOrderRequest.getUserCode());
         tradeOrder.setUserName(user.getNickname());
+        tradeOrder.setCompetitionName(submitOrderRequest.getCompetitionName());
+        tradeOrder.setSeasonName(submitOrderRequest.getSeasonName());
+        tradeOrder.setRuleTypeName(submitOrderRequest.getRuleTypeName());
+        tradeOrder.setRoundName(submitOrderRequest.getRoundName());
+        tradeOrder.setSelectionOdds(submitOrderRequest.getSelectionOdds());
+        tradeOrder.setEventTime(submitOrderRequest.getEventTime());
         tradeOrderMapper.insert(tradeOrder);
         //冻结用户下单米粒
         moneyService.removeMoney(submitOrderRequest.getUserCode(),submitOrderRequest.getRequestAmount().longValue(),"竞猜投注扣减用户米粒");

@@ -21,6 +21,8 @@ public class SubscribeEvent {
 
     private Integer deleted;
 
+    private String competitionname;
+
     public String getId() {
         return id;
     }
@@ -91,5 +93,13 @@ public class SubscribeEvent {
 
     public void setDeleted(Integer deleted) {
         this.deleted = deleted;
+    }
+
+    public String getCompetitionname() {
+        return competitionname;
+    }
+
+    public void setCompetitionname(String competitionname) {
+        this.competitionname = competitionname == null ? null : competitionname.trim();
     }
 }

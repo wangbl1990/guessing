@@ -11,6 +11,7 @@
     <result column="event_name" property="eventName" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="deleted" property="deleted" jdbcType="INTEGER" />
+    <result column="competitionName" property="competitionname" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -72,7 +73,7 @@
   </sql>
   <sql id="Base_Column_List" >
     id, user_code, phone, event_id, event_time, event_type, event_name, create_time, 
-    deleted
+    deleted, competitionName
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mifan.guessing.dao.model.SubscribeEventExample" >
     select
@@ -107,12 +108,12 @@
   <insert id="insert" parameterType="com.mifan.guessing.dao.model.SubscribeEvent" >
     insert into subscribe_event (id, user_code, phone, 
       event_id, event_time, event_type, 
-      event_name, create_time, deleted
-      )
+      event_name, create_time, deleted, 
+      competitionName)
     values (#{id,jdbcType=VARCHAR}, #{userCode,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
       #{eventId,jdbcType=VARCHAR}, #{eventTime,jdbcType=TIMESTAMP}, #{eventType,jdbcType=VARCHAR}, 
-      #{eventName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=INTEGER}
-      )
+      #{eventName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=INTEGER}, 
+      #{competitionname,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.mifan.guessing.dao.model.SubscribeEvent" >
     insert into subscribe_event
@@ -144,6 +145,9 @@
       <if test="deleted != null" >
         deleted,
       </if>
+      <if test="competitionname != null" >
+        competitionName,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -172,6 +176,9 @@
       </if>
       <if test="deleted != null" >
         #{deleted,jdbcType=INTEGER},
+      </if>
+      <if test="competitionname != null" >
+        #{competitionname,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -211,6 +218,9 @@
       <if test="record.deleted != null" >
         deleted = #{record.deleted,jdbcType=INTEGER},
       </if>
+      <if test="record.competitionname != null" >
+        competitionName = #{record.competitionname,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -226,7 +236,8 @@
       event_type = #{record.eventType,jdbcType=VARCHAR},
       event_name = #{record.eventName,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      deleted = #{record.deleted,jdbcType=INTEGER}
+      deleted = #{record.deleted,jdbcType=INTEGER},
+      competitionName = #{record.competitionname,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -258,6 +269,9 @@
       <if test="deleted != null" >
         deleted = #{deleted,jdbcType=INTEGER},
       </if>
+      <if test="competitionname != null" >
+        competitionName = #{competitionname,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
@@ -270,7 +284,8 @@
       event_type = #{eventType,jdbcType=VARCHAR},
       event_name = #{eventName,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
-      deleted = #{deleted,jdbcType=INTEGER}
+      deleted = #{deleted,jdbcType=INTEGER},
+      competitionName = #{competitionname,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

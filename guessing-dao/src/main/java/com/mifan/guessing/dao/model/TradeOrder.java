@@ -32,6 +32,18 @@ public class TradeOrder {
 
     private String placedResult;
 
+    private String competitionName;
+
+    private String seasonName;
+
+    private String roundName;
+
+    private String ruleTypeName;
+
+    private String selectionOdds;
+
+    private Date eventTime;
+
     public String getId() {
         return id;
     }
@@ -142,5 +154,53 @@ public class TradeOrder {
 
     public void setPlacedResult(String placedResult) {
         this.placedResult = placedResult == null ? null : placedResult.trim();
+    }
+
+    public String getCompetitionName() {
+        return competitionName;
+    }
+
+    public void setCompetitionName(String competitionName) {
+        this.competitionName = competitionName == null ? null : competitionName.trim();
+    }
+
+    public String getSeasonName() {
+        return seasonName;
+    }
+
+    public void setSeasonName(String seasonName) {
+        this.seasonName = seasonName == null ? null : seasonName.trim();
+    }
+
+    public String getRoundName() {
+        return roundName;
+    }
+
+    public void setRoundName(String roundName) {
+        this.roundName = roundName == null ? null : roundName.trim();
+    }
+
+    public String getRuleTypeName() {
+        return ruleTypeName;
+    }
+
+    public void setRuleTypeName(String ruleTypeName) {
+        this.ruleTypeName = ruleTypeName == null ? null : ruleTypeName.trim();
+    }
+
+    public String getSelectionOdds() {
+        return selectionOdds;
+    }
+
+    public void setSelectionOdds(String selectionOdds) {
+        this.selectionOdds = selectionOdds == null ? null : selectionOdds.trim();
+    }
+
+    public Date getEventTime() {
+        return eventTime;
+    }
+
+    public void setEventTime(Date eventTime) {
+        this.eventTime = eventTime;
     }
 }

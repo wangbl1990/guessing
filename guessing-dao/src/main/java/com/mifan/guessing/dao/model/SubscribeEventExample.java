@@ -704,6 +704,76 @@ public class SubscribeEventExample {
             addCriterion("deleted not between", value1, value2, "deleted");
             return (Criteria) this;
         }
+
+        public Criteria andCompetitionnameIsNull() {
+            addCriterion("competitionName is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompetitionnameIsNotNull() {
+            addCriterion("competitionName is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompetitionnameEqualTo(String value) {
+            addCriterion("competitionName =", value, "competitionname");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompetitionnameNotEqualTo(String value) {
+            addCriterion("competitionName <>", value, "competitionname");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompetitionnameGreaterThan(String value) {
+            addCriterion("competitionName >", value, "competitionname");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompetitionnameGreaterThanOrEqualTo(String value) {
+            addCriterion("competitionName >=", value, "competitionname");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompetitionnameLessThan(String value) {
+            addCriterion("competitionName <", value, "competitionname");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompetitionnameLessThanOrEqualTo(String value) {
+            addCriterion("competitionName <=", value, "competitionname");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompetitionnameLike(String value) {
+            addCriterion("competitionName like", value, "competitionname");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompetitionnameNotLike(String value) {
+            addCriterion("competitionName not like", value, "competitionname");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompetitionnameIn(List<String> values) {
+            addCriterion("competitionName in", values, "competitionname");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompetitionnameNotIn(List<String> values) {
+            addCriterion("competitionName not in", values, "competitionname");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompetitionnameBetween(String value1, String value2) {
+            addCriterion("competitionName between", value1, value2, "competitionname");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompetitionnameNotBetween(String value1, String value2) {
+            addCriterion("competitionName not between", value1, value2, "competitionname");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

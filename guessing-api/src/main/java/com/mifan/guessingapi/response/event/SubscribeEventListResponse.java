@@ -34,5 +34,7 @@ public class SubscribeEventListResponse implements Serializable {
     private String eventType;
     @ApiModelProperty( name = "eventName" , value = "赛事名称" )
     private String eventName;
+    @ApiModelProperty( name = "competitionname" , value = "联赛名称" )
+    private String competitionname;
 
 }

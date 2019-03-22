@@ -36,6 +36,18 @@ public class MyOrderListResponse implements Serializable {
     private String eventName;
     @ApiModelProperty( name = "placedResult" , value = "下单时比分" )
     private String placedResult;
+    @ApiModelProperty( name = "competitionName" , value = "联赛名称" )
+    private String competitionName;
+    @ApiModelProperty( name = "seasonName" , value = "赛季" )
+    private String seasonName;
+    @ApiModelProperty( name = "roundName" , value = "轮次" )
+    private String roundName;
+    @ApiModelProperty( name = "ruleTypeName" , value = "玩法名称" )
+    private String ruleTypeName;
+    @ApiModelProperty( name = "selectionOdds" , value = "选项详情" )
+    private String selectionOdds;
+    @ApiModelProperty( name = "eventTime" , value = "赛事时间" )
+    private Date eventTime;
 
     public String getOrderId() {
         return orderId;
@@ -139,5 +151,53 @@ public class MyOrderListResponse implements Serializable {
 
     public void setPlacedResult(String placedResult) {
         this.placedResult = placedResult;
+    }
+
+    public String getCompetitionName() {
+        return competitionName;
+    }
+
+    public void setCompetitionName(String competitionName) {
+        this.competitionName = competitionName;
+    }
+
+    public String getSeasonName() {
+        return seasonName;
+    }
+
+    public void setSeasonName(String seasonName) {
+        this.seasonName = seasonName;
+    }
+
+    public String getRoundName() {
+        return roundName;
+    }
+
+    public void setRoundName(String roundName) {
+        this.roundName = roundName;
+    }
+
+    public String getRuleTypeName() {
+        return ruleTypeName;
+    }
+
+    public void setRuleTypeName(String ruleTypeName) {
+        this.ruleTypeName = ruleTypeName;
+    }
+
+    public String getSelectionOdds() {
+        return selectionOdds;
+    }
+
+    public void setSelectionOdds(String selectionOdds) {
+        this.selectionOdds = selectionOdds;
+    }
+
+    public Date getEventTime() {
+        return eventTime;
+    }
+
+    public void setEventTime(Date eventTime) {
+        this.eventTime = eventTime;
     }
 }

@@ -22,6 +22,10 @@
     <result column="rule_type_name" property="ruleTypeName" jdbcType="VARCHAR" />
     <result column="selection_odds" property="selectionOdds" jdbcType="VARCHAR" />
     <result column="event_time" property="eventTime" jdbcType="TIMESTAMP" />
+    <result column="home_team_name" property="homeTeamName" jdbcType="VARCHAR" />
+    <result column="home_team_name_en" property="homeTeamNameEn" jdbcType="VARCHAR" />
+    <result column="away_team_name" property="awayTeamName" jdbcType="VARCHAR" />
+    <result column="away_team_name_en" property="awayTeamNameEn" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -84,7 +88,8 @@
   <sql id="Base_Column_List" >
     id, order_id, event_id, market_id, selection_id, request_amount, request_price, status, 
     submitted_time, user_code, user_name, event_type, event_name, placed_result, competition_name, 
-    season_name, round_name, rule_type_name, selection_odds, event_time
+    season_name, round_name, rule_type_name, selection_odds, event_time, home_team_name, 
+    home_team_name_en, away_team_name, away_team_name_en
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mifan.guessing.dao.model.TradeOrderExample" >
     select
@@ -123,14 +128,18 @@
       user_code, user_name, event_type, 
       event_name, placed_result, competition_name, 
       season_name, round_name, rule_type_name, 
-      selection_odds, event_time)
+      selection_odds, event_time, home_team_name, 
+      home_team_name_en, away_team_name, away_team_name_en
+      )
     values (#{id,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, #{eventId,jdbcType=VARCHAR}, 
       #{marketId,jdbcType=VARCHAR}, #{selectionId,jdbcType=VARCHAR}, #{requestAmount,jdbcType=DECIMAL}, 
       #{requestPrice,jdbcType=DECIMAL}, #{status,jdbcType=VARCHAR}, #{submittedTime,jdbcType=TIMESTAMP}, 
       #{userCode,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{eventType,jdbcType=VARCHAR}, 
       #{eventName,jdbcType=VARCHAR}, #{placedResult,jdbcType=VARCHAR}, #{competitionName,jdbcType=VARCHAR}, 
       #{seasonName,jdbcType=VARCHAR}, #{roundName,jdbcType=VARCHAR}, #{ruleTypeName,jdbcType=VARCHAR}, 
-      #{selectionOdds,jdbcType=VARCHAR}, #{eventTime,jdbcType=TIMESTAMP})
+      #{selectionOdds,jdbcType=VARCHAR}, #{eventTime,jdbcType=TIMESTAMP}, #{homeTeamName,jdbcType=VARCHAR}, 
+      #{homeTeamNameEn,jdbcType=VARCHAR}, #{awayTeamName,jdbcType=VARCHAR}, #{awayTeamNameEn,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.mifan.guessing.dao.model.TradeOrder" >
     insert into trade_order
@@ -195,6 +204,18 @@
       <if test="eventTime != null" >
         event_time,
       </if>
+      <if test="homeTeamName != null" >
+        home_team_name,
+      </if>
+      <if test="homeTeamNameEn != null" >
+        home_team_name_en,
+      </if>
+      <if test="awayTeamName != null" >
+        away_team_name,
+      </if>
+      <if test="awayTeamNameEn != null" >
+        away_team_name_en,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -256,6 +277,18 @@
       </if>
       <if test="eventTime != null" >
         #{eventTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="homeTeamName != null" >
+        #{homeTeamName,jdbcType=VARCHAR},
+      </if>
+      <if test="homeTeamNameEn != null" >
+        #{homeTeamNameEn,jdbcType=VARCHAR},
+      </if>
+      <if test="awayTeamName != null" >
+        #{awayTeamName,jdbcType=VARCHAR},
+      </if>
+      <if test="awayTeamNameEn != null" >
+        #{awayTeamNameEn,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -328,6 +361,18 @@
       <if test="record.eventTime != null" >
         event_time = #{record.eventTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.homeTeamName != null" >
+        home_team_name = #{record.homeTeamName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.homeTeamNameEn != null" >
+        home_team_name_en = #{record.homeTeamNameEn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.awayTeamName != null" >
+        away_team_name = #{record.awayTeamName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.awayTeamNameEn != null" >
+        away_team_name_en = #{record.awayTeamNameEn,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -354,7 +399,11 @@
       round_name = #{record.roundName,jdbcType=VARCHAR},
       rule_type_name = #{record.ruleTypeName,jdbcType=VARCHAR},
       selection_odds = #{record.selectionOdds,jdbcType=VARCHAR},
-      event_time = #{record.eventTime,jdbcType=TIMESTAMP}
+      event_time = #{record.eventTime,jdbcType=TIMESTAMP},
+      home_team_name = #{record.homeTeamName,jdbcType=VARCHAR},
+      home_team_name_en = #{record.homeTeamNameEn,jdbcType=VARCHAR},
+      away_team_name = #{record.awayTeamName,jdbcType=VARCHAR},
+      away_team_name_en = #{record.awayTeamNameEn,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -419,6 +468,18 @@
       <if test="eventTime != null" >
         event_time = #{eventTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="homeTeamName != null" >
+        home_team_name = #{homeTeamName,jdbcType=VARCHAR},
+      </if>
+      <if test="homeTeamNameEn != null" >
+        home_team_name_en = #{homeTeamNameEn,jdbcType=VARCHAR},
+      </if>
+      <if test="awayTeamName != null" >
+        away_team_name = #{awayTeamName,jdbcType=VARCHAR},
+      </if>
+      <if test="awayTeamNameEn != null" >
+        away_team_name_en = #{awayTeamNameEn,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
@@ -442,7 +503,11 @@
       round_name = #{roundName,jdbcType=VARCHAR},
       rule_type_name = #{ruleTypeName,jdbcType=VARCHAR},
       selection_odds = #{selectionOdds,jdbcType=VARCHAR},
-      event_time = #{eventTime,jdbcType=TIMESTAMP}
+      event_time = #{eventTime,jdbcType=TIMESTAMP},
+      home_team_name = #{homeTeamName,jdbcType=VARCHAR},
+      home_team_name_en = #{homeTeamNameEn,jdbcType=VARCHAR},
+      away_team_name = #{awayTeamName,jdbcType=VARCHAR},
+      away_team_name_en = #{awayTeamNameEn,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

@@ -3,11 +3,17 @@ package com.mifan.guessingapi.request.order;
 import com.mifan.guessingapi.request.BaseRequest;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @ApiModel
 public class SubmitOrderRequest extends BaseRequest implements Serializable {
 
@@ -42,108 +48,13 @@ public class SubmitOrderRequest extends BaseRequest implements Serializable {
     private String selectionOdds;
     @ApiModelProperty( name = "eventTime" , value = "赛事时间" )
     private Date eventTime;
+    @ApiModelProperty( name = "homeTeamName" , value = "主队名称" )
+    private String homeTeamName;
+    @ApiModelProperty( name = "homeTeamNameEn" , value = "主队英文名称" )
+    private String homeTeamNameEn;
+    @ApiModelProperty( name = "awayTeamName" , value = "客队名称" )
+    private String awayTeamName;
+    @ApiModelProperty( name = "awayTeamNameEn" , value = "客队英文名称" )
+    private String awayTeamNameEn;
 
-    public String getSportId() {
-        return sportId;
-    }
-
-    public void setSportId(String sportId) {
-        this.sportId = sportId;
-    }
-
-    public String getEventName() {
-        return eventName;
-    }
-
-    public void setEventName(String eventName) {
-        this.eventName = eventName;
-    }
-
-    public String getEventId() {
-        return eventId;
-    }
-
-    public void setEventId(String eventId) {
-        this.eventId = eventId;
-    }
-
-    public String getMarketId() {
-        return marketId;
-    }
-
-    public void setMarketId(String marketId) {
-        this.marketId = marketId;
-    }
-
-    public String getSelectionId() {
-        return selectionId;
-    }
-
-    public void setSelectionId(String selectionId) {
-        this.selectionId = selectionId;
-    }
-
-    public BigDecimal getRequestPrice() {
-        return requestPrice;
-    }
-
-    public void setRequestPrice(BigDecimal requestPrice) {
-        this.requestPrice = requestPrice;
-    }
-
-    public BigDecimal getRequestAmount() {
-        return requestAmount;
-    }
-
-    public void setRequestAmount(BigDecimal requestAmount) {
-        this.requestAmount = requestAmount;
-    }
-
-    public String getCompetitionName() {
-        return competitionName;
-    }
-
-    public void setCompetitionName(String competitionName) {
-        this.competitionName = competitionName;
-    }
-
-    public String getSeasonName() {
-        return seasonName;
-    }
-
-    public void setSeasonName(String seasonName) {
-        this.seasonName = seasonName;
-    }
-
-    public String getRoundName() {
-        return roundName;
-    }
-
-    public void setRoundName(String roundName) {
-        this.roundName = roundName;
-    }
-
-    public String getRuleTypeName() {
-        return ruleTypeName;
-    }
-
-    public void setRuleTypeName(String ruleTypeName) {
-        this.ruleTypeName = ruleTypeName;
-    }
-
-    public String getSelectionOdds() {
-        return selectionOdds;
-    }
-
-    public void setSelectionOdds(String selectionOdds) {
-        this.selectionOdds = selectionOdds;
-    }
-
-    public Date getEventTime() {
-        return eventTime;
-    }
-
-    public void setEventTime(Date eventTime) {
-        this.eventTime = eventTime;
-    }
 }

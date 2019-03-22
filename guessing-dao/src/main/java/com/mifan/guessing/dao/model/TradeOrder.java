@@ -44,6 +44,14 @@ public class TradeOrder {
 
     private Date eventTime;
 
+    private String homeTeamName;
+
+    private String homeTeamNameEn;
+
+    private String awayTeamName;
+
+    private String awayTeamNameEn;
+
     public String getId() {
         return id;
     }
@@ -202,5 +210,37 @@ public class TradeOrder {
 
     public void setEventTime(Date eventTime) {
         this.eventTime = eventTime;
+    }
+
+    public String getHomeTeamName() {
+        return homeTeamName;
+    }
+
+    public void setHomeTeamName(String homeTeamName) {
+        this.homeTeamName = homeTeamName == null ? null : homeTeamName.trim();
+    }
+
+    public String getHomeTeamNameEn() {
+        return homeTeamNameEn;
+    }
+
+    public void setHomeTeamNameEn(String homeTeamNameEn) {
+        this.homeTeamNameEn = homeTeamNameEn == null ? null : homeTeamNameEn.trim();
+    }
+
+    public String getAwayTeamName() {
+        return awayTeamName;
+    }
+
+    public void setAwayTeamName(String awayTeamName) {
+        this.awayTeamName = awayTeamName == null ? null : awayTeamName.trim();
+    }
+
+    public String getAwayTeamNameEn() {
+        return awayTeamNameEn;
+    }
+
+    public void setAwayTeamNameEn(String awayTeamNameEn) {
+        this.awayTeamNameEn = awayTeamNameEn == null ? null : awayTeamNameEn.trim();
     }
 }

@@ -40,8 +40,8 @@
         <!--<table tableName="order_settle" domainObjectName="OrderSettle"></table>-->
         <!--<table tableName="event" domainObjectName="Event"></table>-->
         <!--<table tableName="banner" domainObjectName="Banner"></table>-->
-        <!--<table tableName="trade_order" domainObjectName="TradeOrder"></table>-->
-        <table tableName="subscribe_event" domainObjectName="SubscribeEvent"></table>
+        <table tableName="trade_order" domainObjectName="TradeOrder"></table>
+        <!--<table tableName="subscribe_event" domainObjectName="SubscribeEvent"></table>-->
         <!--<table tableName="market" domainObjectName="Market"></table>-->
         <!--<table tableName="selection" domainObjectName="Selection"></table>-->
 

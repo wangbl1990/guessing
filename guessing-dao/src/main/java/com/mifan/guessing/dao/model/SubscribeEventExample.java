@@ -774,6 +774,496 @@ public class SubscribeEventExample {
             addCriterion("competitionName not between", value1, value2, "competitionname");
             return (Criteria) this;
         }
+
+        public Criteria andHomeTeamIconIsNull() {
+            addCriterion("home_team_icon is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeTeamIconIsNotNull() {
+            addCriterion("home_team_icon is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeTeamIconEqualTo(String value) {
+            addCriterion("home_team_icon =", value, "homeTeamIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeTeamIconNotEqualTo(String value) {
+            addCriterion("home_team_icon <>", value, "homeTeamIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeTeamIconGreaterThan(String value) {
+            addCriterion("home_team_icon >", value, "homeTeamIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeTeamIconGreaterThanOrEqualTo(String value) {
+            addCriterion("home_team_icon >=", value, "homeTeamIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeTeamIconLessThan(String value) {
+            addCriterion("home_team_icon <", value, "homeTeamIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeTeamIconLessThanOrEqualTo(String value) {
+            addCriterion("home_team_icon <=", value, "homeTeamIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeTeamIconLike(String value) {
+            addCriterion("home_team_icon like", value, "homeTeamIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeTeamIconNotLike(String value) {
+            addCriterion("home_team_icon not like", value, "homeTeamIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeTeamIconIn(List<String> values) {
+            addCriterion("home_team_icon in", values, "homeTeamIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeTeamIconNotIn(List<String> values) {
+            addCriterion("home_team_icon not in", values, "homeTeamIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeTeamIconBetween(String value1, String value2) {
+            addCriterion("home_team_icon between", value1, value2, "homeTeamIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeTeamIconNotBetween(String value1, String value2) {
+            addCriterion("home_team_icon not between", value1, value2, "homeTeamIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andAwayTeamIconIsNull() {
+            addCriterion("away_team_icon is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAwayTeamIconIsNotNull() {
+            addCriterion("away_team_icon is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAwayTeamIconEqualTo(String value) {
+            addCriterion("away_team_icon =", value, "awayTeamIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andAwayTeamIconNotEqualTo(String value) {
+            addCriterion("away_team_icon <>", value, "awayTeamIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andAwayTeamIconGreaterThan(String value) {
+            addCriterion("away_team_icon >", value, "awayTeamIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andAwayTeamIconGreaterThanOrEqualTo(String value) {
+            addCriterion("away_team_icon >=", value, "awayTeamIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andAwayTeamIconLessThan(String value) {
+            addCriterion("away_team_icon <", value, "awayTeamIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andAwayTeamIconLessThanOrEqualTo(String value) {
+            addCriterion("away_team_icon <=", value, "awayTeamIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andAwayTeamIconLike(String value) {
+            addCriterion("away_team_icon like", value, "awayTeamIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andAwayTeamIconNotLike(String value) {
+            addCriterion("away_team_icon not like", value, "awayTeamIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andAwayTeamIconIn(List<String> values) {
+            addCriterion("away_team_icon in", values, "awayTeamIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andAwayTeamIconNotIn(List<String> values) {
+            addCriterion("away_team_icon not in", values, "awayTeamIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andAwayTeamIconBetween(String value1, String value2) {
+            addCriterion("away_team_icon between", value1, value2, "awayTeamIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andAwayTeamIconNotBetween(String value1, String value2) {
+            addCriterion("away_team_icon not between", value1, value2, "awayTeamIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeTeamNameIsNull() {
+            addCriterion("home_team_name is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeTeamNameIsNotNull() {
+            addCriterion("home_team_name is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeTeamNameEqualTo(String value) {
+            addCriterion("home_team_name =", value, "homeTeamName");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeTeamNameNotEqualTo(String value) {
+            addCriterion("home_team_name <>", value, "homeTeamName");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeTeamNameGreaterThan(String value) {
+            addCriterion("home_team_name >", value, "homeTeamName");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeTeamNameGreaterThanOrEqualTo(String value) {
+            addCriterion("home_team_name >=", value, "homeTeamName");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeTeamNameLessThan(String value) {
+            addCriterion("home_team_name <", value, "homeTeamName");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeTeamNameLessThanOrEqualTo(String value) {
+            addCriterion("home_team_name <=", value, "homeTeamName");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeTeamNameLike(String value) {
+            addCriterion("home_team_name like", value, "homeTeamName");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeTeamNameNotLike(String value) {
+            addCriterion("home_team_name not like", value, "homeTeamName");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeTeamNameIn(List<String> values) {
+            addCriterion("home_team_name in", values, "homeTeamName");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeTeamNameNotIn(List<String> values) {
+            addCriterion("home_team_name not in", values, "homeTeamName");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeTeamNameBetween(String value1, String value2) {
+            addCriterion("home_team_name between", value1, value2, "homeTeamName");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeTeamNameNotBetween(String value1, String value2) {
+            addCriterion("home_team_name not between", value1, value2, "homeTeamName");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeTeamNameEnIsNull() {
+            addCriterion("home_team_name_en is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeTeamNameEnIsNotNull() {
+            addCriterion("home_team_name_en is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeTeamNameEnEqualTo(String value) {
+            addCriterion("home_team_name_en =", value, "homeTeamNameEn");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeTeamNameEnNotEqualTo(String value) {
+            addCriterion("home_team_name_en <>", value, "homeTeamNameEn");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeTeamNameEnGreaterThan(String value) {
+            addCriterion("home_team_name_en >", value, "homeTeamNameEn");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeTeamNameEnGreaterThanOrEqualTo(String value) {
+            addCriterion("home_team_name_en >=", value, "homeTeamNameEn");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeTeamNameEnLessThan(String value) {
+            addCriterion("home_team_name_en <", value, "homeTeamNameEn");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeTeamNameEnLessThanOrEqualTo(String value) {
+            addCriterion("home_team_name_en <=", value, "homeTeamNameEn");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeTeamNameEnLike(String value) {
+            addCriterion("home_team_name_en like", value, "homeTeamNameEn");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeTeamNameEnNotLike(String value) {
+            addCriterion("home_team_name_en not like", value, "homeTeamNameEn");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeTeamNameEnIn(List<String> values) {
+            addCriterion("home_team_name_en in", values, "homeTeamNameEn");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeTeamNameEnNotIn(List<String> values) {
+            addCriterion("home_team_name_en not in", values, "homeTeamNameEn");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeTeamNameEnBetween(String value1, String value2) {
+            addCriterion("home_team_name_en between", value1, value2, "homeTeamNameEn");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeTeamNameEnNotBetween(String value1, String value2) {
+            addCriterion("home_team_name_en not between", value1, value2, "homeTeamNameEn");
+            return (Criteria) this;
+        }
+
+        public Criteria andAwayTeamNameIsNull() {
+            addCriterion("away_team_name is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAwayTeamNameIsNotNull() {
+            addCriterion("away_team_name is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAwayTeamNameEqualTo(String value) {
+            addCriterion("away_team_name =", value, "awayTeamName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAwayTeamNameNotEqualTo(String value) {
+            addCriterion("away_team_name <>", value, "awayTeamName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAwayTeamNameGreaterThan(String value) {
+            addCriterion("away_team_name >", value, "awayTeamName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAwayTeamNameGreaterThanOrEqualTo(String value) {
+            addCriterion("away_team_name >=", value, "awayTeamName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAwayTeamNameLessThan(String value) {
+            addCriterion("away_team_name <", value, "awayTeamName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAwayTeamNameLessThanOrEqualTo(String value) {
+            addCriterion("away_team_name <=", value, "awayTeamName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAwayTeamNameLike(String value) {
+            addCriterion("away_team_name like", value, "awayTeamName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAwayTeamNameNotLike(String value) {
+            addCriterion("away_team_name not like", value, "awayTeamName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAwayTeamNameIn(List<String> values) {
+            addCriterion("away_team_name in", values, "awayTeamName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAwayTeamNameNotIn(List<String> values) {
+            addCriterion("away_team_name not in", values, "awayTeamName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAwayTeamNameBetween(String value1, String value2) {
+            addCriterion("away_team_name between", value1, value2, "awayTeamName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAwayTeamNameNotBetween(String value1, String value2) {
+            addCriterion("away_team_name not between", value1, value2, "awayTeamName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAwayTeamNameEnIsNull() {
+            addCriterion("away_team_name_en is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAwayTeamNameEnIsNotNull() {
+            addCriterion("away_team_name_en is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAwayTeamNameEnEqualTo(String value) {
+            addCriterion("away_team_name_en =", value, "awayTeamNameEn");
+            return (Criteria) this;
+        }
+
+        public Criteria andAwayTeamNameEnNotEqualTo(String value) {
+            addCriterion("away_team_name_en <>", value, "awayTeamNameEn");
+            return (Criteria) this;
+        }
+
+        public Criteria andAwayTeamNameEnGreaterThan(String value) {
+            addCriterion("away_team_name_en >", value, "awayTeamNameEn");
+            return (Criteria) this;
+        }
+
+        public Criteria andAwayTeamNameEnGreaterThanOrEqualTo(String value) {
+            addCriterion("away_team_name_en >=", value, "awayTeamNameEn");
+            return (Criteria) this;
+        }
+
+        public Criteria andAwayTeamNameEnLessThan(String value) {
+            addCriterion("away_team_name_en <", value, "awayTeamNameEn");
+            return (Criteria) this;
+        }
+
+        public Criteria andAwayTeamNameEnLessThanOrEqualTo(String value) {
+            addCriterion("away_team_name_en <=", value, "awayTeamNameEn");
+            return (Criteria) this;
+        }
+
+        public Criteria andAwayTeamNameEnLike(String value) {
+            addCriterion("away_team_name_en like", value, "awayTeamNameEn");
+            return (Criteria) this;
+        }
+
+        public Criteria andAwayTeamNameEnNotLike(String value) {
+            addCriterion("away_team_name_en not like", value, "awayTeamNameEn");
+            return (Criteria) this;
+        }
+
+        public Criteria andAwayTeamNameEnIn(List<String> values) {
+            addCriterion("away_team_name_en in", values, "awayTeamNameEn");
+            return (Criteria) this;
+        }
+
+        public Criteria andAwayTeamNameEnNotIn(List<String> values) {
+            addCriterion("away_team_name_en not in", values, "awayTeamNameEn");
+            return (Criteria) this;
+        }
+
+        public Criteria andAwayTeamNameEnBetween(String value1, String value2) {
+            addCriterion("away_team_name_en between", value1, value2, "awayTeamNameEn");
+            return (Criteria) this;
+        }
+
+        public Criteria andAwayTeamNameEnNotBetween(String value1, String value2) {
+            addCriterion("away_team_name_en not between", value1, value2, "awayTeamNameEn");
+            return (Criteria) this;
+        }
+
+        public Criteria andClientIdIsNull() {
+            addCriterion("client_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andClientIdIsNotNull() {
+            addCriterion("client_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andClientIdEqualTo(String value) {
+            addCriterion("client_id =", value, "clientId");
+            return (Criteria) this;
+        }
+
+        public Criteria andClientIdNotEqualTo(String value) {
+            addCriterion("client_id <>", value, "clientId");
+            return (Criteria) this;
+        }
+
+        public Criteria andClientIdGreaterThan(String value) {
+            addCriterion("client_id >", value, "clientId");
+            return (Criteria) this;
+        }
+
+        public Criteria andClientIdGreaterThanOrEqualTo(String value) {
+            addCriterion("client_id >=", value, "clientId");
+            return (Criteria) this;
+        }
+
+        public Criteria andClientIdLessThan(String value) {
+            addCriterion("client_id <", value, "clientId");
+            return (Criteria) this;
+        }
+
+        public Criteria andClientIdLessThanOrEqualTo(String value) {
+            addCriterion("client_id <=", value, "clientId");
+            return (Criteria) this;
+        }
+
+        public Criteria andClientIdLike(String value) {
+            addCriterion("client_id like", value, "clientId");
+            return (Criteria) this;
+        }
+
+        public Criteria andClientIdNotLike(String value) {
+            addCriterion("client_id not like", value, "clientId");
+            return (Criteria) this;
+        }
+
+        public Criteria andClientIdIn(List<String> values) {
+            addCriterion("client_id in", values, "clientId");
+            return (Criteria) this;
+        }
+
+        public Criteria andClientIdNotIn(List<String> values) {
+            addCriterion("client_id not in", values, "clientId");
+            return (Criteria) this;
+        }
+
+        public Criteria andClientIdBetween(String value1, String value2) {
+            addCriterion("client_id between", value1, value2, "clientId");
+            return (Criteria) this;
+        }
+
+        public Criteria andClientIdNotBetween(String value1, String value2) {
+            addCriterion("client_id not between", value1, value2, "clientId");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

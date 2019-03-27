@@ -60,10 +60,10 @@ public class RollingBallManager {
         long unixTimeStamp = DateUtils.getUnixDate();
         String param = "vendor_id="+vendorIdValue+"&request_time="+unixTimeStamp+"&request_sign="+sign(unixTimeStamp)+"&begin_time="
                 +beginDate.getTime()/1000+"&end_time="+endDate.getTime()/1000;
-        logger.info("赛事列表入参:"+ JSONObject.toJSONString(param));
+        logger.info("请求即嗨赛事列表入参:"+ JSONObject.toJSONString(param));
         String result = HttpClientUtil.SendGET(RollingBallRequestUrl.eventList, param);
         JSONObject jsonObject = JSONObject.parseObject(result);
-        logger.info("赛事列表结果:"+ jsonObject.toJSONString());
+//        logger.info("赛事列表结果:"+ jsonObject.toJSONString());
 //        JSONObject jsonObject = JSONObject.parseObject(result);
         List<Event> eventList = new ArrayList<Event>();
         if("0".equals(jsonObject.get("errno").toString())){

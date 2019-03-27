@@ -40,7 +40,9 @@ public class AppEventController extends BaseController {
     @ApiImplicitParam(name = "eventListRequest" , value = "赛事列表" , required = true , dataType = "EventListRequest" )
     @RequestMapping( value = "/list" , method = RequestMethod.POST , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public BaseResponse<PageInfo<EventListResponse>> eventList(@RequestBody @Validated final EventListRequest eventListRequest ){
+        logger.info("赛事列表入参"+ JSONObject.toJSONString(eventListRequest));
         PageInfo<EventListResponse> result = eventDomain.eventList(eventListRequest);
+        logger.info("赛事列表出参"+ JSONObject.toJSONString(result));
         return BaseResponse.generateOKResponseEntity(result);
     }
 

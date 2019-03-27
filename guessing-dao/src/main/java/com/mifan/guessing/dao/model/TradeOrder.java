@@ -52,6 +52,16 @@ public class TradeOrder {
 
     private String awayTeamNameEn;
 
+    private String homeTeamIcon;
+
+    private String awayTeamIcon;
+
+    private String selectionName;
+
+    private BigDecimal selectionValue;
+
+    private String remark;
+
     public String getId() {
         return id;
     }
@@ -242,5 +252,45 @@ public class TradeOrder {
 
     public void setAwayTeamNameEn(String awayTeamNameEn) {
         this.awayTeamNameEn = awayTeamNameEn == null ? null : awayTeamNameEn.trim();
+    }
+
+    public String getHomeTeamIcon() {
+        return homeTeamIcon;
+    }
+
+    public void setHomeTeamIcon(String homeTeamIcon) {
+        this.homeTeamIcon = homeTeamIcon == null ? null : homeTeamIcon.trim();
+    }
+
+    public String getAwayTeamIcon() {
+        return awayTeamIcon;
+    }
+
+    public void setAwayTeamIcon(String awayTeamIcon) {
+        this.awayTeamIcon = awayTeamIcon == null ? null : awayTeamIcon.trim();
+    }
+
+    public String getSelectionName() {
+        return selectionName;
+    }
+
+    public void setSelectionName(String selectionName) {
+        this.selectionName = selectionName == null ? null : selectionName.trim();
+    }
+
+    public BigDecimal getSelectionValue() {
+        return selectionValue;
+    }
+
+    public void setSelectionValue(BigDecimal selectionValue) {
+        this.selectionValue = selectionValue;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark == null ? null : remark.trim();
     }
 }

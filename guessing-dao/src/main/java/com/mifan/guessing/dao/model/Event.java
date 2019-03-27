@@ -33,6 +33,10 @@ public class Event {
 
     private String hot;
 
+    private String homeTeamIcon;
+
+    private String awayTeamIcon;
+
     public String getId() {
         return id;
     }
@@ -125,6 +129,22 @@ public class Event {
         return awayTeamNameEn;
     }
 
+    public String getHomeTeamIcon() {
+        return homeTeamIcon;
+    }
+
+    public void setHomeTeamIcon(String homeTeamIcon) {
+        this.homeTeamIcon = homeTeamIcon;
+    }
+
+    public String getAwayTeamIcon() {
+        return awayTeamIcon;
+    }
+
+    public void setAwayTeamIcon(String awayTeamIcon) {
+        this.awayTeamIcon = awayTeamIcon;
+    }
+
     public void setAwayTeamNameEn(String awayTeamNameEn) {
         this.awayTeamNameEn = awayTeamNameEn == null ? null : awayTeamNameEn.trim();
     }
@@ -152,4 +172,6 @@ public class Event {
     public void setHot(String hot) {
         this.hot = hot == null ? null : hot.trim();
     }
+
+
 }

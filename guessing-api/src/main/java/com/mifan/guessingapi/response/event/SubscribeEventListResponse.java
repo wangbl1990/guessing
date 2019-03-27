@@ -22,6 +22,8 @@ public class SubscribeEventListResponse implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @ApiModelProperty( name = "id" , value = "预约ID" )
+    private String id;
     @ApiModelProperty( name = "userCode" , value = "用户ID" )
     private String userCode;
     @ApiModelProperty( name = "phone" , value = "用户手机号" )
@@ -36,5 +38,16 @@ public class SubscribeEventListResponse implements Serializable {
     private String eventName;
     @ApiModelProperty( name = "competitionname" , value = "联赛名称" )
     private String competitionname;
-
+    @ApiModelProperty( name = "homeTeamName" , value = "主队名称" )
+    private String homeTeamName;//主队名称
+    @ApiModelProperty( name = "awayTeamName" , value = "客队名称" )
+    private String awayTeamName;//客队名称
+    @ApiModelProperty( name = "homeTeamNameEn" , value = "主队英文名" )
+    private String homeTeamNameEn;
+    @ApiModelProperty( name = "awayTeamNameEn" , value = "客队英文名" )
+    private String awayTeamNameEn;
+    @ApiModelProperty( name = "homeTeamIcon" , value = "主队Icon" )
+    private String homeTeamIcon;
+    @ApiModelProperty( name = "awayTeamIcon" , value = "客队Icon" )
+    private String awayTeamIcon;
 }

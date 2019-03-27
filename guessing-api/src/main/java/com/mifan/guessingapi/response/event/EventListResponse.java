@@ -51,5 +51,9 @@ public class EventListResponse implements Serializable {
     private String state;
     @ApiModelProperty( name = "hot" , value = "是否热门" )
     private String hot;
+    @ApiModelProperty( name = "homeTeamIcon" , value = "主队Icon" )
+    private String homeTeamIcon;
+    @ApiModelProperty( name = "awayTeamIcon" , value = "客队Icon" )
+    private String awayTeamIcon;
 
 }

@@ -29,6 +29,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import tv.zhangyu.rpcservice.MoneyService;
 import tv.zhangyu.rpcservice.UserService;
+import tv.zhangyu.rpcservice.base.ChangeMoneyResult;
+import tv.zhangyu.rpcservice.base.Money;
 import tv.zhangyu.rpcservice.base.User;
 
 import java.math.BigDecimal;
@@ -66,35 +68,32 @@ public class OrderDomain {
         logger.info("下注入参"+ JSONObject.toJSONString(submitOrderRequest));
         //校验用户信息
         User user = userService.getUserByUserId(submitOrderRequest.getUserCode());
+
+        Money money = moneyService.get(submitOrderRequest.getUserCode());
+        logger.info("账户信息"+JSONObject.toJSONString(money));
 //        User user = new User();
         //落单
-        TradeOrder tradeOrder = new TradeOrder();
+        TradeOrder tradeOrder = BeanMapper.map(submitOrderRequest,TradeOrder.class);
         tradeOrder.setEventId(submitOrderRequest.getEventId());
-        tradeOrder.setEventName(submitOrderRequest.getEventName());
         tradeOrder.setEventType(submitOrderRequest.getSportId());
         tradeOrder.setId(IdMakerUtils.getOrderId());
-        tradeOrder.setMarketId(submitOrderRequest.getMarketId());
         tradeOrder.setOrderId(tradeOrder.getId());
-        tradeOrder.setRequestAmount(submitOrderRequest.getRequestAmount());
-        tradeOrder.setRequestPrice(submitOrderRequest.getRequestPrice());
-        tradeOrder.setSelectionId(submitOrderRequest.getSelectionId());
         tradeOrder.setSubmittedTime(new Date());
         tradeOrder.setStatus(OrderStatus.INIT.getCode());
-        tradeOrder.setUserCode(submitOrderRequest.getUserCode());
         tradeOrder.setUserName(user.getNickname());
-        tradeOrder.setCompetitionName(submitOrderRequest.getCompetitionName());
-        tradeOrder.setSeasonName(submitOrderRequest.getSeasonName());
-        tradeOrder.setRuleTypeName(submitOrderRequest.getRuleTypeName());
-        tradeOrder.setRoundName(submitOrderRequest.getRoundName());
-        tradeOrder.setSelectionOdds(submitOrderRequest.getSelectionOdds());
-        tradeOrder.setEventTime(submitOrderRequest.getEventTime());
-        tradeOrder.setHomeTeamName(submitOrderRequest.getHomeTeamName());
-        tradeOrder.setHomeTeamNameEn(submitOrderRequest.getHomeTeamNameEn());
-        tradeOrder.setAwayTeamName(submitOrderRequest.getAwayTeamName());
-        tradeOrder.setAwayTeamNameEn(submitOrderRequest.getAwayTeamNameEn());
         tradeOrderMapper.insert(tradeOrder);
-        //冻结用户下单米粒
-        moneyService.removeMoney(submitOrderRequest.getUserCode(),submitOrderRequest.getRequestAmount().longValue(),"竞猜投注扣减用户米粒");
+        //扣减用户下单米粒
+        ChangeMoneyResult changeMoneyResult = moneyService.removeMoney(submitOrderRequest.getUserCode(), submitOrderRequest.getRequestAmount().longValue(), "竞猜投注扣减用户米粒");
+        if(-1 == changeMoneyResult.getCode()){
+            logger.error("用户账户余额不足:"+JSONObject.toJSONString(changeMoneyResult));
+            //更新订单状态投注失败
+            TradeOrder updateOrder = new TradeOrder();
+            updateOrder.setId(tradeOrder.getId());
+            updateOrder.setStatus(OrderStatus.FAIL.getCode());
+            updateOrder.setRemark("账户余额不足");
+            tradeOrderMapper.updateByPrimaryKeySelective(updateOrder);
+            throw new GuessingRunTimeException(GuessingErrorCode.MOENY_NOT_ENOUGH);
+        }
         //请求滚球下单
         SubmitOrderResponse response = null;
         try {
@@ -102,12 +101,13 @@ public class OrderDomain {
             response = BeanMapper.map(order,SubmitOrderResponse.class);
         }catch (Exception e){
             logger.error("滚球下注异常",e);
-            //解冻用户米粒
+            //增加用户米粒
             moneyService.addMoney(submitOrderRequest.getUserCode(),submitOrderRequest.getRequestAmount().longValue(),"竞猜投注失败恢复扣减用户米粒");
             //更新订单状态投注失败
             TradeOrder updateOrder = new TradeOrder();
             updateOrder.setId(tradeOrder.getId());
             updateOrder.setStatus(OrderStatus.FAIL.getCode());
+            updateOrder.setRemark("即嗨下注异常");
             tradeOrderMapper.updateByPrimaryKeySelective(updateOrder);
             throw e;
         }
@@ -142,17 +142,19 @@ public class OrderDomain {
             orderSettle.setPlayName("");
             orderSettle.setSettleIncomeLose(orderSettleRequest.getNet_pn_l().longValue());//结算盈亏
             orderSettle.setSettleTime(orderSettleRequest.getSettled_time());
-            orderSettle.setStatus(OrderStatus.valueOf(orderSettleRequest.getStatus()).getCode());
-            orderSettle.setType("");
+            orderSettle.setStatus(orderSettleRequest.getStatus());
+            orderSettle.setType("1");
             orderSettleMapper.insertSelective(orderSettle);
             //根据结算盈亏增加或者扣减用户米粒值
             if(null != orderSettleRequest.getNet_return() && 1 == orderSettleRequest.getNet_return().compareTo(new BigDecimal(0))){
                 //盈利
-                BigDecimal addAmount = orderSettleRequest.getRequest_amount().add(orderSettleRequest.getNet_return());
+                BigDecimal addAmount = orderSettleRequest.getNet_return();
+                logger.debug("结算盈利:"+addAmount.toString());
                 moneyService.addMoney(tradeOrder.getUserCode(),addAmount.longValue(),"结算盈利加账");
             }else{
                 //亏损
-                BigDecimal addAmount = orderSettleRequest.getRequest_amount().add(orderSettleRequest.getNet_return());
+                BigDecimal addAmount = orderSettleRequest.getNet_return();
+                logger.debug("结算亏损:"+addAmount.toString());
                 if(1 == addAmount.compareTo(new BigDecimal(0))){
                     moneyService.addMoney(tradeOrder.getUserCode(),addAmount.longValue(),"结算亏损加账");
                 }
@@ -169,6 +171,7 @@ public class OrderDomain {
     public PageInfo<BossOrderListResponse> orderList(BossOrderListRequest bossOrderListRequest) {
 
         TradeOrderExample example = new TradeOrderExample();
+        example.setOrderByClause("submitted_time desc");
         TradeOrderExample.Criteria criteria = example.createCriteria();
         if (StringUtils.isNotEmpty(bossOrderListRequest.getUserName())) {
             criteria.andUserNameLike("%" + bossOrderListRequest.getUserName() + "%");
@@ -192,6 +195,7 @@ public class OrderDomain {
      */
     public PageInfo<BossSettleOrderListResponse> settleOrderList(BossSettleOrderListRequest bossSettleOrderListRequest) {
         OrderSettleExample example = new OrderSettleExample();
+        example.setOrderByClause("settle_time desc");
         OrderSettleExample.Criteria criteria = example.createCriteria();
         if (StringUtils.isNotEmpty(bossSettleOrderListRequest.getUserName())) {
             criteria.andUserNameLike("%" + bossSettleOrderListRequest.getUserName() + "%");
@@ -211,6 +215,7 @@ public class OrderDomain {
     public PageInfo<MyOrderListResponse> myOrderList(MyOrderListRequest myOrderListRequest) {
 
         TradeOrderExample example = new TradeOrderExample();
+        example.setOrderByClause("submitted_time desc");
         example.createCriteria().andUserCodeEqualTo(myOrderListRequest.getUserCode());
         PageHelper.startPage(myOrderListRequest.getPageNum(), myOrderListRequest.getPageSize(), true);
         List<TradeOrder> tradeOrders = tradeOrderMapper.selectByExample(example);

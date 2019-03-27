@@ -23,6 +23,20 @@ public class SubscribeEvent {
 
     private String competitionname;
 
+    private String homeTeamIcon;
+
+    private String awayTeamIcon;
+
+    private String homeTeamName;
+
+    private String homeTeamNameEn;
+
+    private String awayTeamName;
+
+    private String awayTeamNameEn;
+
+    private String clientId;
+
     public String getId() {
         return id;
     }
@@ -101,5 +115,61 @@ public class SubscribeEvent {
 
     public void setCompetitionname(String competitionname) {
         this.competitionname = competitionname == null ? null : competitionname.trim();
+    }
+
+    public String getHomeTeamIcon() {
+        return homeTeamIcon;
+    }
+
+    public void setHomeTeamIcon(String homeTeamIcon) {
+        this.homeTeamIcon = homeTeamIcon == null ? null : homeTeamIcon.trim();
+    }
+
+    public String getAwayTeamIcon() {
+        return awayTeamIcon;
+    }
+
+    public void setAwayTeamIcon(String awayTeamIcon) {
+        this.awayTeamIcon = awayTeamIcon == null ? null : awayTeamIcon.trim();
+    }
+
+    public String getHomeTeamName() {
+        return homeTeamName;
+    }
+
+    public void setHomeTeamName(String homeTeamName) {
+        this.homeTeamName = homeTeamName == null ? null : homeTeamName.trim();
+    }
+
+    public String getHomeTeamNameEn() {
+        return homeTeamNameEn;
+    }
+
+    public void setHomeTeamNameEn(String homeTeamNameEn) {
+        this.homeTeamNameEn = homeTeamNameEn == null ? null : homeTeamNameEn.trim();
+    }
+
+    public String getAwayTeamName() {
+        return awayTeamName;
+    }
+
+    public void setAwayTeamName(String awayTeamName) {
+        this.awayTeamName = awayTeamName == null ? null : awayTeamName.trim();
+    }
+
+    public String getAwayTeamNameEn() {
+        return awayTeamNameEn;
+    }
+
+    public void setAwayTeamNameEn(String awayTeamNameEn) {
+        this.awayTeamNameEn = awayTeamNameEn == null ? null : awayTeamNameEn.trim();
+    }
+
+    public String getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(String clientId) {
+        this.clientId = clientId == null ? null : clientId.trim();
     }
 }

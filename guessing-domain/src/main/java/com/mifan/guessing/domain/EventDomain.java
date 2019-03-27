@@ -2,20 +2,25 @@ package com.mifan.guessing.domain;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.mifan.guessing.dao.mapper.EventMapper;
 import com.mifan.guessing.dao.mapper.SubscribeEventMapper;
 import com.mifan.guessing.dao.model.Event;
-import com.mifan.guessing.dao.model.EventExample;
 import com.mifan.guessing.dao.model.SubscribeEvent;
 import com.mifan.guessing.dao.model.SubscribeEventExample;
+import com.mifan.guessing.domain.manager.PushManager;
 import com.mifan.guessing.domain.manager.RollingBallManager;
-import com.mifan.guessing.domain.manager.SmsManager;
-import com.mifan.guessingapi.request.event.*;
+import com.mifan.guessingapi.exception.GuessingErrorCode;
+import com.mifan.guessingapi.exception.GuessingRunTimeException;
+import com.mifan.guessingapi.request.event.CancleSubscribeRequest;
+import com.mifan.guessingapi.request.event.EventListRequest;
+import com.mifan.guessingapi.request.event.SubscribeEventListRequest;
+import com.mifan.guessingapi.request.event.SubscribeEventRequest;
 import com.mifan.guessingapi.response.event.EventListResponse;
 import com.mifan.guessingapi.response.event.SubscribeEventListResponse;
 import com.mifan.guessingutils.BeanMapper;
 import com.mifan.guessingutils.DateUtils;
 import com.mifan.guessingutils.IdMakerUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import tv.zhangyu.rpcservice.UserService;
@@ -32,14 +37,18 @@ import java.util.List;
 @Component
 public class EventDomain {
 
+    private static Logger logger = LogManager.getLogger( EventDomain.class );
+
     @Autowired
     private RollingBallManager rollingBallManager;
     @Autowired
     private SubscribeEventMapper subscribeEventMapper;
-    @Autowired
-    private SmsManager smsManager;
+//    @Autowired
+//    private SmsManager smsManager;
     @Autowired
     private UserService userService;
+    @Autowired
+    private PushManager pushManager;
 
     /**
      * 赛事活动列表
@@ -50,7 +59,8 @@ public class EventDomain {
 
         //查询从今天开始四天之内的赛事
         Date date = new Date();
-        Date beginDate = DateUtils.paseDateYYYYMMDD(date);
+//        Date beginDate = DateUtils.paseDateYYYYMMDD(date);
+        Date beginDate = new Date();
         Date endDate = DateUtils.addDays(beginDate,4);
         PageHelper.startPage(eventListRequest.getPageNum(), eventListRequest.getPageSize(),true);
         List<Event> events = rollingBallManager.eventList(beginDate, endDate);
@@ -72,6 +82,16 @@ public class EventDomain {
      */
     public Integer subscribeEvent(SubscribeEventRequest subscribeEventRequest) {
 
+
+        SubscribeEventExample subscribeEventExample = new SubscribeEventExample();
+        SubscribeEventExample.Criteria criteria = subscribeEventExample.createCriteria();
+        criteria.andUserCodeEqualTo(subscribeEventRequest.getUserCode());
+        criteria.andEventIdEqualTo(subscribeEventRequest.getEventId());
+        criteria.andDeletedEqualTo(0);
+        int count = subscribeEventMapper.countByExample(subscribeEventExample);
+        if(count > 0){
+            throw new GuessingRunTimeException(GuessingErrorCode.SUBSCRIBE_REPEAT);
+        }
         SubscribeEvent subscribeEvent = BeanMapper.map(subscribeEventRequest,SubscribeEvent.class);
         User user = userService.getUserByUserId(subscribeEvent.getUserCode());
 //        User user = new User();
@@ -90,10 +110,19 @@ public class EventDomain {
         //查询5分钟后开始的比赛
         SubscribeEventExample eventExample = new SubscribeEventExample();
         Date date = DateUtils.addMinutes(new Date(),5);
-        eventExample.createCriteria().andEventTimeEqualTo(date).andDeletedEqualTo(0);
+        Date paseDate = DateUtils.paseDate(date);
+        eventExample.createCriteria().andEventTimeEqualTo(paseDate).andDeletedEqualTo(0);
         List<SubscribeEvent> subscribeEvents = subscribeEventMapper.selectByExample(eventExample);
         for(SubscribeEvent subscribeEvent : subscribeEvents){
-            smsManager.sendSms(subscribeEvent.getPhone(),"");
+            logger.debug("push发送："+subscribeEvent.getId());
+            try{
+                String pushContent = "您预约的比赛'"+subscribeEvent.getHomeTeamName()+"vs"+subscribeEvent.getAwayTeamName()+"'还有五分钟就要开始了";
+                pushManager.pushSingle(subscribeEvent.getClientId(),pushContent);
+            }catch (Exception e){
+                logger.error("push发送异常"+subscribeEvent.getId(),e);
+            }
+
+//            smsManager.sendSms(subscribeEvent.getPhone(),"您预约的比赛'"+subscribeEvent.getHomeTeamName()+"vs"+subscribeEvent.getAwayTeamName()+"'还有五分钟就要开始了");
         }
     }
 

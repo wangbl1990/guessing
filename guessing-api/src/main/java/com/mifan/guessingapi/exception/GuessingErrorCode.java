@@ -5,6 +5,8 @@ public enum GuessingErrorCode {
     SUCCESS(0, "成功"),
     SYSTEM_ERROR(700, "系统异常"),
     NOT_LOGIN(203, "用户没登录"),
+    SUBSCRIBE_REPEAT(204, "已预约成功，请勿重复预约"),
+    MOENY_NOT_ENOUGH(205, "您的账户余额不足"),
     ;
 
     private int value;

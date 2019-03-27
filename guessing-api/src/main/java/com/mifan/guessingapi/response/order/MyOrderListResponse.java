@@ -28,7 +28,7 @@ public class MyOrderListResponse implements Serializable {
     private BigDecimal requestAmount;
     @ApiModelProperty( name = "requestPrice" , value = "下单赔率" )
     private BigDecimal requestPrice;
-    @ApiModelProperty( name = "status" , value = "订单状态 0 :下单成功;1:接单成功;2:订单已结算;3:订单取消;4:订单⽆无效;5:订单被拒" )
+    @ApiModelProperty( name = "status" , value = "订单状态 0 :下单成功;1:接单成功;2:订单已结算;3:订单取消;4:订单无效;5:订单被拒;6:投注失败" )
     private String status;
     @ApiModelProperty( name = "submittedTime" , value = "结算时间" )
     private Date submittedTime;
@@ -62,5 +62,12 @@ public class MyOrderListResponse implements Serializable {
     private String awayTeamName;
     @ApiModelProperty( name = "awayTeamNameEn" , value = "客队英文名称" )
     private String awayTeamNameEn;
-
+    @ApiModelProperty( name = "homeTeamIcon" , value = "主队Icon" )
+    private String homeTeamIcon;
+    @ApiModelProperty( name = "awayTeamIcon" , value = "客队Icon" )
+    private String awayTeamIcon;
+    @ApiModelProperty( name = "selectionName" , value = "选项名称" )
+    private String selectionName;
+    @ApiModelProperty( name = "selectionValue" , value = "选项值" )
+    private BigDecimal selectionValue;
 }

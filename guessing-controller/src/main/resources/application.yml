@@ -54,6 +54,11 @@ regCenter:
   namespace: guessing-job
 
 subEventMsgJob:
-  cron: 0 0/10 * * * ?
+  cron: 0 0/5 * * * ?
   shardingTotalCount: 1
   shardingItemParameters: 1=1
+
+getui:
+    appId : 8enRcCqNeBAUm4PrkUiaI1
+    appKey : yMjLpoi5QD7DMTZRocc1q8
+    masterSecret : MveykJ5gFwAJEqfNZT9Tx9

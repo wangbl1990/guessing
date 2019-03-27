@@ -56,5 +56,12 @@ public class SubmitOrderRequest extends BaseRequest implements Serializable {
     private String awayTeamName;
     @ApiModelProperty( name = "awayTeamNameEn" , value = "客队英文名称" )
     private String awayTeamNameEn;
-
+    @ApiModelProperty( name = "homeTeamIcon" , value = "主队Icon" )
+    private String homeTeamIcon;
+    @ApiModelProperty( name = "awayTeamIcon" , value = "客队Icon" )
+    private String awayTeamIcon;
+    @ApiModelProperty( name = "selectionName" , value = "选项名称" )
+    private String selectionName;
+    @ApiModelProperty( name = "selectionValue" , value = "选项值" )
+    private BigDecimal selectionValue;
 }

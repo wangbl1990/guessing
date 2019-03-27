@@ -57,7 +57,7 @@ public class DateUtils {
         if(null == dateObj){
             return null;
         }
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-mm-dd hh:MM:ss");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = null;
         try {
             date = simpleDateFormat.parse(dateObj.toString());
@@ -67,4 +67,15 @@ public class DateUtils {
         return date;
     }
 
+    public static Date paseDate(Date date) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String format = simpleDateFormat.format(date);
+        Date formatDate = null;
+        try {
+            formatDate = simpleDateFormat.parse(format);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return formatDate;
+    }
 }

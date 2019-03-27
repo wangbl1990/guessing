@@ -35,16 +35,19 @@ public class UserAuthenticationFilter extends OncePerRequestFilter {
             User user = null;
             logger.info("cookies："+ JSONObject.toJSONString(request.getCookies()));
             String u = CookieUtils.getCookieValue(request.getCookies(), "u");
-            String p = CookieUtils.getCookieValue(request.getCookies(), "p");
-            if (u != null && p != null) {
+            if(StringUtils.isEmpty(u)){
+                u = CookieUtils.getCookieValue(request.getCookies(), "uid");
+            }
+//            String p = CookieUtils.getCookieValue(request.getCookies(), "p");
+            if (u != null) {
                 user = userService.getUserByUserId(u);
                 logger.info("用户信息："+ JSONObject.toJSONString(user));
-                if (user != null && StringUtils.isNotEmpty(user.getUpass())) {
-                    String md5passMd5 = MD5Util.salt(user.getUpass(), user.getRandom());
-                    if (!StringUtils.equals(p, md5passMd5)) {
-                        user = null;
-                    }
-                }
+//                if (user != null && StringUtils.isNotEmpty(user.getUpass())) {
+//                    String md5passMd5 = MD5Util.salt(user.getUpass(), user.getRandom());
+//                    if (!StringUtils.equals(p, md5passMd5)) {
+//                        user = null;
+//                    }
+//                }
             }
             if(null != user){
                 userId = user.get_id();

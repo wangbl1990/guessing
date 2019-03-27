@@ -26,6 +26,11 @@
     <result column="home_team_name_en" property="homeTeamNameEn" jdbcType="VARCHAR" />
     <result column="away_team_name" property="awayTeamName" jdbcType="VARCHAR" />
     <result column="away_team_name_en" property="awayTeamNameEn" jdbcType="VARCHAR" />
+    <result column="home_team_icon" property="homeTeamIcon" jdbcType="VARCHAR" />
+    <result column="away_team_icon" property="awayTeamIcon" jdbcType="VARCHAR" />
+    <result column="selection_name" property="selectionName" jdbcType="VARCHAR" />
+    <result column="selection_value" property="selectionValue" jdbcType="DECIMAL" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -89,7 +94,8 @@
     id, order_id, event_id, market_id, selection_id, request_amount, request_price, status, 
     submitted_time, user_code, user_name, event_type, event_name, placed_result, competition_name, 
     season_name, round_name, rule_type_name, selection_odds, event_time, home_team_name, 
-    home_team_name_en, away_team_name, away_team_name_en
+    home_team_name_en, away_team_name, away_team_name_en, home_team_icon, away_team_icon, 
+    selection_name, selection_value, remark
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mifan.guessing.dao.model.TradeOrderExample" >
     select
@@ -129,8 +135,9 @@
       event_name, placed_result, competition_name, 
       season_name, round_name, rule_type_name, 
       selection_odds, event_time, home_team_name, 
-      home_team_name_en, away_team_name, away_team_name_en
-      )
+      home_team_name_en, away_team_name, away_team_name_en, 
+      home_team_icon, away_team_icon, selection_name, 
+      selection_value, remark)
     values (#{id,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, #{eventId,jdbcType=VARCHAR}, 
       #{marketId,jdbcType=VARCHAR}, #{selectionId,jdbcType=VARCHAR}, #{requestAmount,jdbcType=DECIMAL}, 
       #{requestPrice,jdbcType=DECIMAL}, #{status,jdbcType=VARCHAR}, #{submittedTime,jdbcType=TIMESTAMP}, 
@@ -138,8 +145,9 @@
       #{eventName,jdbcType=VARCHAR}, #{placedResult,jdbcType=VARCHAR}, #{competitionName,jdbcType=VARCHAR}, 
       #{seasonName,jdbcType=VARCHAR}, #{roundName,jdbcType=VARCHAR}, #{ruleTypeName,jdbcType=VARCHAR}, 
       #{selectionOdds,jdbcType=VARCHAR}, #{eventTime,jdbcType=TIMESTAMP}, #{homeTeamName,jdbcType=VARCHAR}, 
-      #{homeTeamNameEn,jdbcType=VARCHAR}, #{awayTeamName,jdbcType=VARCHAR}, #{awayTeamNameEn,jdbcType=VARCHAR}
-      )
+      #{homeTeamNameEn,jdbcType=VARCHAR}, #{awayTeamName,jdbcType=VARCHAR}, #{awayTeamNameEn,jdbcType=VARCHAR}, 
+      #{homeTeamIcon,jdbcType=VARCHAR}, #{awayTeamIcon,jdbcType=VARCHAR}, #{selectionName,jdbcType=VARCHAR}, 
+      #{selectionValue,jdbcType=DECIMAL}, #{remark,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.mifan.guessing.dao.model.TradeOrder" >
     insert into trade_order
@@ -216,6 +224,21 @@
       <if test="awayTeamNameEn != null" >
         away_team_name_en,
       </if>
+      <if test="homeTeamIcon != null" >
+        home_team_icon,
+      </if>
+      <if test="awayTeamIcon != null" >
+        away_team_icon,
+      </if>
+      <if test="selectionName != null" >
+        selection_name,
+      </if>
+      <if test="selectionValue != null" >
+        selection_value,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -289,6 +312,21 @@
       </if>
       <if test="awayTeamNameEn != null" >
         #{awayTeamNameEn,jdbcType=VARCHAR},
+      </if>
+      <if test="homeTeamIcon != null" >
+        #{homeTeamIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="awayTeamIcon != null" >
+        #{awayTeamIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="selectionName != null" >
+        #{selectionName,jdbcType=VARCHAR},
+      </if>
+      <if test="selectionValue != null" >
+        #{selectionValue,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -373,6 +411,21 @@
       <if test="record.awayTeamNameEn != null" >
         away_team_name_en = #{record.awayTeamNameEn,jdbcType=VARCHAR},
       </if>
+      <if test="record.homeTeamIcon != null" >
+        home_team_icon = #{record.homeTeamIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="record.awayTeamIcon != null" >
+        away_team_icon = #{record.awayTeamIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="record.selectionName != null" >
+        selection_name = #{record.selectionName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.selectionValue != null" >
+        selection_value = #{record.selectionValue,jdbcType=DECIMAL},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -403,7 +456,12 @@
       home_team_name = #{record.homeTeamName,jdbcType=VARCHAR},
       home_team_name_en = #{record.homeTeamNameEn,jdbcType=VARCHAR},
       away_team_name = #{record.awayTeamName,jdbcType=VARCHAR},
-      away_team_name_en = #{record.awayTeamNameEn,jdbcType=VARCHAR}
+      away_team_name_en = #{record.awayTeamNameEn,jdbcType=VARCHAR},
+      home_team_icon = #{record.homeTeamIcon,jdbcType=VARCHAR},
+      away_team_icon = #{record.awayTeamIcon,jdbcType=VARCHAR},
+      selection_name = #{record.selectionName,jdbcType=VARCHAR},
+      selection_value = #{record.selectionValue,jdbcType=DECIMAL},
+      remark = #{record.remark,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -480,6 +538,21 @@
       <if test="awayTeamNameEn != null" >
         away_team_name_en = #{awayTeamNameEn,jdbcType=VARCHAR},
       </if>
+      <if test="homeTeamIcon != null" >
+        home_team_icon = #{homeTeamIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="awayTeamIcon != null" >
+        away_team_icon = #{awayTeamIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="selectionName != null" >
+        selection_name = #{selectionName,jdbcType=VARCHAR},
+      </if>
+      <if test="selectionValue != null" >
+        selection_value = #{selectionValue,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
@@ -507,7 +580,12 @@
       home_team_name = #{homeTeamName,jdbcType=VARCHAR},
       home_team_name_en = #{homeTeamNameEn,jdbcType=VARCHAR},
       away_team_name = #{awayTeamName,jdbcType=VARCHAR},
-      away_team_name_en = #{awayTeamNameEn,jdbcType=VARCHAR}
+      away_team_name_en = #{awayTeamNameEn,jdbcType=VARCHAR},
+      home_team_icon = #{homeTeamIcon,jdbcType=VARCHAR},
+      away_team_icon = #{awayTeamIcon,jdbcType=VARCHAR},
+      selection_name = #{selectionName,jdbcType=VARCHAR},
+      selection_value = #{selectionValue,jdbcType=DECIMAL},
+      remark = #{remark,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

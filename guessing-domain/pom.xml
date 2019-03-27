@@ -136,5 +136,14 @@
 			<groupId>org.apache.curator</groupId>
 			<artifactId>curator-recipes</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.cloopen</groupId>
+			<artifactId>CCPRestSDK</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.gexin.platform</groupId>
+			<artifactId>gexin-rp-sdk-http</artifactId>
+		</dependency>
 	</dependencies>
 </project>

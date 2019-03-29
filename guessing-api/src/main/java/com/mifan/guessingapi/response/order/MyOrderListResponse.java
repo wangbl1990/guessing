@@ -70,4 +70,6 @@ public class MyOrderListResponse implements Serializable {
     private String selectionName;
     @ApiModelProperty( name = "selectionValue" , value = "选项值" )
     private BigDecimal selectionValue;
+    @ApiModelProperty( name = "settleIncomeLose" , value = "结算盈亏" )
+    private BigDecimal settleIncomeLose;
 }

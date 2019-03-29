@@ -65,7 +65,18 @@ public class EventDomain {
         PageHelper.startPage(eventListRequest.getPageNum(), eventListRequest.getPageSize(),true);
         List<Event> events = rollingBallManager.eventList(beginDate, endDate);
         PageInfo<EventListResponse> repageList = new PageInfo(events);
-        List<Event> resultList = events.subList(eventListRequest.getPageNum()-1,eventListRequest.getPageNum() + eventListRequest.getPageSize() -1);
+        int totalPages = new BigDecimal(events.size()).divide(new BigDecimal(10),BigDecimal.ROUND_UP).intValue() ;
+        int startIndex = 0;
+        if(eventListRequest.getPageNum() > totalPages){
+            startIndex = (totalPages-1) * eventListRequest.getPageSize();
+        }else {
+            startIndex =  (eventListRequest.getPageNum()-1) * eventListRequest.getPageSize();
+        }
+        int endIndex =  (eventListRequest.getPageNum()) * eventListRequest.getPageSize() - 1;
+        if(endIndex>events.size()){
+            endIndex = events.size();
+        }
+        List<Event> resultList = events.subList(startIndex,endIndex);
         List<EventListResponse> eventList = BeanMapper.mapList(resultList, EventListResponse.class);
         repageList.setList(eventList);
         int pages = new BigDecimal(events.size()).divide(new BigDecimal(eventListRequest.getPageSize()),BigDecimal.ROUND_UP).intValue();

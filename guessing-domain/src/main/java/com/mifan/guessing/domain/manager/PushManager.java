@@ -24,18 +24,18 @@ public class PushManager {
 
     //采用"Java SDK 快速入门"， "第二步 获取访问凭证 "中获得的应用配置，用户可以自行替换
     @Value("${getui.appId}")
-    private static String appId;
+    private String appId;
     @Value("${getui.appKey}")
-    private static String appKey;
+    private String appKey;
     @Value("${getui.masterSecret}")
-    private static String masterSecret;
+    private String masterSecret;
     //别名推送方式
     // static String Alias = "";
     static String host = "http://sdk.open.api.igexin.com/apiex.htm";
 
     public void pushSingle(String clientId,String pushContent){
         IGtPush push = new IGtPush(host, appKey, masterSecret);
-        LinkTemplate template = linkTemplateDemo(pushContent);
+        NotificationTemplate template = linkTemplateDemo(pushContent);
         SingleMessage message = new SingleMessage();
         message.setOffline(true);
         // 离线有效时间，单位为毫秒，可选
@@ -61,8 +61,8 @@ public class PushManager {
         }
     }
 
-    private LinkTemplate linkTemplateDemo(String pushContent) {
-        LinkTemplate template = new LinkTemplate();
+    private NotificationTemplate linkTemplateDemo(String pushContent) {
+        NotificationTemplate template = new NotificationTemplate();
         // 设置APPID与APPKEY
         template.setAppId(appId);
         template.setAppkey(appKey);
@@ -81,8 +81,9 @@ public class PushManager {
         style.setClearable(true);
         template.setStyle(style);
 
-        // 设置打开的网址地址
-        template.setUrl("http://www.baidu.com");
+        // 透传消息设置，1为强制启动应用，客户端接收到消息后就会立即启动应用；2为等待应用启动
+        template.setTransmissionType(1);
+        template.setTransmissionContent("");
         return template;
     }
 
@@ -115,7 +116,7 @@ public class PushManager {
         System.out.println(ret.getResponse().toString());
     }
 
-    public static NotificationTemplate notificationTemplateDemo(String pushContent) {
+    public NotificationTemplate notificationTemplateDemo(String pushContent) {
         NotificationTemplate template = new NotificationTemplate();
         // 设置APPID与APPKEY
         template.setAppId(appId);
@@ -139,5 +140,29 @@ public class PushManager {
         template.setTransmissionType(2);
         template.setTransmissionContent("请输入您要透传的内容");
         return template;
+    }
+
+    public String getAppId() {
+        return appId;
+    }
+
+    public void setAppId(String appId) {
+        this.appId = appId;
+    }
+
+    public String getAppKey() {
+        return appKey;
+    }
+
+    public void setAppKey(String appKey) {
+        this.appKey = appKey;
+    }
+
+    public String getMasterSecret() {
+        return masterSecret;
+    }
+
+    public void setMasterSecret(String masterSecret) {
+        this.masterSecret = masterSecret;
     }
 }

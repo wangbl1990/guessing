@@ -2085,6 +2085,66 @@ public class TradeOrderExample {
             addCriterion("remark not between", value1, value2, "remark");
             return (Criteria) this;
         }
+
+        public Criteria andSettleIncomeLoseIsNull() {
+            addCriterion("settle_income_lose is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSettleIncomeLoseIsNotNull() {
+            addCriterion("settle_income_lose is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSettleIncomeLoseEqualTo(BigDecimal value) {
+            addCriterion("settle_income_lose =", value, "settleIncomeLose");
+            return (Criteria) this;
+        }
+
+        public Criteria andSettleIncomeLoseNotEqualTo(BigDecimal value) {
+            addCriterion("settle_income_lose <>", value, "settleIncomeLose");
+            return (Criteria) this;
+        }
+
+        public Criteria andSettleIncomeLoseGreaterThan(BigDecimal value) {
+            addCriterion("settle_income_lose >", value, "settleIncomeLose");
+            return (Criteria) this;
+        }
+
+        public Criteria andSettleIncomeLoseGreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("settle_income_lose >=", value, "settleIncomeLose");
+            return (Criteria) this;
+        }
+
+        public Criteria andSettleIncomeLoseLessThan(BigDecimal value) {
+            addCriterion("settle_income_lose <", value, "settleIncomeLose");
+            return (Criteria) this;
+        }
+
+        public Criteria andSettleIncomeLoseLessThanOrEqualTo(BigDecimal value) {
+            addCriterion("settle_income_lose <=", value, "settleIncomeLose");
+            return (Criteria) this;
+        }
+
+        public Criteria andSettleIncomeLoseIn(List<BigDecimal> values) {
+            addCriterion("settle_income_lose in", values, "settleIncomeLose");
+            return (Criteria) this;
+        }
+
+        public Criteria andSettleIncomeLoseNotIn(List<BigDecimal> values) {
+            addCriterion("settle_income_lose not in", values, "settleIncomeLose");
+            return (Criteria) this;
+        }
+
+        public Criteria andSettleIncomeLoseBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("settle_income_lose between", value1, value2, "settleIncomeLose");
+            return (Criteria) this;
+        }
+
+        public Criteria andSettleIncomeLoseNotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("settle_income_lose not between", value1, value2, "settleIncomeLose");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

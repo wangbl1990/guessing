@@ -62,6 +62,8 @@ public class TradeOrder {
 
     private String remark;
 
+    private BigDecimal settleIncomeLose;
+
     public String getId() {
         return id;
     }
@@ -292,5 +294,13 @@ public class TradeOrder {
 
     public void setRemark(String remark) {
         this.remark = remark == null ? null : remark.trim();
+    }
+
+    public BigDecimal getSettleIncomeLose() {
+        return settleIncomeLose;
+    }
+
+    public void setSettleIncomeLose(BigDecimal settleIncomeLose) {
+        this.settleIncomeLose = settleIncomeLose;
     }
 }

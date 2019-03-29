@@ -129,6 +129,7 @@ public class OrderDomain {
         tradeOrderExample.createCriteria().andIdEqualTo(orderSettleRequest.getVendor_order_id()).andStatusEqualTo(OrderStatus.PAYED.getCode());
         TradeOrder updateTradeOrder = new TradeOrder();
         updateTradeOrder.setStatus(OrderStatus.SETTLED.getCode());
+        updateTradeOrder.setSettleIncomeLose(orderSettleRequest.getNet_pn_l());
         int result = tradeOrderMapper.updateByExampleSelective(updateTradeOrder, tradeOrderExample);
         if(1 == result){
             //新增结算单
@@ -238,7 +239,7 @@ public class OrderDomain {
         }else if("3".equals(orderSettleRequest.getStatus()) || "4".equals(orderSettleRequest.getStatus()) || "5".equals(orderSettleRequest.getStatus())){
             //订单取消;订单无效;订单被拒 更新订单状态，退还用户下单米粒
             TradeOrderExample tradeOrderExample = new TradeOrderExample();
-            tradeOrderExample.createCriteria().andIdEqualTo(orderSettleRequest.getVendor_order_id()).andStatusEqualTo(OrderStatus.INIT.getCode());
+            tradeOrderExample.createCriteria().andIdEqualTo(orderSettleRequest.getVendor_order_id()).andStatusEqualTo(OrderStatus.PAYED.getCode());
             TradeOrder updateTradeOrder = new TradeOrder();
             updateTradeOrder.setStatus(orderSettleRequest.getStatus());
             int result = tradeOrderMapper.updateByExampleSelective(updateTradeOrder, tradeOrderExample);
